@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import {BrowserRouter,Route, Routes} from 'react-router-dom';
-import Login_Page from './Login_Page';
+import LoginPage from './Login/LoginPage';
 export default function Main(props){
 return(
     <BrowserRouter>
             <Routes>
-                {/* log in and create */}
-                <Route path="/" exact component={Login_Page} />
+                <Route path="/" exact component={LoginPage} />
             </Routes>
     </BrowserRouter>
     )
