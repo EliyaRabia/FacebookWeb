@@ -3,11 +3,11 @@ import "./LoginPage.css";
 import Introduction from './Introduction/Introduction';
 import Entrance from './Entrance/Entrance';
 
-function LoginPage() {
+function LoginPage({ setUserExists }) {
   return (
     <div className="container px-4 text-center">
       <div className="col-4">
-        <Entrance></Entrance>
+        <Entrance setUserExists={setUserExists}></Entrance>
       </div>
 
       <div className="col-6">
