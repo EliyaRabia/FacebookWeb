@@ -1,10 +1,13 @@
 import './App.css';
 import RouterLinking from './RouterLinking'
-import LoginPage from './Login/LoginPage';
+// import LoginPage from './Login/LoginPage';
 function App() {
   return (
     <div className="App">
-      <LoginPage />
+    <RouterLinking>
+
+    </RouterLinking>
+      {/* <LoginPage /> */}
     </div>
   );
 }

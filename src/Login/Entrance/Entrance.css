@@ -1,0 +1,11 @@
+.entrance {
+    border-radius: 8px;
+    line-height: 1.34;
+    background-color: white;
+}
+
+.hrSize {
+    width: 90%;
+    margin: auto;
+    margin-top: 5px;
+}

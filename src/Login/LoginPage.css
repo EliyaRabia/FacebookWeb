@@ -1,58 +1,6 @@
-.Login {
-    border: 1px solid;
-    border-color: grey;
-    border-radius: 0.25rem;
-    line-height: 1.34;
-    background-color: white;
-}
-
-.introduction {
-    height: 60vh;
-}
-
-.introduction h1{
-    color: #1877f2;
-}
-
-.introduction p {
-    color: black;
-}
-
-.hrSize{
-    width: 90%;
-    margin: auto;
-    margin-top: 5px;
-}
-
-.signUp {
-    background-color: #42b72a;
-    width: 40%;
-}
-
-.signIn {
-
-    width: 95%;
-}
-
-.btn {
-    border: none;
-}
-
-
 .container {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: #f0f2f5;
 }
-
-
-/* .container {
-    background: #f0f2f5;
-    color: #1c1e21;
-    line-height: 1.34;
-    margin: 0;
-    padding: 0;
-    unicode-bidi: embed;
-} */
