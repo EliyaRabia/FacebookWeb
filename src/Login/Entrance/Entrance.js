@@ -1,52 +1,51 @@
 import React, { useState } from "react";
+import { useRef } from "react";
 import SignInButton from "../SignInButton/SignInButton";
 import SignUpButton from "../SignUpButton/SignUpButton";
 import "./Entrance.css";
+import { useNavigate } from "react-router-dom";
 
-function Entrance() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+function Entrance({ setUserExists }) {
   const [passwordMessage, setPasswordMessage] = useState("");
   const [userList] = useState([
     { username: "user1", password: "password1" },
     { username: "user2", password: "password2" },
   ]);
 
+  const usernameBox = useRef(null);
+  const passwordBox = useRef(null);
+  const navigate = useNavigate();
+
   const handlePasswordClick = () => {
-    // Set the message based on the password input when the input is clicked
     setPasswordMessage(
-      password.length > 0
+      passwordBox.current.value.length > 0
         ? ""
         : "At least 8 digits long, a combination of characters and letters"
     );
   };
 
+
   const handlePasswordBlur = () => {
-    // Clear the message when the user clicks outside the password input
     setPasswordMessage("");
   };
 
-  const handlePasswordChange = (event) => {
-    const inputValue = event.target.value;
-    setPassword(inputValue);
-  };
-
-   const handleUsernameChange = (event) => {
-     const inputValue = event.target.value;
-     setUsername(inputValue);
-   };
 
   const handleSignIn = () => {
-    // Check if the entered username and password match any user in the user list
-    const userExists = userList.some(
-      (user) => user.username === username && user.password === password
+    const isAuthenticated = userList.some(
+      (user) => user.username === usernameBox.current.value &&
+      user.password === passwordBox.current.value
     );
 
-    if (userExists) {
-      console.log("Yes");
+    if (isAuthenticated) {
+      setUserExists(true);
+      navigate("/pid");
     } else {
-      console.log("Invalid username or password");
+      alert("Invalid username or password");
     }
+  };
+
+  const handleSignUp = () => {
+    navigate("/Creating");
   };
 
   return (
@@ -58,8 +57,7 @@ function Entrance() {
           placeholder="email or phone number"
           aria-label="Username"
           aria-describedby="addon-wrapping"
-          value={username}
-          onChange={handleUsernameChange}
+          ref={usernameBox}
         />
       </div>
       <div className="input-group flex-nowrap p-2">
@@ -69,8 +67,7 @@ function Entrance() {
           placeholder="password"
           aria-label="Password"
           aria-describedby="addon-wrapping"
-          value={password}
-          onChange={handlePasswordChange}
+          ref={passwordBox}
           onClick={handlePasswordClick}
           onBlur={handlePasswordBlur}
         />
@@ -79,7 +76,7 @@ function Entrance() {
 
       <SignInButton onClick={handleSignIn} />
       <hr className="hrSize" />
-      <SignUpButton />
+      <SignUpButton onClick={handleSignUp}></SignUpButton>
     </div>
   );
 }
