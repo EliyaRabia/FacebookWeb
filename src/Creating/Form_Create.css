@@ -15,3 +15,18 @@
 .button-container:hover {
     background-color: #36a420; /* Slightly darker green on hover */
 }
+
+.toggle-button-container {
+    margin-left: 10px; /* Adjust the margin as needed */
+    align-self: flex-end;
+}
+
+.password-form {
+    display: flex;
+    flex-direction: column;
+}
+.password-input-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
