@@ -15,12 +15,12 @@ function Entrance({ setUserExists }) {
   const usernameBox = useRef(null);
   const passwordBox = useRef(null);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+
 
   const handlePasswordClick = () => {
     setPasswordMessage(
-      passwordBox.current.value.length > 0
-        ? ""
-        : "At least 8 digits long, a combination of characters and letters"
+       "At least 8 digits long, a combination of characters and letters"
     );
   };
 
@@ -48,6 +48,10 @@ function Entrance({ setUserExists }) {
     navigate("/Creating");
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className="entrance">
       <div className="input-group flex-nowrap p-2">
@@ -61,8 +65,16 @@ function Entrance({ setUserExists }) {
         />
       </div>
       <div className="input-group flex-nowrap p-2">
+        <button type="button" className="btn btn-light">
+          <i
+            className="bi bi-eye-slash"
+            onMouseOver={togglePasswordVisibility}
+            onMouseLeave={togglePasswordVisibility}
+            data-testid="eye-slash-icon"
+          ></i>
+        </button>
         <input
-          type="password"
+          type={showPassword ? "text" : "password"}
           className="form-control"
           placeholder="password"
           aria-label="Password"

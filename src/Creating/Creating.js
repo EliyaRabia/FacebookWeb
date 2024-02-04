@@ -1,6 +1,7 @@
 function Creating() {
+  console.log("Creating component is rendering");
   return (
-    <div className="App">
+    <div data-testid="CreatingID">
       <h1>hello</h1>
     </div>
   );
