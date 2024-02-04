@@ -6,6 +6,7 @@ import FormCreate from "./Form_Create"
 import Introduction from '../Login/Introduction/Introduction';
 
 function Creating() {
+  console.log("Creating component is rendering");
   return (
     <div className="container px-4 text-center">
       <div className="col-4">

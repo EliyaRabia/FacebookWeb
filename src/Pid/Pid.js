@@ -1,6 +1,6 @@
 function Pid() {
   return (
-    <div className="App">
+    <div>
       <h1>hiiiii</h1>
     </div>
   );
