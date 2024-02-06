@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState , useRef } from "react";
 import "./Form_Create.css"
-function Form_Create() {
+function Form_Create({userList,setuserList}) {
 
     const [passwordMessage, setPasswordMessage] = useState("");
     const navigate = useNavigate();
@@ -11,10 +11,6 @@ function Form_Create() {
     const displayName = useRef("");
     const photo = useRef("");
     const [showPassword, setShowPassword] = useState(false);
-    const [userList,setuserList] = useState([
-        { username: "user1", password: "Password1!" ,displayName: "aaa" },
-        { username: "user2", password: "Password2!" ,displayName: "bbb" },
-    ]);
     const handleTogglePassword = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
     };
@@ -61,6 +57,8 @@ function Form_Create() {
                             displayName: displayName.current.value  };
                         const updatedUserList = [...userList, newUser];
                         setuserList(updatedUserList);
+                        alert("user created!");
+                        navigate("/");
                     }
                     else{
                         alert("password dont match!")
@@ -88,7 +86,7 @@ function Form_Create() {
                 it's quick and easy
             </div>
             <div className="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Username</label>
+                <label htmlFor="exampleFormControlInput1" className="form-label">Username</label>
                 <input
                 type="text"
                 className="form-control"
@@ -99,10 +97,10 @@ function Form_Create() {
                 </input>
             </div>
             <div className="mb-3" >
-                <label for="exampleFormControlInput1" className="form-label">Password</label>
+                <label htmlFor="exampleFormControlInput1" className="form-label">Password</label>
                 <input
                 type={showPassword ? 'text' : 'password'}
-                class="form-control"
+                className="form-control"
                 placeholder="enter password"
                 aria-label="Password"
                 aria-describedby="addon-wrapping"
@@ -116,7 +114,7 @@ function Form_Create() {
             </div>
             {passwordMessage && <div className="message">{passwordMessage}</div>}
             <div className="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Confirm Password</label>
+                <label htmlFor="exampleFormControlInput1" className="form-label">Confirm Password</label>
                 <input
                 type="password"
                 className="form-control"
@@ -127,12 +125,12 @@ function Form_Create() {
                 ref={passwordCheckBox}
                 />
             </div>
-            <div class="mb-3">
-                <label for="formFile" class="form-label">Choose pic</label>
-                <input class="form-control" type="file" id="image" accept="image/*" ref={photo} />
+            <div className="mb-3">
+                <label htmlFor="formFile" className="form-label">Choose pic</label>
+                <input className="form-control" type="file" id="image" accept="image/*" ref={photo} />
             </div>
             <div className="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Display Name</label>
+                <label htmlFor="exampleFormControlInput1" className="form-label">Display Name</label>
                 <input
                 type="text"
                 className="form-control"

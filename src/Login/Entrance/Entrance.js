@@ -5,12 +5,8 @@ import SignUpButton from "../SignUpButton/SignUpButton";
 import "./Entrance.css";
 import { useNavigate } from "react-router-dom";
 
-function Entrance({ setUserExists }) {
+function Entrance({ setUserExists , userList }) {
   const [passwordMessage, setPasswordMessage] = useState("");
-  const [userList] = useState([
-    { username: "user1", password: "password1" },
-    { username: "user2", password: "password2" },
-  ]);
 
   const usernameBox = useRef(null);
   const passwordBox = useRef(null);
@@ -20,7 +16,7 @@ function Entrance({ setUserExists }) {
 
   const handlePasswordClick = () => {
     setPasswordMessage(
-       "At least 8 digits long, a combination of characters and letters"
+      "At least 8 digits long, a combination of characters and letters"
     );
   };
 
@@ -45,6 +41,7 @@ function Entrance({ setUserExists }) {
   };
 
   const handleSignUp = () => {
+    // Pass userList and setuserList to the Creating component
     navigate("/Creating");
   };
 
