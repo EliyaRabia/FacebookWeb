@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState , useRef } from "react";
 import "./Form_Create.css"
-function Form_Create() {
+function Form_Create({userList,setuserList}) {
 
     const [passwordMessage, setPasswordMessage] = useState("");
     const navigate = useNavigate();
@@ -11,12 +11,12 @@ function Form_Create() {
     const displayName = useRef("");
     const photo = useRef("");
     const [showPassword, setShowPassword] = useState(false);
-    const [userList,setuserList] = useState([
-        { username: "user1", password: "Password1!" ,displayName: "aaa" },
-        { username: "user2", password: "Password2!" ,displayName: "bbb" },
-    ]);
+    const [showPasswordCheck, setShowPasswordCheck] = useState(false);
     const handleTogglePassword = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
+    };
+    const handleTogglePasswordCheck = () => {
+        setShowPasswordCheck((prevShowPassword) => !prevShowPassword);
     };
     const handlePasswordClick = () => {
         setPasswordMessage(
@@ -52,15 +52,18 @@ function Form_Create() {
         //console.log(passwordBox.current.value);
         //console.log(passwordCheckBox.current.value);
         //console.log(validatePassword(passwordBox.current.value))
-        if(usernameBox.current.value != "" && passwordBox.current.value !="" && passwordCheckBox.current.value !="" && displayName.current.value !="" ){
+        if(usernameBox.current.value != "" && passwordBox.current.value !="" && passwordCheckBox.current.value !="" && displayName.current.value !="" && photo.current.value !=""){
             if(isUsernameExists == false){
                 if(validatePassword(passwordBox.current.value) == true){
                     if(passwordBox.current.value == passwordCheckBox.current.value){
                         const newUser = { username: usernameBox.current.value ,
                             password: passwordBox.current.value ,
-                            displayName: displayName.current.value  };
+                            displayName: displayName.current.value,
+                            photo: photo.current.value};
                         const updatedUserList = [...userList, newUser];
                         setuserList(updatedUserList);
+                        alert("user created!");
+                        navigate("/");
                     }
                     else{
                         alert("password dont match!")
@@ -88,7 +91,7 @@ function Form_Create() {
                 it's quick and easy
             </div>
             <div className="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Username</label>
+                <label htmlFor="exampleFormControlInput1" className="form-label">Username</label>
                 <input
                 type="text"
                 className="form-control"
@@ -98,11 +101,19 @@ function Form_Create() {
                 ref={usernameBox}>
                 </input>
             </div>
-            <div className="mb-3" >
-                <label for="exampleFormControlInput1" className="form-label">Password</label>
+            <label htmlFor="exampleFormControlInput1" className="form-label">Password</label>
+            <div className="input-group flex-nowrap p-2" >
+                <button type="button" className="btn btn-light">
+                <i
+                    className="bi bi-eye-slash"
+                    onMouseOver={handleTogglePassword}
+                    onMouseLeave={handleTogglePassword}
+                    data-testid="eye-slash-icon"
+                ></i>
+                </button>
                 <input
                 type={showPassword ? 'text' : 'password'}
-                class="form-control"
+                className="form-control"
                 placeholder="enter password"
                 aria-label="Password"
                 aria-describedby="addon-wrapping"
@@ -110,29 +121,35 @@ function Form_Create() {
                 onClick={handlePasswordClick}
                 onBlur={handlePasswordBlur}>
                 </input>
-                <button type="button" className="toggle-button-container ml-2" onClick={handleTogglePassword}>
-                    {showPassword ? 'Hide' : 'Show'}
-                </button>
             </div>
             {passwordMessage && <div className="message">{passwordMessage}</div>}
-            <div className="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Confirm Password</label>
+            <label htmlFor="exampleFormControlInput1" className="form-label">Confirm Password</label>
+            <div className="input-group flex-nowrap p-2">
+                <button type="button" className="btn btn-light">
+                <i
+                    className="bi bi-eye-slash"
+                    onMouseOver={handleTogglePasswordCheck}
+                    onMouseLeave={handleTogglePasswordCheck}
+                    data-testid="eye-slash-icon"
+                ></i>
+                </button>
                 <input
-                type="password"
+                type={showPasswordCheck ? 'text' : 'password'}
                 className="form-control"
                 placeholder="confirm password"
                 aria-label="Password"
                 aria-describedby="addon-wrapping"
                 onClick={handlePasswordClick}
                 ref={passwordCheckBox}
+                onBlur={handlePasswordBlur}
                 />
             </div>
-            <div class="mb-3">
-                <label for="formFile" class="form-label">Choose pic</label>
-                <input class="form-control" type="file" id="image" accept="image/*" ref={photo} />
+            <div className="mb-3">
+                <label htmlFor="formFile" className="form-label">Choose pic</label>
+                <input className="form-control" type="file" id="image" accept="image/*" ref={photo} />
             </div>
             <div className="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Display Name</label>
+                <label htmlFor="exampleFormControlInput1" className="form-label">Display Name</label>
                 <input
                 type="text"
                 className="form-control"

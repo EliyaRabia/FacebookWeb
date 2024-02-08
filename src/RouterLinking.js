@@ -5,9 +5,10 @@ import LoginPage from "./Login/LoginPage";
 import Pid from "./Pid/Pid";
 import Creating from "./Creating/Creating";
 
-export default function Main(props) {
+export default function Main() {
   const [userExists, setUserExists] = useState(false);
-
+  const [userList,setuserList] = useState([
+  ]);
   return (
     <BrowserRouter>
       <Routes>
@@ -16,6 +17,7 @@ export default function Main(props) {
           element={
             <LoginPage
               userExists={userExists}
+              userList={userList}
               setUserExists={setUserExists}
             ></LoginPage>
           }
@@ -27,7 +29,12 @@ export default function Main(props) {
 
         <Route
           path="/creating"
-          element={<Creating></Creating>}
+          element=
+            {<Creating
+                userList={userList}
+                setuserList={setuserList}
+                >
+            </Creating>}
         ></Route>
         
       </Routes>
