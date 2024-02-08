@@ -7,7 +7,6 @@ import LeftSide from './LeftSide/LeftSide';
 function Pidtest() {
     function handleClick(event) {
         event.preventDefault();
-        // Additional code if needed
     }
     return (
 
@@ -19,7 +18,7 @@ function Pidtest() {
                 </div>
 
                 <div class="col"> 
-
+                        
 
                 </div>
                 <div class="col-3 bg-light vh-100">     
