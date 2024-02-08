@@ -7,44 +7,31 @@ import LeftSide from './LeftSide/LeftSide';
 
 import { useNavigate } from "react-router-dom";
 import React, { useState , useRef } from "react";
-function Pid({ setUserLoggedIn, userLoggedIn}) {
-  const navigate = useNavigate();
-  const goBack = () => {
-    setUserLoggedIn(false);
-    navigate("/");
-  }; 
+function Pid({ setUserLoggedIn, userLoggedIn}) { 
   const [postList,setPostList] = useState(Posts); 
   return (
-    <div class="container-fluid">
-      <NaviBar {...userLoggedIn.username}></NaviBar>
-      <div class="row">
-        <div class="col-3 bg-light vh-100">
+    <div className="container-fluid">
+      <NaviBar userLoggedIn = {userLoggedIn} setUserLoggedIn={setUserLoggedIn}></NaviBar>
+      <div className="row">
+        <div className="col-3 bg-light vh-100">
           <LeftSide></LeftSide>
         </div>
-
-        <div class="col">
+        <div className="col">
           <div>
-            hey {userLoggedIn.username}
-            <button type="button" className="button-container" onClick={goBack}>Log out</button>
             <div>
               <AddPost setPosts={setPostList} posts={postList}></AddPost>
             </div>
             <div>
               {postList.map((post) => (
-                <Post {...post}></Post>
+                <Post key={post.id}{...post}></Post>
               ))}
             </div>
           </div>
-
         </div>
-        <div class="col-3 bg-light vh-100">
-
-
+        <div className="col-3 bg-light vh-100">
         </div>
       </div>
     </div>
-
-        
   );
 }
 
