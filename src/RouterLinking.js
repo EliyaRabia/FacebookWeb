@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import LoginPage from "./Login/LoginPage";
 import Pid from "./Pid/Pid";
-import Creating from "./Creating/Creating";
+import Creating from "./Creating/Creating"; 
+import Pidtest from "./Pidtest/Pidtest";
 
 export default function Main() {
   const [userExists, setUserExists] = useState(false);
@@ -35,6 +36,10 @@ export default function Main() {
                 setuserList={setuserList}
                 >
             </Creating>}
+        ></Route>
+        <Route
+          path="/pidtest"
+          element={<Pidtest></Pidtest>}
         ></Route>
         
       </Routes>
