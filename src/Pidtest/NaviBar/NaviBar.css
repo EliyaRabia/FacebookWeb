@@ -96,3 +96,6 @@ nav{
     background-color: #d8d9dd; 
     transition: ease-in-out 0.1s;
 }
+.nav_item_dropdown{
+    list-style-type: none;
+  }

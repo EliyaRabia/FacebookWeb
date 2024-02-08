@@ -5,4 +5,11 @@
 .list-group-item:hover{
     background-color: lightgray;
     cursor: pointer;
+} 
+.shortcut_title{
+   display:flex;
+   justify-content: space-between;
+} 
+.shortcut_title a{
+    color: blue;
 }

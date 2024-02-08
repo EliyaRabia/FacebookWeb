@@ -5,9 +5,13 @@ import LeftSide from './LeftSide/LeftSide';
 
 
 function Pidtest() {
+    function handleClick(event) {
+        event.preventDefault();
+        // Additional code if needed
+    }
     return (
 
-        <div class="container-fluid">
+        <div class="container-fluid" onClick={handleClick}>
             <NaviBar></NaviBar>
             <div class="row">
                 <div class="col-3 bg-light vh-100">
