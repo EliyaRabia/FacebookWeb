@@ -10,6 +10,7 @@ export default function Main() {
   const [userExists, setUserExists] = useState(false);
   const [userList,setuserList] = useState([
   ]);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
   return (
     <BrowserRouter>
       <Routes>
@@ -20,12 +21,16 @@ export default function Main() {
               userExists={userExists}
               userList={userList}
               setUserExists={setUserExists}
+              setUserLoggedIn={setUserLoggedIn}
             ></LoginPage>
           }
         ></Route>
         <Route
           path="/pid"
-          element={userExists ? <Pid></Pid> : <Navigate to="/"></Navigate>}
+          element={userExists ? <Pid
+            setUserLoggedIn={setUserLoggedIn}
+            userLoggedIn={userLoggedIn}
+          ></Pid> : <Navigate to="/"></Navigate>}
         ></Route>
 
         <Route

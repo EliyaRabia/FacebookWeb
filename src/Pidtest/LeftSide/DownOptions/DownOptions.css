@@ -1,0 +1,12 @@
+.shortcut_title{
+    display:flex;
+    justify-content: space-between;
+ }  
+ .shortcut_title{
+     margin-top: 25px;
+     font-weight:500;
+ }
+ .shortcut_title a{
+     color: blue;
+ } 
+ 
