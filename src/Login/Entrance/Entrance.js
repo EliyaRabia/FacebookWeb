@@ -5,7 +5,7 @@ import SignUpButton from "../SignUpButton/SignUpButton";
 import "./Entrance.css";
 import { useNavigate } from "react-router-dom";
 
-function Entrance({ setUserExists , userList }) {
+function Entrance({ setUserExists , userList , setUserLoggedIn}) {
   const [passwordMessage, setPasswordMessage] = useState("");
 
   const usernameBox = useRef(null);
@@ -27,13 +27,20 @@ function Entrance({ setUserExists , userList }) {
 
 
   const handleSignIn = () => {
-    const isAuthenticated = userList.some(
+    const isAuthenticated = userList.find(
       (user) => user.username === usernameBox.current.value &&
       user.password === passwordBox.current.value
     );
 
     if (isAuthenticated) {
       setUserExists(true);
+      const user = {
+        username: isAuthenticated.username,
+        displayName: isAuthenticated.displayName,
+        photo: isAuthenticated.photo
+      };
+      console.log(user);
+      setUserLoggedIn(user);
       navigate("/pid");
     } else {
       alert("Invalid username or password");
