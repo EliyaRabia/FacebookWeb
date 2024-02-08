@@ -16,7 +16,7 @@ function Pid({ setUserLoggedIn, userLoggedIn}) {
   const [postList,setPostList] = useState(Posts); 
   return (
     <div class="container-fluid">
-      <NaviBar {...userLoggedIn.username}></NaviBar>
+      <NaviBar userLoggedIn = {userLoggedIn} setUserLoggedIn={setUserLoggedIn}></NaviBar>
       <div class="row">
         <div class="col-3 bg-light vh-100">
           <LeftSide></LeftSide>
@@ -24,7 +24,6 @@ function Pid({ setUserLoggedIn, userLoggedIn}) {
 
         <div class="col">
           <div>
-            hey {userLoggedIn.username}
             <button type="button" className="button-container" onClick={goBack}>Log out</button>
             <div>
               <AddPost setPosts={setPostList} posts={postList}></AddPost>
@@ -35,16 +34,11 @@ function Pid({ setUserLoggedIn, userLoggedIn}) {
               ))}
             </div>
           </div>
-
         </div>
         <div class="col-3 bg-light vh-100">
-
-
         </div>
       </div>
     </div>
-
-        
   );
 }
 
