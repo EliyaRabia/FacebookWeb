@@ -1,6 +1,7 @@
-import dogImage from "./dog.jpg";
+import dogImage from "./pictures/picture1.jpg";
 import "./Post.css";
 import PostManagement from "./PostManagement/PostManagement";
+// import Carousel from "./Carousel/Carousel";
 
 function Post({
   id,
@@ -14,6 +15,7 @@ function Post({
   comments,
   setPost,
 }) {
+  
   return (
     <div className="post">
       <div className="card" style={{ width: "18rem" }}>
@@ -28,7 +30,12 @@ function Post({
           class="card-img-top"
           style={{ width: "10rem" }}
         ></img>
-        <PostManagement likes={likes} commentsNumber={commentsNumber}></PostManagement>
+        {/* <Carousel pictures={pictures}></Carousel> */}
+        <PostManagement
+          likes={likes}
+          commentsNumber={commentsNumber}
+          comments={comments}
+        ></PostManagement>
       </div>
     </div>
   );
