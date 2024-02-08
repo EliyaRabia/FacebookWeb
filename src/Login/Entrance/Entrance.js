@@ -48,7 +48,6 @@ function Entrance({ setUserExists , userList }) {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
   return (
     <div className="entrance">
       <div className="input-group flex-nowrap p-2">

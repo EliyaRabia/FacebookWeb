@@ -11,8 +11,12 @@ function Form_Create({userList,setuserList}) {
     const displayName = useRef("");
     const photo = useRef("");
     const [showPassword, setShowPassword] = useState(false);
+    const [showPasswordCheck, setShowPasswordCheck] = useState(false);
     const handleTogglePassword = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
+    };
+    const handleTogglePasswordCheck = () => {
+        setShowPasswordCheck((prevShowPassword) => !prevShowPassword);
     };
     const handlePasswordClick = () => {
         setPasswordMessage(
@@ -48,13 +52,14 @@ function Form_Create({userList,setuserList}) {
         //console.log(passwordBox.current.value);
         //console.log(passwordCheckBox.current.value);
         //console.log(validatePassword(passwordBox.current.value))
-        if(usernameBox.current.value != "" && passwordBox.current.value !="" && passwordCheckBox.current.value !="" && displayName.current.value !="" ){
+        if(usernameBox.current.value != "" && passwordBox.current.value !="" && passwordCheckBox.current.value !="" && displayName.current.value !="" && photo.current.value !=""){
             if(isUsernameExists == false){
                 if(validatePassword(passwordBox.current.value) == true){
                     if(passwordBox.current.value == passwordCheckBox.current.value){
                         const newUser = { username: usernameBox.current.value ,
                             password: passwordBox.current.value ,
-                            displayName: displayName.current.value  };
+                            displayName: displayName.current.value,
+                            photo: photo.current.value};
                         const updatedUserList = [...userList, newUser];
                         setuserList(updatedUserList);
                         alert("user created!");
@@ -96,8 +101,16 @@ function Form_Create({userList,setuserList}) {
                 ref={usernameBox}>
                 </input>
             </div>
-            <div className="mb-3" >
-                <label htmlFor="exampleFormControlInput1" className="form-label">Password</label>
+            <label htmlFor="exampleFormControlInput1" className="form-label">Password</label>
+            <div className="input-group flex-nowrap p-2" >
+                <button type="button" className="btn btn-light">
+                <i
+                    className="bi bi-eye-slash"
+                    onMouseOver={handleTogglePassword}
+                    onMouseLeave={handleTogglePassword}
+                    data-testid="eye-slash-icon"
+                ></i>
+                </button>
                 <input
                 type={showPassword ? 'text' : 'password'}
                 className="form-control"
@@ -108,21 +121,27 @@ function Form_Create({userList,setuserList}) {
                 onClick={handlePasswordClick}
                 onBlur={handlePasswordBlur}>
                 </input>
-                <button type="button" className="toggle-button-container ml-2" onClick={handleTogglePassword}>
-                    {showPassword ? 'Hide' : 'Show'}
-                </button>
             </div>
             {passwordMessage && <div className="message">{passwordMessage}</div>}
-            <div className="mb-3">
-                <label htmlFor="exampleFormControlInput1" className="form-label">Confirm Password</label>
+            <label htmlFor="exampleFormControlInput1" className="form-label">Confirm Password</label>
+            <div className="input-group flex-nowrap p-2">
+                <button type="button" className="btn btn-light">
+                <i
+                    className="bi bi-eye-slash"
+                    onMouseOver={handleTogglePasswordCheck}
+                    onMouseLeave={handleTogglePasswordCheck}
+                    data-testid="eye-slash-icon"
+                ></i>
+                </button>
                 <input
-                type="password"
+                type={showPasswordCheck ? 'text' : 'password'}
                 className="form-control"
                 placeholder="confirm password"
                 aria-label="Password"
                 aria-describedby="addon-wrapping"
                 onClick={handlePasswordClick}
                 ref={passwordCheckBox}
+                onBlur={handlePasswordBlur}
                 />
             </div>
             <div className="mb-3">
