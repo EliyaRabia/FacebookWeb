@@ -36,3 +36,35 @@
     transform: rotate(360deg);
   }
 }
+
+/* Light mode styles */
+.light-mode {
+  background-color: #ffffff;
+  color: #333333;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
+}
+
+.light-mode-button {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+/* Dark mode styles */
+.dark-mode {
+  background-color: #333333;
+  color: #ffffff;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
+}
+
+.dark-mode-button {
+  background-color: #ffffff;
+  color: #333333;
+}
