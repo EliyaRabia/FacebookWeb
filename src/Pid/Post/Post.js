@@ -34,7 +34,7 @@ function Post({
         <PostManagement
           likes={likes}
           commentsNumber={commentsNumber}
-          comments={comments}
+          initialComments={comments}
         ></PostManagement>
       </div>
     </div>

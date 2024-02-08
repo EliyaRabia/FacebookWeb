@@ -2,9 +2,12 @@ import "./PostManagement.css";
 import { useState } from "react";
 import Comment from "./Comment/Comment";
 
-function PostManagement({ likes, commentsNumber, comments }) {
+function PostManagement({ likes, commentsNumber, initialComments }) {
   const [likesCount, setLikesCount] = useState(likes);
   const [liked, setLiked] = useState(false);
+  const [comments, setComments] = useState(initialComments);
+  const [commentsCount, setCommentsCount] = useState(commentsNumber);
+
 
   const handleLikeClick = () => {
     if (liked) {
@@ -17,9 +20,22 @@ function PostManagement({ likes, commentsNumber, comments }) {
 
   const [showComments, setShowComments] = useState(false);
 
-    const handleShowComments = () => {
-      setShowComments(!showComments);
-    };
+  const handleShowComments = () => {
+    setShowComments(!showComments);
+  };
+
+  const handleDeleteComment = (commentId) => {
+    // Filter out the comment with the specified commentId
+    const updatedComments = comments.filter(
+      (comment) => comment.id !== commentId
+    );
+    // Update the comments state with the filtered comments
+    setComments(updatedComments);
+  };
+
+  const handleDeleteCommentCount = () => {
+    setCommentsCount((prevCommentCount) => prevCommentCount - 1);
+  };
 
   return (
     <div className="postManagement">
@@ -40,7 +56,7 @@ function PostManagement({ likes, commentsNumber, comments }) {
       >
         <i class="bi bi-chat-text"></i>{" "}
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-          {commentsNumber} <span class="visually-hidden">unread messages</span>
+          {commentsCount} <span class="visually-hidden">unread messages</span>
         </span>
       </button>
 
@@ -88,10 +104,27 @@ function PostManagement({ likes, commentsNumber, comments }) {
         </div>
       </div>
       {showComments && (
-        <div className="comment">
-          {comments.map((comment) => (
-            <Comment {...comment}></Comment>
-          ))}
+        <div>
+          <div>
+            <div class="input-group mb-3">
+              <button type="button" class="btn btn-dark">
+                <i class="bi bi-send"></i>
+              </button>
+              <textarea
+                class="form-control"
+                aria-label="With textarea"
+              ></textarea>
+            </div>
+          </div>
+          <div className="comment">
+            {comments.map((comment) => (
+              <Comment
+                {...comment}
+                onDelete={handleDeleteComment}
+                setCommentsCount={handleDeleteCommentCount}
+              ></Comment>
+            ))}
+          </div>
         </div>
       )}
     </div>
