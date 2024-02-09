@@ -8,7 +8,7 @@ function NaviBar({userLoggedIn, setUserLoggedIn}){
     }; 
     const photoUrl = userLoggedIn && userLoggedIn.photo ? URL.createObjectURL(userLoggedIn.photo) : null;
     return(
-        <nav>
+        <nav className="navBody">
                 <div class="nav__left">
                     <img src="https://brandlogos.net/wp-content/uploads/2021/04/facebook-icon-512x512.png" class="nav_left_img"></img> 
                     <div class="nav__search">
