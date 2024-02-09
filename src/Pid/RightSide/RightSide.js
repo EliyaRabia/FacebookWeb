@@ -13,7 +13,7 @@ function RightSide(){
                 </div>
                 <div class="right_events">
                     <h7>Advanced Programming Lesson</h7>
-                    <p><i class="material-icons">location_on</i>Bar Ilan University</p>
+                    <p className="location"><i class="material-icons">location_on</i>Bar Ilan University</p>
                     <p class="info">More Info</p>
                 </div>
             </div>
@@ -24,7 +24,7 @@ function RightSide(){
                 </div>
                 <div class="right_events">
                     <h7>Advanced Programming Lesson</h7>
-                    <p><i class="material-icons">location_on</i>Bar Ilan University</p>
+                    <p className="location"><i class="material-icons">location_on</i>Bar Ilan University</p>
                     <p class="info">More Info</p>
                 </div>
             </div>

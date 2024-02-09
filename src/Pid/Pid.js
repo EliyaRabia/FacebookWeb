@@ -9,7 +9,6 @@ import RightSide from "./RightSide/RightSide";
 import React, { useState , useRef } from "react";
 function Pid({ setUserLoggedIn, userLoggedIn}) { 
   const [postList,setPostList] = useState(Posts); 
-
   const handleDeletePost = (postId) => {
     const updatedPosts = postList.filter((post) => post.id !== postId);
     setPostList(updatedPosts);
@@ -36,17 +35,26 @@ function Pid({ setUserLoggedIn, userLoggedIn}) {
      });
      setPostList(updatedPostList);
    };
+   const [darkMode, setDarkMode] = useState(false); 
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    console.log(darkMode);
+  };
+  console.log(darkMode);
 
   return (
-    <div className="container-fluid">
+   <div className="container-fluid">
+    <div className={darkMode ? 'dark-mode' : 'liweb'} >
       <div className="navbar-fixed">
         <NaviBar
           userLoggedIn={userLoggedIn}
           setUserLoggedIn={setUserLoggedIn}
+          toggleDarkMode={toggleDarkMode}
+          darkMode={darkMode}
         ></NaviBar>
       </div>
       <div className="row">
-        <div className="col-3 bg-light vh-100 leftSideCol">
+        <div className="col-3 vh-100 leftSideCol">
           <LeftSide></LeftSide>
         </div>
         <div className="col pidCol">
@@ -72,11 +80,13 @@ function Pid({ setUserLoggedIn, userLoggedIn}) {
             </div>
           </div>
         </div>
-        <div className="col-3 bg-light vh-100 rightSideCol">
+        <div className="col-3 vh-100 rightSideCol">
           <RightSide></RightSide>
         </div>
       </div>
     </div>
+    </div>
+    
   );
 }
 

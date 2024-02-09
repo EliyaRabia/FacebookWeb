@@ -160,10 +160,10 @@ function Form_Create({userList,setuserList}) {
                 </input>
             </div>
             <div>
-                <button type="button" className="button-container" onClick={createUser}>Sign Up</button>
+                <button type="button" className="button-container creatingButton" onClick={createUser}>Sign Up</button>
             </div>
             <div>
-                <button type="button" className="button-container" onClick={goBack}>Go Back</button>
+                <button type="button" className="button-container creatingButton" onClick={goBack}>Go Back</button>
             </div>
         </div>
     );
