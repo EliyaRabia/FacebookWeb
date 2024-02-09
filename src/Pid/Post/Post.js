@@ -24,7 +24,7 @@ function Post({
       <div class="avatar">
         {icon && <img src={iconUrl} class="avatar__img" alt="User"/>}
         <h5 class="card-title">
-          {fullname + " "}
+          {fullname} <br></br>
           {time}
         </h5> 
       </div> 
