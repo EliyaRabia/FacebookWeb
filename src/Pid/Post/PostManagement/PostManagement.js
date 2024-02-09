@@ -46,7 +46,7 @@ function PostManagement({
     if (newCommentText.trim() !== "") {
       const newComment = {
         id: comments.length + 1,
-        fullname: "user",
+        fullname: userLoggedIn.displayName,
         text: newCommentText,
       };
       setComments([...comments, newComment]);
