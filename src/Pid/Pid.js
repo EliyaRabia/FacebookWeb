@@ -4,6 +4,7 @@ import Posts from "../data/db.json"
 import AddPost from "./AddPost/AddPost"
 import NaviBar from './NaviBar/NaviBar';
 import LeftSide from './LeftSide/LeftSide';
+import RightSide from "./RightSide/RightSide";
 
 import { useNavigate } from "react-router-dom";
 import React, { useState , useRef } from "react";
@@ -18,9 +19,7 @@ function Pid({ setUserLoggedIn, userLoggedIn}) {
         ></NaviBar>
       </div>
       <div className="row">
-        <div
-          className="col-3 bg-light vh-100 leftSideCol"
-        >
+        <div className="col-3 bg-light vh-100 leftSideCol">
           <LeftSide></LeftSide>
         </div>
         <div className="col pidCol">
@@ -39,9 +38,9 @@ function Pid({ setUserLoggedIn, userLoggedIn}) {
             </div>
           </div>
         </div>
-        <div
-          className="col-3 bg-light vh-100 rightSideCol"
-        ></div>
+        <div className="col-3 bg-light vh-100 rightSideCol">
+          <RightSide></RightSide>
+        </div>
       </div>
     </div>
   );
