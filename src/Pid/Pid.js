@@ -25,17 +25,17 @@ function Pid({ setUserLoggedIn, userLoggedIn}) {
     setPostList(updatedPostList);
   };
 
-   const handleAddPicture = (postId,photo) => {
-     const updatedPostList = postList.map((post) => {
-       if (post.id === postId) {
-         return { ...post, pictures: photo };
-       } else {
-         return post;
-       }
-     });
-     setPostList(updatedPostList);
-   };
-   const [darkMode, setDarkMode] = useState(false); 
+    const handleAddPicture = (postId,photo) => {
+      const updatedPostList = postList.map((post) => {
+        if (post.id === postId) {
+          return { ...post, pictures: photo };
+        } else {
+          return post;
+      }
+    });
+    setPostList(updatedPostList);
+  };
+  const [darkMode, setDarkMode] = useState(false); 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
     console.log(darkMode);
@@ -43,7 +43,7 @@ function Pid({ setUserLoggedIn, userLoggedIn}) {
   console.log(darkMode);
 
   return (
-   <div className="container-fluid">
+  <div className="container-fluid">
     <div className={darkMode ? 'dark-mode' : 'liweb'} >
       <div className="navbar-fixed">
         <NaviBar
@@ -85,8 +85,7 @@ function Pid({ setUserLoggedIn, userLoggedIn}) {
         </div>
       </div>
     </div>
-    </div>
-    
+  </div>
   );
 }
 
