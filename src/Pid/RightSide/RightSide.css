@@ -21,6 +21,10 @@
     margin-bottom: 20px;
 
 }
+.events:hover{
+    background-color: lightgray;
+    cursor: pointer;
+}
 .left_events{
     border-radius: 10px;
     height:85px; 
@@ -54,5 +58,8 @@
     width:100%;
     margin-bottom: 20px;
     border-radius: 4px;
-    
+
+}
+.adpic:hover{
+    cursor:pointer;
 }
