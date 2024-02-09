@@ -36,7 +36,6 @@ function AddPost({setPosts, posts,userLoggedIn}){
         setPhoto(null);
         alert("Post added successfully");
     }
-    console.log(posts);
     return(
         <div className="container-post">
             <div className="input-preview">

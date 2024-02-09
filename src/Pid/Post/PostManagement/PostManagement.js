@@ -82,11 +82,8 @@ function PostManagement({
           {commentsCount} <span class="visually-hidden">unread messages</span>
         </span>
       </button>
-      <button type="button" className="btn btn-light position-relative">
-        <i class="bi bi-pencil-fill"></i>
-      </button>
       <div
-        class="btn-group"
+        class="btn-group "
         role="group"
         aria-label="Button group with nested dropdown"
       >
