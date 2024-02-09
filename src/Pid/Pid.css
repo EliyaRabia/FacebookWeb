@@ -24,7 +24,7 @@
 .rightSideCol {
     position: fixed;
     top: 70px;
-    padding-bottom: 50px;
+    padding-bottom: 60px;
     right: 0.25rem;
     overflow-y: auto;
 }
