@@ -110,7 +110,7 @@ function handleFileChange(event) {
                   ) : (
                     <li>
                       <a className="dropdown-item" onClick={handleButtonClick}>
-                        <i className="bi bi-plus-lg"></i> Add picture
+                        <i class="bi bi-folder-plus"></i> Add picture
                         <input
                           type="file"
                           id="fileInput"
