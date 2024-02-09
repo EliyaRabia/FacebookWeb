@@ -25,7 +25,7 @@ function Pid({ setUserLoggedIn, userLoggedIn}) {
         <div className="col pidCol">
           <div>
             <div>
-              <AddPost setPosts={setPostList} posts={postList}></AddPost>
+              <AddPost setPosts={setPostList} posts={postList} userLoggedIn={userLoggedIn}></AddPost>
             </div>
             <div>
               {postList.map((post) => (

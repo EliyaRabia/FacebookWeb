@@ -33,7 +33,7 @@ function NaviBar({userLoggedIn, setUserLoggedIn}){
                 <div class="nav__right">
                     <div class="avatar">
                         {photoUrl && <img src={photoUrl} class="avatar__img"></img>} 
-                        <span><strong>{userLoggedIn.username}</strong></span>
+                        <span><strong>{userLoggedIn.displayName}</strong></span>
                     </div> 
                     <div class="buttons" > 
                     <a class="button">
