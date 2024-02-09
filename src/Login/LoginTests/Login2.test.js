@@ -20,7 +20,7 @@ test("Shows password message when clicking on the password input", () => {
 
   // Check if the password message appears
   const passwordMessage = screen.getByText(
-    "At least 8 digits long, a combination of characters and letters"
+    "At least 8 digits long, a combination of characters and letters and capital letters."
   );
   expect(passwordMessage).toBeInTheDocument();
 });

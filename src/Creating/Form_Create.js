@@ -22,7 +22,7 @@ function Form_Create({userList,setuserList}) {
         setPasswordMessage(
             passwordBox.current.value.length > 0
             ? ""
-            : "At least 8 digits long, a combination of characters and letters, and capital letter"
+            : "At least 8 digits long, a combination of characters and letters and capital letters."
         );
     };
     const handlePasswordBlur = () => {
