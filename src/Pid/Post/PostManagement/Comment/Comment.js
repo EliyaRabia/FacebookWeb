@@ -11,7 +11,7 @@ function Comment({ id, fullname, icon, text, onDelete, setCommentsCount }) {
     <div className="commentDiv">
       {fullname}: {text}
       <div>
-        <button> edit</button>
+        <i class="bi bi-pencil-fill"></i>
         <button onClick={handleDeleteClick}>Delete</button>
       </div>
       <hr></hr>
