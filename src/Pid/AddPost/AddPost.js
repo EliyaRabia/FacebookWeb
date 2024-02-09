@@ -1,6 +1,6 @@
 import "./AddPost.css"
 import React, { useState , useRef } from "react";
-function AddPost({setPosts, posts}){
+function AddPost({setPosts, posts,userLoggedIn}){
     const postText= useRef("");
     const [photo, setPhoto] = useState(null);
     const [selectedFile, setSelectedFile] = useState(null);
@@ -22,9 +22,9 @@ function AddPost({setPosts, posts}){
         }
         const newPost = {
             id: posts.length + 1,
-            fullname: "Or",
+            fullname: userLoggedIn.displayName,
             text: postText.current.value,
-            icon:"picture",
+            icon: userLoggedIn.photo,
             pictures: photo,
             time: currentTime.toLocaleString(),
             likes: 0,
@@ -40,7 +40,7 @@ function AddPost({setPosts, posts}){
     return(
         <div className="container-post">
             <div className="input-preview">
-                <textarea className="form-control-post" id="formControl" rows="3" placeholder="What do u think?" ref={postText}></textarea>
+                <textarea className="form-control-post" id="formControl" rows="3" placeholder={`${userLoggedIn.displayName}, what do u think?`} ref={postText}></textarea>
             </div>
             <div className="photo-preview">
                 {photo && <img src={photo} alt="Preview" />}
