@@ -12,6 +12,10 @@ function UpOptions(){
                     <span class="m-2">Friends</span>
                 </li>
                 <li class="list-group-item d-flex align-items-center">
+                    <i class="material-icons">history</i>
+                    <span class="m-2">Memories</span>
+                </li>
+                <li class="list-group-item d-flex align-items-center">
                     <i class="material-icons">turned_in</i>
                     <span class="m-2">Saved</span>
                 </li>

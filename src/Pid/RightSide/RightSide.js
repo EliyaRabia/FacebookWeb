@@ -7,7 +7,7 @@ function RightSide(){
                 <a href="">See All</a>
             </div> 
             <div class="events"> 
-            <div class="left_events">
+                <div class="left_events">
                     <h3>11</h3>
                     <span>February</span>  
                 </div>
@@ -29,8 +29,8 @@ function RightSide(){
                 </div>
             </div>
             <div class="rightbar_title">
-                <h4>Avertisments</h4> 
-                <a href="">See All</a>
+                <h4>Advertisments</h4> 
+                <a href="">Close</a>
             </div> 
             <img src="https://www.monetizemore.com/wp-content/uploads/2020/10/What-are-HTML5-ads_.jpg" class="adpic"></img>
         </div>
