@@ -2,22 +2,17 @@
     border: 0;
     background-color: transparent;
 }
+.dark-mode .list-group-item{
+    color:grey;
+}
+
 .list-group-item:hover{
     background-color: lightgray;
     cursor: pointer;
 } 
-.up_options{
-    border-bottom: 1px solid #ccc;
+.leftbar{
+    color: grey;
 }
-.shortcut_title{
-   display:flex;
-   justify-content: space-between;
-}  
-.shortcut_title{
-    margin-top: 25px;
-    font-weight:500;
-}
-.shortcut_title a{
-    color: blue;
-} 
+
+
 

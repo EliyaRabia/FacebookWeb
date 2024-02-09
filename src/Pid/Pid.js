@@ -10,16 +10,24 @@ import { useNavigate } from "react-router-dom";
 import React, { useState , useRef } from "react";
 function Pid({ setUserLoggedIn, userLoggedIn}) { 
   const [postList,setPostList] = useState(Posts); 
+  const [darkMode, setDarkMode] = useState(false); 
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    console.log(darkMode);
+  };
+  console.log(darkMode);
   return (
-    <div className="container-fluid">
+   <div className="container-fluid">
+    <div className={darkMode ? 'dark-mode' : 'liweb'} >
       <div className="navbar-fixed">
         <NaviBar
           userLoggedIn={userLoggedIn}
           setUserLoggedIn={setUserLoggedIn}
+          toggleDarkMode={toggleDarkMode}
         ></NaviBar>
       </div>
       <div className="row">
-        <div className="col-3 bg-light vh-100 leftSideCol">
+        <div className="col-3 vh-100 leftSideCol">
           <LeftSide></LeftSide>
         </div>
         <div className="col pidCol">
@@ -38,11 +46,13 @@ function Pid({ setUserLoggedIn, userLoggedIn}) {
             </div>
           </div>
         </div>
-        <div className="col-3 bg-light vh-100 rightSideCol">
+        <div className="col-3 vh-100 rightSideCol">
           <RightSide></RightSide>
         </div>
       </div>
     </div>
+    </div>
+    
   );
 }
 

@@ -15,6 +15,11 @@
     color: blue;
     font-size: 12px;
 } 
+.dark-mode .leftbar_title a{
+    text-decoration: none;
+    color: teal;
+    font-size: 12px;
+} 
 .online-list{
     display: flex;
     align-items: center;
@@ -47,5 +52,8 @@
     right:0;
     top:unset;
     bottom:0;
+}
+.down_options p{
+    color:grey;
 }
  

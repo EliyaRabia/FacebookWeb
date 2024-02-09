@@ -1,8 +1,12 @@
+.dark-mode{
+    background-color: #333;
+    color:black; 
+}
 .pidCol {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 70px;
+    margin-top: 80px;
     height: auto;
     overflow-y: auto;
 }
@@ -11,14 +15,19 @@
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 1000; 
+    right:1px;
 }
 
 .leftSideCol {
     position: fixed;
-    top: 70px;
+    top: 70px; 
     bottom: 0;
     overflow-y: auto;
+    background-color: #f8f9fa;
+}
+.dark-mode .leftSideCol {
+    background-color: #2a2424;
 }
 
 .rightSideCol {
@@ -28,3 +37,8 @@
     right: 0.25rem;
     overflow-y: auto;
 }
+.dark-mode .rightSideCol {
+    background-color: #2a2424;
+    color: grey;
+}
+
