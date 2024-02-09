@@ -1,6 +1,6 @@
 import "./NaviBar.css" 
 import { useNavigate } from "react-router-dom";
-function NaviBar({userLoggedIn, setUserLoggedIn,toggleDarkMode}){
+function NaviBar({userLoggedIn, setUserLoggedIn,toggleDarkMode,darkMode}){
     const navigate = useNavigate();
     
     const goBack = () => {
@@ -51,7 +51,7 @@ function NaviBar({userLoggedIn, setUserLoggedIn,toggleDarkMode}){
                         <i class="material-icons">settings</i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" onClick={toggleDarkMode}>DarkMode/LightMode</a></li>
+                        <li><a class="dropdown-item" onClick={toggleDarkMode}>{darkMode ? 'Light Mode' : 'Dark Mode'}</a></li>
                         <li><a class="dropdown-item" onClick={goBack}>Log Out</a></li>
                     </ul>
                     </li>

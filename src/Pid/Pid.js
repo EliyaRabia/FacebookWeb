@@ -6,16 +6,42 @@ import NaviBar from './NaviBar/NaviBar';
 import LeftSide from './LeftSide/LeftSide';
 import RightSide from "./RightSide/RightSide";
 
-import { useNavigate } from "react-router-dom";
 import React, { useState , useRef } from "react";
 function Pid({ setUserLoggedIn, userLoggedIn}) { 
   const [postList,setPostList] = useState(Posts); 
-  const [darkMode, setDarkMode] = useState(false); 
+  const handleDeletePost = (postId) => {
+    const updatedPosts = postList.filter((post) => post.id !== postId);
+    setPostList(updatedPosts);
+  };
+
+  const handleDeletePicture = (postId) => {
+    const updatedPostList = postList.map((post) => {
+      if (post.id === postId) {
+        return { ...post, pictures: "" };
+      } else {
+        return post;
+      }
+    });
+    setPostList(updatedPostList);
+  };
+
+   const handleAddPicture = (postId,photo) => {
+     const updatedPostList = postList.map((post) => {
+       if (post.id === postId) {
+         return { ...post, pictures: photo };
+       } else {
+         return post;
+       }
+     });
+     setPostList(updatedPostList);
+   };
+   const [darkMode, setDarkMode] = useState(false); 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
     console.log(darkMode);
   };
   console.log(darkMode);
+
   return (
    <div className="container-fluid">
     <div className={darkMode ? 'dark-mode' : 'liweb'} >
@@ -24,6 +50,7 @@ function Pid({ setUserLoggedIn, userLoggedIn}) {
           userLoggedIn={userLoggedIn}
           setUserLoggedIn={setUserLoggedIn}
           toggleDarkMode={toggleDarkMode}
+          darkMode={darkMode}
         ></NaviBar>
       </div>
       <div className="row">
@@ -33,14 +60,21 @@ function Pid({ setUserLoggedIn, userLoggedIn}) {
         <div className="col pidCol">
           <div>
             <div>
-              <AddPost setPosts={setPostList} posts={postList} userLoggedIn={userLoggedIn}></AddPost>
+              <AddPost
+                setPosts={setPostList}
+                posts={postList}
+                userLoggedIn={userLoggedIn}
+              ></AddPost>
             </div>
             <div>
               {postList.map((post) => (
                 <Post
                   key={post.id}
                   {...post}
+                  deletePost={handleDeletePost}
+                  deletePicture={handleDeletePicture}
                   userLoggedIn={userLoggedIn}
+                  addPicture={handleAddPicture}
                 ></Post>
               ))}
             </div>

@@ -10,3 +10,18 @@
     justify-content: center;
     margin: 2rem;
 }
+
+.edit{
+    background-color: white;
+    padding: 0;
+}
+
+.topPost{
+    display: flex;
+}
+
+.editButton {
+    border: none;
+    background-color: white;
+    margin: 1px;
+}
