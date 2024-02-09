@@ -2,12 +2,17 @@ import "./PostManagement.css";
 import { useState } from "react";
 import Comment from "./Comment/Comment";
 
-function PostManagement({ likes, commentsNumber, initialComments }) {
+function PostManagement({
+  likes,
+  commentsNumber,
+  initialComments,
+  userLoggedIn,
+}) {
   const [likesCount, setLikesCount] = useState(likes);
   const [liked, setLiked] = useState(false);
   const [comments, setComments] = useState(initialComments);
   const [commentsCount, setCommentsCount] = useState(commentsNumber);
-
+  const [newCommentText, setNewCommentText] = useState("");
 
   const handleLikeClick = () => {
     if (liked) {
@@ -37,6 +42,19 @@ function PostManagement({ likes, commentsNumber, initialComments }) {
     setCommentsCount((prevCommentCount) => prevCommentCount - 1);
   };
 
+  const handleSendComment = () => {
+    if (newCommentText.trim() !== "") {
+      const newComment = {
+        id: comments.length + 1,
+        fullname: "user",
+        text: newCommentText,
+      };
+      setComments([...comments, newComment]);
+      setCommentsCount((prevCommentCount) => prevCommentCount + 1);
+      setNewCommentText("");
+    }
+  };
+
   return (
     <div className="postManagement">
       <button
@@ -44,7 +62,11 @@ function PostManagement({ likes, commentsNumber, initialComments }) {
         className="btn btn-light position-relative"
         onClick={handleLikeClick}
       >
-        <i class="bi bi-hand-thumbs-up"></i>{" "}
+        {liked ? (
+          <i class="bi bi-hand-thumbs-up-fill"></i>
+        ) : (
+          <i class="bi bi-hand-thumbs-up"></i>
+        )}
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
           {likesCount} <span class="visually-hidden">unread messages</span>
         </span>
@@ -59,7 +81,9 @@ function PostManagement({ likes, commentsNumber, initialComments }) {
           {commentsCount} <span class="visually-hidden">unread messages</span>
         </span>
       </button>
-
+      <button type="button" className="btn btn-light position-relative">
+        <i class="bi bi-pencil-fill"></i>
+      </button>
       <div
         class="btn-group"
         role="group"
@@ -107,12 +131,18 @@ function PostManagement({ likes, commentsNumber, initialComments }) {
         <div>
           <div>
             <div class="input-group mb-3">
-              <button type="button" class="btn btn-dark">
+              <button
+                type="button"
+                class="btn btn-dark"
+                onClick={handleSendComment}
+              >
                 <i class="bi bi-send"></i>
               </button>
               <textarea
-                class="form-control"
+                className="form-control"
                 aria-label="With textarea"
+                value={newCommentText}
+                onChange={(e) => setNewCommentText(e.target.value)}
               ></textarea>
             </div>
           </div>

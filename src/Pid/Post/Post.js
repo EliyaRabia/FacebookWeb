@@ -14,8 +14,8 @@ function Post({
   commentsNumber,
   comments,
   setPost,
+  userLoggedIn,
 }) {
-  
   return (
     <div className="post">
       <div className="card" style={{ width: "18rem" }}>
@@ -35,6 +35,7 @@ function Post({
           likes={likes}
           commentsNumber={commentsNumber}
           initialComments={comments}
+          userLoggedIn={userLoggedIn}
         ></PostManagement>
       </div>
     </div>
