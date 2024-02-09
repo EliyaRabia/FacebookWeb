@@ -10,7 +10,7 @@ function Comment({ id, fullname, icon, text, onDelete, setCommentsCount }) {
   const [commentText, setCommentText] = useState(text);
   const [editMode, setEditMode] = useState(false);
   const [originalText, setOriginalText] = useState(text);
-
+  const iconUrl = icon instanceof File ? URL.createObjectURL(icon) : icon;
 
   const handleInputChange = (event) => {
     setCommentText(event.target.value);
@@ -33,7 +33,10 @@ function Comment({ id, fullname, icon, text, onDelete, setCommentsCount }) {
 
   return (
     <div className="commentDiv">
-      <span>{fullname}:</span>{" "}
+      <div class="avatar">
+        {icon && <img src={iconUrl} class="avatar__img" alt="User"/>} 
+        <span>{fullname}:</span>{" "}
+      </div> 
       {editMode ? (
         <textarea value={commentText} onChange={handleInputChange} />
       ) : (

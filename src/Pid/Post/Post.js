@@ -1,7 +1,6 @@
-import dogImage from "./pictures/picture1.jpg";
+import React from "react";
 import "./Post.css";
 import PostManagement from "./PostManagement/PostManagement";
-// import Carousel from "./Carousel/Carousel";
 
 function Post({
   key,
@@ -18,25 +17,28 @@ function Post({
   userLoggedIn,
 }) {
   const iconUrl = icon instanceof File ? URL.createObjectURL(icon) : icon;
+  const picturesUrl = pictures instanceof File ? URL.createObjectURL(pictures) : pictures;
   return (
     <div className="post">
       <div className="card" style={{ width: "18rem" }}>
       <div class="avatar">
-        {icon && <img src={iconUrl} class="avatar__img" alt="User"/>} 
-        </div> 
+        {icon && <img src={iconUrl} class="avatar__img" alt="User"/>}
         <h5 class="card-title">
           {fullname + " "}
           {time}
-        </h5>
+        </h5> 
+      </div> 
         <div class="card-body">
           <p class="card-text">{text}</p>
         </div>
-        <img
-          src={dogImage}
-          class="card-img-top"
-          style={{ width: "10rem" }}
-        ></img>
-        {/* <Carousel pictures={pictures}></Carousel> */}
+        {picturesUrl && (
+          <img
+            src={picturesUrl}
+            className="card-img-top"
+            style={{ width: "10rem" }}
+            alt="Post"
+          />
+        )}
         <PostManagement
           likes={likes}
           commentsNumber={commentsNumber}

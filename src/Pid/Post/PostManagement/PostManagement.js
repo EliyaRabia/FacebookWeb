@@ -48,6 +48,7 @@ function PostManagement({
         id: comments.length + 1,
         fullname: userLoggedIn.displayName,
         text: newCommentText,
+        icon: userLoggedIn.photo
       };
       setComments([...comments, newComment]);
       setCommentsCount((prevCommentCount) => prevCommentCount + 1);
