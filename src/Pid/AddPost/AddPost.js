@@ -3,13 +3,17 @@ import React, { useState , useRef } from "react";
 function AddPost({setPosts, posts}){
     const postText= useRef("");
     const [photo, setPhoto] = useState(null);
+    const [selectedFile, setSelectedFile] = useState(null);
     const fileInput = useRef(null);
     let currentTime = new Date();
     function handleButtonClick() {
         fileInput.current.click();
     }
     function handleFileChange(event) {
-        setPhoto(URL.createObjectURL(event.target.files[0]));
+        if (event.target.files.length > 0) {
+            setSelectedFile(event.target.files[0]);
+            setPhoto(URL.createObjectURL(event.target.files[0]));
+        }
     }
     function addPost(){
         if(postText.current.value === ""){

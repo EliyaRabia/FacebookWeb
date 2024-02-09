@@ -59,7 +59,7 @@ function Form_Create({userList,setuserList}) {
                         const newUser = { username: usernameBox.current.value ,
                             password: passwordBox.current.value ,
                             displayName: displayName.current.value,
-                            photo: photo.current.value};
+                            photo: photo.current.files[0]};
                         const updatedUserList = [...userList, newUser];
                         setuserList(updatedUserList);
                         alert("user created!");
