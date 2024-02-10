@@ -1,38 +1,38 @@
 import "./RightSide.css" 
 function RightSide(){
     return(
-        <div class="rightbar">
-            <div class="rightbar_title">
+        <div className="rightbar">
+            <div className="rightbar_title">
                 <h4>Events</h4> 
-                <a href="">See All</a>
+                <p>See All</p>
             </div> 
-            <div class="events"> 
-                <div class="left_events">
+            <div className="events"> 
+                <div className="left_events">
                     <h3>11</h3>
                     <span>February</span>  
                 </div>
-                <div class="right_events">
-                    <h7>Advanced Programming Lesson</h7>
-                    <p className="location"><i class="material-icons">location_on</i>Bar Ilan University</p>
-                    <p class="info">More Info</p>
+                <div className="right_events">
+                    <h6>Advanced Programming Lesson</h6>
+                    <p className="location"><i className="material-icons">location_on</i>Bar Ilan University</p>
+                    <p className="info">More Info</p>
                 </div>
             </div>
-            <div class="events"> 
-            <div class="left_events">
+            <div className="events"> 
+            <div className="left_events">
                     <h3>18</h3>
                     <span>February</span>  
                 </div>
-                <div class="right_events">
-                    <h7>Advanced Programming Lesson</h7>
-                    <p className="location"><i class="material-icons">location_on</i>Bar Ilan University</p>
-                    <p class="info">More Info</p>
+                <div className="right_events">
+                    <h6>Advanced Programming Lesson</h6>
+                    <p className="location"><i className="material-icons">location_on</i>Bar Ilan University</p>
+                    <p className="info">More Info</p>
                 </div>
             </div>
-            <div class="rightbar_title">
+            <div className="rightbar_title">
                 <h4>Advertisments</h4> 
-                <a href="">Close</a>
+                <p>Close</p>
             </div> 
-            <img src="https://www.monetizemore.com/wp-content/uploads/2020/10/What-are-HTML5-ads_.jpg" class="adpic"></img>
+            <img src="https://www.monetizemore.com/wp-content/uploads/2020/10/What-are-HTML5-ads_.jpg" className="adpic"></img>
         </div>
     );
 }
