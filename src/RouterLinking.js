@@ -4,6 +4,7 @@ import LoginPage from "./Login/LoginPage";
 import Pid from "./Pid/Pid";
 import Creating from "./Creating/Creating"; 
 import Posts from "./data/db.json"
+
 export default function Main() {
   const [postList,setPostList] = useState(Posts);
   const [userExists, setUserExists] = useState(false);
