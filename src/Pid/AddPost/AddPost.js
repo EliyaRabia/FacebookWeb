@@ -14,6 +14,7 @@ function AddPost({setPosts, posts,userLoggedIn}){
             setSelectedFile(event.target.files[0]);
             setPhoto(URL.createObjectURL(event.target.files[0]));
         }
+        event.target.value = null;
     }
     function addPost(){
         if(postText.current.value === ""){
@@ -36,10 +37,11 @@ function AddPost({setPosts, posts,userLoggedIn}){
         setPhoto(null);
         alert("Post added successfully");
     }
+    const photoUrl = userLoggedIn && userLoggedIn.photo ? URL.createObjectURL(userLoggedIn.photo) : null;
     return(
         <div className="container-post">
             <div className="user-profile">
-                <img src="https://i.pinimg.com/736x/fa/60/51/fa6051d72b821cb48a8cc71d3481dfef.jpg"></img>
+                {photoUrl && <img src={photoUrl} className="avatar__img"></img>}
                 <div>
                     <p>{userLoggedIn.displayName}</p>
                     

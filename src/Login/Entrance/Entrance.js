@@ -16,7 +16,7 @@ function Entrance({ setUserExists , userList , setUserLoggedIn}) {
 
   const handlePasswordClick = () => {
     setPasswordMessage(
-      "At least 8 digits long, a combination of characters and letters"
+      "At least 8 digits long, a combination of characters and letters and capital letters."
     );
   };
 
