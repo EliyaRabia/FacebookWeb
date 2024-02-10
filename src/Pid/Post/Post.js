@@ -25,7 +25,7 @@ function Post({
     const [selectedFile, setSelectedFile] = useState(null);
     const iconUrl = icon instanceof File ? URL.createObjectURL(icon) : icon;
     const picturesUrl =
-      pictures instanceof File ? URL.createObjectURL(pictures) : pictures;
+    pictures instanceof File ? URL.createObjectURL(pictures) : pictures;
 
 
 
