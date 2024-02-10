@@ -38,6 +38,7 @@
     padding-bottom: 60px;
     right: 0.25rem;
     overflow-y: auto;
+    background-color: #f8f9fa;
 }
 .dark-mode .rightSideCol {
     background-color: #2a2424;
