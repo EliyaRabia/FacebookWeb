@@ -72,18 +72,19 @@ function handleFileChange(event) {
 }
 
   return (
+  <div className="post1">
     <div className="post">
-      <div className="card" style={{ width: "18rem" }}>
+      <div className="card1">
         <div className="topPost">
-          <div class="avatar">
-            {icon && <img src={iconUrl} class="avatar__img" alt="User" />}
-            <h5 class="card-title">
-              {fullname} <br></br>
-              {time}
-            </h5>
+          <div class="user-profile">
+            {icon && <img src={iconUrl} className="avatar__img"/>}
+            <div className="text-profile">
+              <p>{fullname}</p>
+              <span>{time}</span>
+            </div>
           </div>
           <div
-            class="btn-group"
+            className="btn-group"
             role="group"
             aria-label="Button group with nested dropdown"
           >
@@ -171,6 +172,7 @@ function handleFileChange(event) {
         ></PostManagement>
       </div>
     </div>
+  </div>
   );
 }
 
