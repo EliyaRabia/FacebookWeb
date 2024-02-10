@@ -107,6 +107,7 @@ nav{
     margin: 0 1px;
     border-radius: 50%; 
     background: #f1f2f6;
+    color: black;
 } 
 .buttons i:hover{
     background-color: #d8d9dd; 
