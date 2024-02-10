@@ -39,6 +39,7 @@ function AddPost({setPosts, posts,userLoggedIn}){
     }
     const photoUrl = userLoggedIn && userLoggedIn.photo ? URL.createObjectURL(userLoggedIn.photo) : null;
     return(
+    <div className="postadd1">
         <div className="container-post">
             <div className="user-profile">
                 {photoUrl && <img src={photoUrl} className="avatar__img"></img>}
@@ -64,6 +65,7 @@ function AddPost({setPosts, posts,userLoggedIn}){
             </div>
             
         </div>
+    </div>
     );
 }
 export default AddPost;

@@ -1,29 +1,14 @@
-.form-control-post {
-    width: 500px; 
-    height: 100px;
+.postadd1{
+    margin-left:80px;
 }
 .container-post {
-    width:100%;
+    width:610px;
     background:#fff; 
     border-radius:6px;
     padding:20px;
     color:#626262;
 }
-.user-profile{
-    display:flex; 
-    align-items:center;
-}
-.user-profile img{
-    width:45px;
-    border-radius: 50%;
-    margin-right:10px;
-    height: 50px;
-}
-.user-profile p{
-    margin-bottom: -5px;
-    font-weight:500; 
-    color:#626262;
-}
+
 .button-group-post {
     display: flex;
     margin-top: 10px;
@@ -36,7 +21,6 @@
     color: #626262;
     margin-right: 30px;
     font-size: 13px;
-    padding: 5px 35px;
 } 
 .button-group-post .btn:hover{
     background-color: darkgray;
@@ -49,12 +33,14 @@
 .button-group-post .btn i{
     width:20px;
     margin-right:10px;
+    padding: 5px 30px;
 }
 .input-group-post {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 500px;
+    
 }
 
 .input-preview {
