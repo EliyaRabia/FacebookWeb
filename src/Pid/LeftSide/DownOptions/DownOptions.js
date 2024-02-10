@@ -4,7 +4,7 @@ function DownOptions(){
         <div class="down_options">
             <div class="leftbar_title">
                 <h4>Conversations</h4> 
-                <a href="">Hide Chat</a>
+                <a>Hide Chat</a>
             </div> 
             <div class="online-list">
                 <div class="online">

@@ -9,53 +9,52 @@ function NaviBar({userLoggedIn, setUserLoggedIn,toggleDarkMode,darkMode}){
     }; 
     const photoUrl = userLoggedIn && userLoggedIn.photo ? URL.createObjectURL(userLoggedIn.photo) : null;
     return(
-        <nav className="navBody">
-                <div class="nav__left">
-                    <img src="https://brandlogos.net/wp-content/uploads/2021/04/facebook-icon-512x512.png" class="nav_left_img"></img> 
-                    <div class="nav__search">
-                        <i class="material-icons">search</i>
+        <nav className="navBody" date-testid="navibar">
+                <div className="nav__left">
+                    <img src="https://brandlogos.net/wp-content/uploads/2021/04/facebook-icon-512x512.png" className="nav_left_img"></img> 
+                    <div className="nav__search">
+                        <i className="material-icons">search</i>
                         <input type="text" placeholder="Search Facebook"></input>
                     </div>
                 </div>
-                <div class="nav__mid"> 
-                    <a class="iconz">
-                        <i class="material-icons">home</i>
+                <div className="nav__mid"> 
+                    <a className="iconz">
+                        <i className="material-icons">home</i>
                     </a>
-                    <a class="iconz">
-                        <i class="material-icons">slideshow</i>
+                    <a className="iconz">
+                        <i className="material-icons">slideshow</i>
                     </a>
-                    <a class="iconz">
-                        <i class="material-icons">groups</i>
+                    <a className="iconz">
+                        <i className="material-icons">groups</i>
                     </a>
-                    <a class="iconz">
-                        <i class="material-icons">gamepad</i>
+                    <a className="iconz">
+                        <i className="material-icons">gamepad</i>
                     </a>
                 </div> 
-                <div class="nav__right">
-                    <div class="avatar">
-                        {photoUrl && <img src={photoUrl} class="avatar__img"></img>} 
+                <div className="nav__right">
+                    <div className="avatar">
+                        {photoUrl && <img src={photoUrl} className="avatar__img"></img>} 
                         <span><strong>{userLoggedIn.displayName}</strong></span>
                     </div> 
-                    <div class="buttons" > 
-                    <a class="button">
-                        <i class="material-icons">apps</i>
+                    <div className="buttons" > 
+                    <a className="button">
+                        <i className="material-icons">apps</i>
                     </a>
-                    <a class="button">
-                        <i class="material-icons">notifications</i>
+                    <a className="button">
+                        <i className="material-icons">notifications</i>
                     </a>
-                    <a class="button">
-                        <i class="material-icons">messenger</i>
+                    <a className="button">
+                        <i className="material-icons">messenger</i>
                     </a>
-                    <li class="nav_item_dropdown">
-                    <a class="button" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="material-icons">settings</i>
+                    <li className="nav_item_dropdown">
+                    <a className="button" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i className="material-icons">settings</i>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" onClick={toggleDarkMode}>{darkMode ? 'Light Mode' : 'Dark Mode'}</a></li>
-                        <li><a class="dropdown-item" onClick={goBack}>Log Out</a></li>
+                    <ul className="dropdown-menu">
+                        <li><a className="dropdown-item" onClick={toggleDarkMode}>{darkMode ? 'Light Mode' : 'Dark Mode'}</a></li>
+                        <li><a className="dropdown-item" onClick={goBack}>Log Out</a></li>
                     </ul>
                     </li>
-                    
                     </div>
                 </div>
 

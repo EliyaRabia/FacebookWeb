@@ -1,19 +1,15 @@
 import "./Pid.css" 
 import Post from "./Post/Post";
-import Posts from "../data/db.json"
 import AddPost from "./AddPost/AddPost"
 import NaviBar from './NaviBar/NaviBar';
 import LeftSide from './LeftSide/LeftSide';
 import RightSide from "./RightSide/RightSide";
-
 import React, { useState , useRef } from "react";
-function Pid({ setUserLoggedIn, userLoggedIn}) { 
-  const [postList,setPostList] = useState(Posts); 
+function Pid({ setUserLoggedIn, userLoggedIn,postList,setPostList}) { 
   const handleDeletePost = (postId) => {
     const updatedPosts = postList.filter((post) => post.id !== postId);
     setPostList(updatedPosts);
   };
-
   const handleDeletePicture = (postId) => {
     const updatedPostList = postList.map((post) => {
       if (post.id === postId) {
@@ -24,24 +20,20 @@ function Pid({ setUserLoggedIn, userLoggedIn}) {
     });
     setPostList(updatedPostList);
   };
-
-    const handleAddPicture = (postId,photo) => {
-      const updatedPostList = postList.map((post) => {
-        if (post.id === postId) {
-          return { ...post, pictures: photo };
-        } else {
-          return post;
-      }
-    });
+  const handleAddPicture = (postId,photo) => {
+    const updatedPostList = postList.map((post) => {  
+      if (post.id === postId) {
+        return { ...post, pictures: photo };
+      } else {
+        return post;
+    }
+  });
     setPostList(updatedPostList);
   };
   const [darkMode, setDarkMode] = useState(false); 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
-    console.log(darkMode);
   };
-  console.log(darkMode);
-
   return (
   <div className="container-fluid">
     <div className={darkMode ? 'dark-mode' : 'liweb'} >
