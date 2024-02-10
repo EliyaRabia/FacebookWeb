@@ -64,12 +64,12 @@ function PostManagement({
         onClick={handleLikeClick}
       >
         {liked ? (
-          <i class="bi bi-hand-thumbs-up-fill"></i>
+          <i className="bi bi-hand-thumbs-up-fill"></i>
         ) : (
-          <i class="bi bi-hand-thumbs-up"></i>
+          <i className="bi bi-hand-thumbs-up"></i>
         )}
-        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-          {likesCount} <span class="visually-hidden">unread messages</span>
+        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+          {likesCount} <span className="visually-hidden">unread messages</span>
         </span>
       </button>
       <button
@@ -77,49 +77,50 @@ function PostManagement({
         className="btn btn-light position-relative"
         onClick={handleShowComments}
       >
-        <i class="bi bi-chat-text"></i>{" "}
-        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-          {commentsCount} <span class="visually-hidden">unread messages</span>
+        <i className="bi bi-chat-text"></i>{" "}
+        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+          {commentsCount}{" "}
+          <span className="visually-hidden">unread messages</span>
         </span>
       </button>
       <div
-        class="btn-group "
+        className="btn-group "
         role="group"
         aria-label="Button group with nested dropdown"
       >
-        <div class="btn-group" role="group">
+        <div className="btn-group" role="group">
           <button
             type="button"
-            class="btn btn-light"
+            className="btn btn-light"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            <i class="bi bi-cursor"></i>
+            <i className="bi bi-cursor"></i>
           </button>
-          <ul class="dropdown-menu">
+          <ul className="dropdown-menu">
             <li>
-              <a class="dropdown-item">
-                <i class="bi bi-reply"></i> Share now
+              <a className="dropdown-item">
+                <i className="bi bi-reply"></i> Share now
               </a>
             </li>
             <li>
-              <a class="dropdown-item">
-                <i class="bi bi-messenger"></i> Send in Messenger
+              <a className="dropdown-item">
+                <i className="bi bi-messenger"></i> Send in Messenger
               </a>
             </li>
             <li>
-              <a class="dropdown-item">
-                <i class="bi bi-whatsapp"></i> What's Up
+              <a className="dropdown-item">
+                <i className="bi bi-whatsapp"></i> What's Up
               </a>
             </li>
             <li>
-              <a class="dropdown-item">
-                <i class="bi bi-twitter"></i> Send in Twitter
+              <a className="dropdown-item">
+                <i className="bi bi-twitter"></i> Send in Twitter
               </a>
             </li>
             <li>
-              <a class="dropdown-item">
-                <i class="bi bi-link-45deg"></i> Copy link
+              <a className="dropdown-item">
+                <i className="bi bi-link-45deg"></i> Copy link
               </a>
             </li>
           </ul>
@@ -128,13 +129,13 @@ function PostManagement({
       {showComments && (
         <div>
           <div>
-            <div class="input-group mb-3">
+            <div className="input-group mb-3">
               <button
                 type="button"
-                class="btn btn-dark"
+                className="btn btn-dark"
                 onClick={handleSendComment}
               >
-                <i class="bi bi-send"></i>
+                <i className="bi bi-send"></i>
               </button>
               <textarea
                 className="form-control"

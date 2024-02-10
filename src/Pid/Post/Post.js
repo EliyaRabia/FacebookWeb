@@ -72,107 +72,110 @@ function handleFileChange(event) {
 }
 
   return (
-  <div className="post1">
-    <div className="post">
-      <div className="card1">
-        <div className="topPost">
-          <div class="user-profile">
-            {icon && <img src={iconUrl} className="avatar__img"/>}
-            <div className="text-profile">
-              <p>{fullname}</p>
-              <span>{time}</span>
+    <div className="post1">
+      <div className="post">
+        <div className="card1">
+          <div className="topPost">
+            <div className="user-profile">
+              {icon && <img src={iconUrl} className="avatar__img" />}
+              <div className="text-profile">
+                <p>{fullname}</p>
+                <span>{time}</span>
+              </div>
+            </div>
+            <div
+              className="btn-group"
+              role="group"
+              aria-label="Button group with nested dropdown"
+            >
+              <div className="btn-group" role="group">
+                <button
+                  type="button"
+                  className="btn edit"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i className="bi bi-three-dots-vertical"></i>
+                </button>
+                <ul className="dropdown-menu">
+                  <li>
+                    {pictures ? (
+                      <li>
+                        <a
+                          className="dropdown-item"
+                          onClick={handleDeletePicture}
+                        >
+                          <i className="bi bi-trash3-fill"></i> Delete picture
+                        </a>
+                      </li>
+                    ) : (
+                      <li>
+                        <a
+                          className="dropdown-item"
+                          onClick={handleButtonClick}
+                        >
+                          <i className="bi bi-folder-plus"></i> Add picture
+                          <input
+                            type="file"
+                            id="fileInput"
+                            accept="image/*"
+                            style={{ display: "none" }}
+                            ref={fileInput}
+                            onChange={handleFileChange}
+                          ></input>
+                        </a>
+                      </li>
+                    )}
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleEditText}>
+                      <i className="bi bi-textarea-t"></i> Edit text
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={handleDeletePost}>
+                      <i className="bi bi-x-lg"></i> Delete post
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-          <div
-            className="btn-group"
-            role="group"
-            aria-label="Button group with nested dropdown"
-          >
-            <div class="btn-group" role="group">
-              <button
-                type="button"
-                class="btn edit"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <i class="bi bi-three-dots-vertical"></i>
-              </button>
-              <ul class="dropdown-menu">
-                <li>
-                  {pictures ? (
-                    <li>
-                      <a
-                        className="dropdown-item"
-                        onClick={handleDeletePicture}
-                      >
-                        <i className="bi bi-trash3-fill"></i> Delete picture
-                      </a>
-                    </li>
-                  ) : (
-                    <li>
-                      <a className="dropdown-item" onClick={handleButtonClick}>
-                        <i class="bi bi-folder-plus"></i> Add picture
-                        <input
-                          type="file"
-                          id="fileInput"
-                          accept="image/*"
-                          style={{ display: "none" }}
-                          ref={fileInput}
-                          onChange={handleFileChange}
-                        ></input>
-                      </a>
-                    </li>
-                  )}
-                </li>
-                <li>
-                  <a class="dropdown-item" onClick={handleEditText}>
-                    <i class="bi bi-textarea-t"></i> Edit text
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" onClick={handleDeletePost}>
-                    <i class="bi bi-x-lg"></i> Delete post
-                  </a>
-                </li>
-              </ul>
-            </div>
+          <div className="card-body">
+            {isEditing ? (
+              <div>
+                <textarea
+                  value={editedText}
+                  onChange={(e) => setEditedText(e.target.value)}
+                ></textarea>
+                <button className="editButton" onClick={handleSaveText}>
+                  <i className="bi bi-check-lg"></i>
+                </button>
+                <button className="editButton" onClick={handleCancelEdit}>
+                  <i className="bi bi-trash3-fill"></i>
+                </button>
+              </div>
+            ) : (
+              <p className="card-text">{text}</p>
+            )}
           </div>
-        </div>
-        <div className="card-body">
-          {isEditing ? (
-            <div>
-              <textarea
-                value={editedText}
-                onChange={(e) => setEditedText(e.target.value)}
-              ></textarea>
-              <button className="editButton" onClick={handleSaveText}>
-                <i class="bi bi-check-lg"></i>
-              </button>
-              <button className="editButton" onClick={handleCancelEdit}>
-                <i class="bi bi-trash3-fill"></i>
-              </button>
-            </div>
-          ) : (
-            <p className="card-text">{text}</p>
+          {picturesUrl && (
+            <img
+              src={picturesUrl}
+              className="card-img-top"
+              style={{ width: "10rem" }}
+              alt="Post"
+            />
           )}
+          <PostManagement
+            likes={likes}
+            commentsNumber={commentsNumber}
+            initialComments={comments}
+            userLoggedIn={userLoggedIn}
+          ></PostManagement>
         </div>
-        {picturesUrl && (
-          <img
-            src={picturesUrl}
-            className="card-img-top"
-            style={{ width: "10rem" }}
-            alt="Post"
-          />
-        )}
-        <PostManagement
-          likes={likes}
-          commentsNumber={commentsNumber}
-          initialComments={comments}
-          userLoggedIn={userLoggedIn}
-        ></PostManagement>
       </div>
     </div>
-  </div>
   );
 }
 
