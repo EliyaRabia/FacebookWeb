@@ -1,4 +1,4 @@
-import React, { useState,useRef } from "react";
+import React, { useState, useRef } from "react";
 import "./Post.css";
 import PostManagement from "./PostManagement/PostManagement";
 
@@ -17,18 +17,15 @@ function Post({
   addPicture,
   userLoggedIn,
 }) {
-    const [text, setText] = useState(initialText);
-    const [isEditing, setIsEditing] = useState(false);
-    const [editedText, setEditedText] = useState(text);
-    const fileInput = useRef(null);
-    const [photo, setPhoto] = useState(null);
-    const [selectedFile, setSelectedFile] = useState(null);
-    const iconUrl = icon instanceof File ? URL.createObjectURL(icon) : icon;
-    const picturesUrl =
+  const [text, setText] = useState(initialText);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedText, setEditedText] = useState(text);
+  const fileInput = useRef(null);
+  const [photo, setPhoto] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const iconUrl = icon instanceof File ? URL.createObjectURL(icon) : icon;
+  const picturesUrl =
     pictures instanceof File ? URL.createObjectURL(pictures) : pictures;
-
-
-
 
   const handleEditText = () => {
     setIsEditing(true);
@@ -46,30 +43,26 @@ function Post({
   };
 
   const handleDeletePost = () => {
-    deletePost(id); 
+    deletePost(id);
   };
 
   const handleDeletePicture = () => {
-    deletePicture(id)
-  };
-
-  const handleAddPicture = () => {
-    addPicture(id, photo);
+    deletePicture(id);
   };
 
   function handleButtonClick() {
     fileInput.current.click();
   }
 
-function handleFileChange(event) {
-  if (event.target.files.length > 0) {
-    const selectedFile = event.target.files[0];
-    const imageUrl = URL.createObjectURL(selectedFile);
-    setSelectedFile(selectedFile);
-    setPhoto(imageUrl);
-    addPicture(id, selectedFile);
+  function handleFileChange(event) {
+    if (event.target.files.length > 0) {
+      const selectedFile = event.target.files[0];
+      const imageUrl = URL.createObjectURL(selectedFile);
+      setSelectedFile(selectedFile);
+      setPhoto(imageUrl);
+      addPicture(id, selectedFile);
+    }
   }
-}
 
   return (
     <div className="post1">
@@ -98,35 +91,30 @@ function handleFileChange(event) {
                   <i className="bi bi-three-dots-vertical"></i>
                 </button>
                 <ul className="dropdown-menu">
-                  <li>
-                    {pictures ? (
-                      <li>
-                        <a
-                          className="dropdown-item"
-                          onClick={handleDeletePicture}
-                        >
-                          <i className="bi bi-trash3-fill"></i> Delete picture
-                        </a>
-                      </li>
-                    ) : (
-                      <li>
-                        <a
-                          className="dropdown-item"
-                          onClick={handleButtonClick}
-                        >
-                          <i className="bi bi-folder-plus"></i> Add picture
-                          <input
-                            type="file"
-                            id="fileInput"
-                            accept="image/*"
-                            style={{ display: "none" }}
-                            ref={fileInput}
-                            onChange={handleFileChange}
-                          ></input>
-                        </a>
-                      </li>
-                    )}
-                  </li>
+                  {pictures ? (
+                    <li>
+                      <a
+                        className="dropdown-item"
+                        onClick={handleDeletePicture}
+                      >
+                        <i className="bi bi-trash3-fill"></i> Delete picture
+                      </a>
+                    </li>
+                  ) : (
+                    <li>
+                      <a className="dropdown-item" onClick={handleButtonClick}>
+                        <i className="bi bi-folder-plus"></i> Add picture
+                        <input
+                          type="file"
+                          id="fileInput"
+                          accept="image/*"
+                          style={{ display: "none" }}
+                          ref={fileInput}
+                          onChange={handleFileChange}
+                        ></input>
+                      </a>
+                    </li>
+                  )}
                   <li>
                     <a className="dropdown-item" onClick={handleEditText}>
                       <i className="bi bi-textarea-t"></i> Edit text
