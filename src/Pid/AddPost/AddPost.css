@@ -3,19 +3,51 @@
     height: 100px;
 }
 .container-post {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    width:100%;
+    background:#fff; 
+    border-radius:6px;
+    padding:20px;
+    color:#626262;
+}
+.user-profile{
+    display:flex; 
+    align-items:center;
+}
+.user-profile img{
+    width:45px;
+    border-radius: 50%;
+    margin-right:10px;
+}
+.user-profile p{
+    margin-bottom: -5px;
+    font-weight:500; 
+    color:#626262;
 }
 .button-group-post {
     display: flex;
-    justify-content: space-between;
-    width: 500px;
+    margin-top: 10px;
 }
+
 .button-group-post .btn {
-    padding: 5px 60px; /* Adjust as needed */
-    font-size: 10px; /* Adjust as needed */
+    text-decoration:none; 
+    display:flex; 
+    align-items: center;
+    color: #626262;
+    margin-right: 30px;
+    font-size: 13px;
+    padding: 5px 35px;
+} 
+.button-group-post .btn:hover{
+    background-color: darkgray;
+}
+.button-post{
+    align-items: center;
+    margin-top: 8px;
+    margin-right: 40px;
+}
+.button-group-post .btn i{
+    width:20px;
+    margin-right:10px;
 }
 .input-group-post {
     display: flex;
@@ -25,10 +57,16 @@
 }
 
 .input-preview {
-    position: relative;
-    width: 500px;
-    height: 100px;
+    padding-left:55px;
+    padding-top:30px;
     overflow: hidden; /* Hide any part of the image that exceeds the size of the div */
+}
+.input-preview textarea{
+    width:100%; 
+    border:0; 
+    outline:0; 
+    border-bottom: 1px solid #ccc; 
+    background: transparent;
 }
 
 .photo-preview {

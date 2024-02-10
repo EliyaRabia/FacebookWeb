@@ -23,7 +23,7 @@ function AddPost({setPosts, posts,userLoggedIn}){
         const newPost = {
             id: posts.length + 1,
             fullname: userLoggedIn.displayName,
-            text: postText.current.value,
+            initialText: postText.current.value,
             icon: userLoggedIn.photo,
             pictures: photo,
             time: currentTime.toLocaleString(),
@@ -38,6 +38,13 @@ function AddPost({setPosts, posts,userLoggedIn}){
     }
     return(
         <div className="container-post">
+            <div className="user-profile">
+                <img src="https://i.pinimg.com/736x/fa/60/51/fa6051d72b821cb48a8cc71d3481dfef.jpg"></img>
+                <div>
+                    <p>{userLoggedIn.displayName}</p>
+                    
+                </div>
+            </div>
             <div className="input-preview">
                 <textarea className="form-control-post" id="formControl" rows="3" placeholder={`${userLoggedIn.displayName}, what do u think?`} ref={postText}></textarea>
             </div>
@@ -45,12 +52,15 @@ function AddPost({setPosts, posts,userLoggedIn}){
                 {photo && <img src={photo} alt="Preview" />}
             </div>
             <div className="button-group-post">
-                <button type="button" className="btn btn-outline-primary">Live Video</button>
-                <button type="button" className="btn btn-outline-primary" onClick={handleButtonClick}>Photo/Video</button>
+                <button type="button" className="btn btn-outline-primary"><i class="material-icons">video_call</i>Live Video</button>
+                <button type="button" className="btn btn-outline-primary" onClick={handleButtonClick}><i class="material-icons">add_a_photo</i>Photo/Video</button>
                 <input type="file" id="fileInput" accept="image/*" style={{display: 'none'}} ref={fileInput} onChange={handleFileChange} />
-                <button type="button" className="btn btn-outline-primary">Felling/Activity</button>
+                <button type="button" className="btn btn-outline-primary"><i class="material-icons">insert_emoticon</i>Felling/Activity</button>
             </div>
-            <button type="button" className="btn btn-primary" onClick={addPost}>Post</button>
+            <div className="button-post">
+                <button type="button" className="btn btn-primary" onClick={addPost}>Post</button>
+            </div>
+            
         </div>
     );
 }
