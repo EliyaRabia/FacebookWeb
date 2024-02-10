@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter as Router } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 import Pid from "../Pid";
 const userLoggedIn = {displayName: 'Test User', photo: null};
 const postList = [{id : 1,
@@ -22,9 +22,9 @@ const postList = [{id : 1,
 describe('Pid', () => {
     test('renders NaviBar component', () => {
         render(
-            <Router>
+            <MemoryRouter>
                 <Pid userLoggedIn={userLoggedIn} postList={postList}/>
-            </Router>
+            </MemoryRouter>
         );
 
         // Check if NaviBar is in the document
