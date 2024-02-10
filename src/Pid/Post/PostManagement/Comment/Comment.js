@@ -33,10 +33,10 @@ function Comment({ id, fullname, icon, text, onDelete, setCommentsCount }) {
 
   return (
     <div className="commentDiv">
-      <div class="avatar">
-        {icon && <img src={iconUrl} class="avatar__img" alt="User"/>} 
+      <div className="avatar">
+        {icon && <img src={iconUrl} className="avatar__img" alt="User" />}
         <span>{fullname}:</span>{" "}
-      </div> 
+      </div>
       {editMode ? (
         <textarea value={commentText} onChange={handleInputChange} />
       ) : (
@@ -46,19 +46,19 @@ function Comment({ id, fullname, icon, text, onDelete, setCommentsCount }) {
         {editMode ? (
           <React.Fragment>
             <button className="editButton" onClick={handleSaveClick}>
-              <i class="bi bi-check-lg"></i>
+              <i className="bi bi-check-lg"></i>
             </button>
             <button className="editButton" onClick={handleRestoreClick}>
-              <i class="bi bi-trash3-fill"></i>
+              <i className="bi bi-trash3-fill"></i>
             </button>
           </React.Fragment>
         ) : (
           <React.Fragment>
             <button className="editButton" onClick={handleEditClick}>
-              <i class="bi bi-pencil-fill"></i>
+              <i className="bi bi-pencil-fill"></i>
             </button>
             <button className="editButton" onClick={handleDeleteClick}>
-              <i class="bi bi-trash3-fill"></i>
+              <i className="bi bi-trash3-fill"></i>
             </button>
           </React.Fragment>
         )}

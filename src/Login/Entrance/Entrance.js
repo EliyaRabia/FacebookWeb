@@ -39,7 +39,6 @@ function Entrance({ setUserExists , userList , setUserLoggedIn}) {
         displayName: isAuthenticated.displayName,
         photo: isAuthenticated.photo
       };
-      console.log(user);
       setUserLoggedIn(user);
       navigate("/pid");
     } else {
