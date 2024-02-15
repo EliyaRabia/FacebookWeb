@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState , useRef } from "react";
 import "./Form_Create.css"
+import {validatePassword,isUsernameExists} from "./Authentication";
 // this function get the userList and setuserList as props.
 function Form_Create({userList,setuserList}) {
     /*
@@ -28,27 +29,12 @@ function Form_Create({userList,setuserList}) {
     // this function shows a message when the user is on the password input field of what is a valid password
     const handlePasswordClick = () => {
         setPasswordMessage(
-            passwordBox.current.value.length > 0
-            ? ""
-            : "At least 8 digits long, a combination of characters and letters and capital letters."
+            "At least 8 digits long, a combination of characters and letters and capital letters."
         );
     };
     // this function is used to hide the message when the user is not on the password input field
     const handlePasswordBlur = () => {
         setPasswordMessage("");
-    };
-    /*
-    check the validation of the password
-    */
-    const validatePassword = (password) => {
-        // Check if the password has a length of 8 or more characters
-        const hasMinLength = password.length >= 8;
-        // Regular expressions to check for capital letter and special character
-        const hasCapitalLetter = /[A-Z]/.test(password);
-        // Include a broader range of special characters
-        const hasSpecialCharacter = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password);
-        // Password is valid if it has a capital letter and a special character
-        return hasMinLength && hasCapitalLetter && hasSpecialCharacter;
     };
     // this function is used to go back to the login page
     const goBack = () => {
@@ -57,9 +43,7 @@ function Form_Create({userList,setuserList}) {
     // this function is used to create a new user and add it to the userList
     const createUser = () =>{
         // first we check if the username already exists
-        const isUsernameExists = userList.some(
-            (user) => user.username === usernameBox.current.value
-        );
+        const usernameExists = isUsernameExists(usernameBox.current.value, userList);
         // get the value of the input fields
         const username = usernameBox.current.value;
         const password = passwordBox.current.value;
@@ -72,7 +56,7 @@ function Form_Create({userList,setuserList}) {
             return;
         }
         // check if the username already exists
-        if (isUsernameExists) {
+        if (usernameExists) {
             alert("username already exists");
             return;
         }
