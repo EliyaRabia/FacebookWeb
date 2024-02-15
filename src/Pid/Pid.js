@@ -5,31 +5,49 @@ import NaviBar from './NaviBar/NaviBar';
 import LeftSide from './LeftSide/LeftSide';
 import RightSide from "./RightSide/RightSide";
 import React, { useState , useRef } from "react";
+/*
+this component is the main component of the pid page
+it will render the navbar, the left side, the right side and the posts and the add post component
+it will also handle the delete of the post and the delete of the picture
+it gets the userLoggedIn, setUserLoggedIn, postList and setPostList as props
+*/
 function Pid({ setUserLoggedIn, userLoggedIn,postList,setPostList}) { 
+  // this function is used to delete a post
   const handleDeletePost = (postId) => {
     const updatedPosts = postList.filter((post) => post.id !== postId);
     setPostList(updatedPosts);
   };
+  // this function is used to delete a picture
   const handleDeletePicture = (postId) => {
+    // this find the post that has the picture and delete it
     const updatedPostList = postList.map((post) => {
       if (post.id === postId) {
-        return { ...post, pictures: "" };
+        return { ...post, pictures: null };
       } else {
+        // if the post does not have the picture we just return the post
         return post;
       }
+    // we set the postList with the updated postList
     });
+    // we set the postList with the updated postList
     setPostList(updatedPostList);
   };
+  // this function is used to add a picture to a post
   const handleAddPicture = (postId,photo) => {
+    // this find the need to update the post with the new picture
     const updatedPostList = postList.map((post) => {  
       if (post.id === postId) {
+        // we return the post with the new picture
         return { ...post, pictures: photo };
+      // if the post does not have the picture we just return the post
       } else {
         return post;
     }
   });
+  // we set the postList with the updated postList
     setPostList(updatedPostList);
   };
+  // this state is used to set the dark mode
   const [darkMode, setDarkMode] = useState(false); 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);

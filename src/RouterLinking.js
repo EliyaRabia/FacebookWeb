@@ -6,12 +6,21 @@ import Creating from "./Creating/Creating";
 import Posts from "./data/db.json"
 
 export default function Main() {
+  /*
+  get all the posts from the db.json file
+  and set userlist to an empty arr, and userExists to false
+  and also set userLoggedIn to false
+  */
+
   const [postList,setPostList] = useState(Posts);
   const [userExists, setUserExists] = useState(false);
   const [userList,setuserList] = useState([
   ]);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   return (
+    /*
+    use the BrowserRouter to wrap the Routes
+    */
     <BrowserRouter>
       <Routes>
         <Route
@@ -32,7 +41,7 @@ export default function Main() {
             userLoggedIn={userLoggedIn}
             postList={postList}
             setPostList={setPostList}
-          ></Pid> : <Navigate to="/"></Navigate>}
+          ></Pid> : <Navigate to="/"></Navigate>} // if userExists is false, then navigate to the login page
         ></Route>
 
         <Route

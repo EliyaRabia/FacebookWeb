@@ -1,5 +1,5 @@
 import "./SignInButton.css";
-
+// this component will render the sign in button
 function SignInButton({ onClick }) {
   return (
     <button

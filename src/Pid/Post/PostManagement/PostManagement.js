@@ -1,19 +1,27 @@
 import "./PostManagement.css";
 import { useState } from "react";
 import Comment from "./Comment/Comment";
-
+/*
+this component is the post management, it contains the likes, comments and the share button
+this component gets the likes, commentsNumber, initialComments and userLoggedIn as props
+*/
 function PostManagement({
   likes,
   commentsNumber,
   initialComments,
   userLoggedIn,
 }) {
+  // Set the initial state of the likes, comments and the new comment text and the show comments
   const [likesCount, setLikesCount] = useState(likes);
   const [liked, setLiked] = useState(false);
   const [comments, setComments] = useState(initialComments);
   const [commentsCount, setCommentsCount] = useState(commentsNumber);
   const [newCommentText, setNewCommentText] = useState("");
-
+  const [showComments, setShowComments] = useState(false);
+  /*Handle the like button click
+  if the user liked the post it will decrease the likes count
+  and if the user didn't like the post it will increase the likes count.
+  */
   const handleLikeClick = () => {
     if (liked) {
       setLikesCount((prevLikesCount) => prevLikesCount - 1);
@@ -22,13 +30,12 @@ function PostManagement({
     }
     setLiked(!liked);
   };
-
-  const [showComments, setShowComments] = useState(false);
-
+  // Handle the show comments button click
   const handleShowComments = () => {
     setShowComments(!showComments);
   };
 
+  // Handle the delete comment button click
   const handleDeleteComment = (commentId) => {
     // Filter out the comment with the specified commentId
     const updatedComments = comments.filter(
@@ -38,10 +45,11 @@ function PostManagement({
     setComments(updatedComments);
   };
 
+  // Handle the delete comment count
   const handleDeleteCommentCount = () => {
     setCommentsCount((prevCommentCount) => prevCommentCount - 1);
   };
-
+  // this function is used to create a new comment
   const handleSendComment = () => {
     if (newCommentText.trim() !== "") {
       const newComment = {
@@ -148,6 +156,7 @@ function PostManagement({
           <div className="comment">
             {comments.map((comment) => (
               <Comment
+                key={comment.id}
                 {...comment}
                 onDelete={handleDeleteComment}
                 setCommentsCount={handleDeleteCommentCount}

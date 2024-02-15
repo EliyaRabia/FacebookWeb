@@ -1,5 +1,5 @@
 import "./Introduction.css";
-
+// this component will render the introduction page
 function Introduction() {
   return (
     <div className="introduction">

@@ -1,4 +1,7 @@
 import "./RightSide.css" 
+/*
+this component is the right side of the page, it contains the events and the advertisments
+*/
 function RightSide(){
     return(
         <div className="rightbar">

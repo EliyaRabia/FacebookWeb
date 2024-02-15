@@ -1,23 +1,31 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState , useRef } from "react";
 import "./Form_Create.css"
+// this function get the userList and setuserList as props.
 function Form_Create({userList,setuserList}) {
-
+    /*
+    this component will render the form to create a new user
+    */
     const [passwordMessage, setPasswordMessage] = useState("");
     const navigate = useNavigate();
+    // all the useRef are used to get the value of the input fields
     const usernameBox = useRef("");
     const passwordBox = useRef("");
     const passwordCheckBox = useRef("");
     const displayName = useRef("");
     const photo = useRef("");
+    // this state is used to show the password
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordCheck, setShowPasswordCheck] = useState(false);
+    // this function is used to show the password when the user is on the eye icon
     const handleTogglePassword = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
     };
+    // this function is used to show the password when the user is on the eye icon
     const handleTogglePasswordCheck = () => {
         setShowPasswordCheck((prevShowPassword) => !prevShowPassword);
     };
+    // this function shows a message when the user is on the password input field of what is a valid password
     const handlePasswordClick = () => {
         setPasswordMessage(
             passwordBox.current.value.length > 0
@@ -25,6 +33,7 @@ function Form_Create({userList,setuserList}) {
             : "At least 8 digits long, a combination of characters and letters and capital letters."
         );
     };
+    // this function is used to hide the message when the user is not on the password input field
     const handlePasswordBlur = () => {
         setPasswordMessage("");
     };
@@ -41,47 +50,55 @@ function Form_Create({userList,setuserList}) {
         // Password is valid if it has a capital letter and a special character
         return hasMinLength && hasCapitalLetter && hasSpecialCharacter;
     };
+    // this function is used to go back to the login page
     const goBack = () => {
         navigate("/");
         };
+    // this function is used to create a new user and add it to the userList
     const createUser = () =>{
+        // first we check if the username already exists
         const isUsernameExists = userList.some(
             (user) => user.username === usernameBox.current.value
         );
-        //console.log(usernameBox.current.value);
-        //console.log(passwordBox.current.value);
-        //console.log(passwordCheckBox.current.value);
-        //console.log(validatePassword(passwordBox.current.value))
-        if(usernameBox.current.value != "" && passwordBox.current.value !="" && passwordCheckBox.current.value !="" && displayName.current.value !="" && photo.current.value !=""){
-            if(isUsernameExists == false){
-                if(validatePassword(passwordBox.current.value) == true){
-                    if(passwordBox.current.value == passwordCheckBox.current.value){
-                        const newUser = { username: usernameBox.current.value ,
-                            password: passwordBox.current.value ,
-                            displayName: displayName.current.value,
-                            photo: photo.current.files[0]};
-                        const updatedUserList = [...userList, newUser];
-                        setuserList(updatedUserList);
-                        alert("user created!");
-                        navigate("/");
-                    }
-                    else{
-                        alert("password dont match!")
-                    }
-                }
-                else{
-                    alert("write valid password")
-                }
-            }
-            else{
-                alert("username already exists")
-            }
+        // get the value of the input fields
+        const username = usernameBox.current.value;
+        const password = passwordBox.current.value;
+        const confirmPassword = passwordCheckBox.current.value;
+        const displayNameValue = displayName.current.value;
+        const photoFile = photo.current.files[0];
+        // check if the user filled all the information
+        if (!username || !password || !confirmPassword || !displayNameValue || !photoFile) {
+            alert("need to fill all the information");
+            return;
         }
-        else{
-            alert("need to fill all the information")
+        // check if the username already exists
+        if (isUsernameExists) {
+            alert("username already exists");
+            return;
         }
+        // check if the password is valid
+        if (!validatePassword(password)) {
+            alert("write valid password");
+            return;
+        }
+        // check if the password and the confirm password are the same
+        if (password !== confirmPassword) {
+            alert("passwords don't match!");
+            return;
+        }
+        // create a new user if all the information is valid
+        const newUser = {
+            username: username,
+            password: password,
+            displayName: displayNameValue,
+            photo: photoFile
+        };
+        // add the new user to the userList and uodate the userList state and navigate to the login page
+        const updatedUserList = [...userList, newUser];
+        setuserList(updatedUserList);
+        alert("user created!"); 
+        navigate("/");
     };
-    console.log(userList);
     return(
         <div>
             <div>
@@ -146,7 +163,7 @@ function Form_Create({userList,setuserList}) {
             </div>
             <div className="mb-3">
                 <label htmlFor="formFile" className="form-label">Choose pic</label>
-                <input className="form-control" type="file" id="image" accept="image/*" ref={photo} />
+                <input className="form-control" type="file" id="image" accept="image/*" ref={photo} data-testid="file-input" />
             </div>
             <div className="mb-3">
                 <label htmlFor="exampleFormControlInput1" className="form-label">Display Name</label>
@@ -160,10 +177,11 @@ function Form_Create({userList,setuserList}) {
                 </input>
             </div>
             <div>
-                <button type="button" className="button-container creatingButton" onClick={createUser}>Sign Up</button>
+                <button type="button" className="btn btn-primary p-2 signIn" onClick={createUser}>Sign Up</button>
             </div>
+            <hr className="hrSize" />
             <div>
-                <button type="button" className="button-container creatingButton" onClick={goBack}>Go Back</button>
+                <button type="button" className="btn btn btn-success p-2 m-2 signUp" onClick={goBack}>Go Back</button>
             </div>
         </div>
     );

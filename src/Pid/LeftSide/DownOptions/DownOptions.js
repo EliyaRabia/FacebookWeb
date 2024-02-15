@@ -1,4 +1,5 @@
 import "./DownOptions.css"
+// this is the chat component
 function DownOptions(){
     return (
       <div className="down_options">

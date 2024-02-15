@@ -1,26 +1,39 @@
 import "./AddPost.css"
 import React, { useState , useRef } from "react";
+/*
+this component is used to add a post
+it gets the setPosts, posts and userLoggedIn as props
+*/
 function AddPost({setPosts, posts,userLoggedIn}){
+    // all the refs that we get from the form
     const postText= useRef("");
     const [photo, setPhoto] = useState(null);
-    const [selectedFile, setSelectedFile] = useState(null);
     const fileInput = useRef(null);
     let currentTime = new Date();
+    // this function is user to delete the photo that the user has uploaded
+    function handleCancelPhoto() {
+      setPhoto(null);
+    }
+    // this function is used to open the file input when the user clicks on the photo button
     function handleButtonClick() {
         fileInput.current.click();
     }
+    // this function is used to get the photo that the user has uploaded
     function handleFileChange(event) {
+        // if the user has uploaded a photo then we set the photo state to the photo that the user has uploaded
         if (event.target.files.length > 0) {
-            setSelectedFile(event.target.files[0]);
             setPhoto(URL.createObjectURL(event.target.files[0]));
         }
         event.target.value = null;
     }
+    // this function is used to add a post
     function addPost(){
+        // this is used to check if the user has entered some text or not
         if(postText.current.value === ""){
             alert("Please enter some text");
             return;
         }
+        // this is used to add the post to the posts array
         const newPost = {
             id: posts.length + 1,
             fullname: userLoggedIn.displayName,
@@ -32,11 +45,14 @@ function AddPost({setPosts, posts,userLoggedIn}){
             commentsNumber: 0,
             comments: []
         }
+        // this is used to add the new post to the state
         setPosts([...posts,newPost]);
+        // this is used to reset the form
         postText.current.value = "";
         setPhoto(null);
         alert("Post added successfully");
     }
+    // this is used to get the photo of the user if the user has uploaded a photo
     const photoUrl = userLoggedIn && userLoggedIn.photo ? URL.createObjectURL(userLoggedIn.photo) : null;
     return (
       <div className="postadd1">
@@ -57,7 +73,12 @@ function AddPost({setPosts, posts,userLoggedIn}){
             ></textarea>
           </div>
           <div className="photo-preview">
-            {photo && <img src={photo} alt="Preview" />}
+            {photo && (
+            <>
+              <button onClick={handleCancelPhoto}>Delete Photo</button>
+              <img src={photo} alt="Preview" />
+            </>
+            )}
           </div>
           <div className="button-group-post">
             <button type="button" className="btn btn-outline-primary">
