@@ -1,4 +1,5 @@
 import "./UpOptions.css" 
+// this is the component that is used to show the options that are present on the top of the left side
 function UpOptions(){
     return (
       <div className="up_options">

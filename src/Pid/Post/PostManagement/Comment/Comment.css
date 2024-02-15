@@ -1,8 +1,11 @@
 .commentDiv{
     margin: 0.2rem;
-        background-color: #C7C8CC;
-        border-radius: 5%;
-    }
+    background-color: #C7C8CC;
+    border-radius: 5%;
+    word-wrap: break-word;
+    justify-content: left;
+    width: 64ch;
+}
 
 .editButton{
     background-color: #C7C8CC;;

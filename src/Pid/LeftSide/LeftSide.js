@@ -1,7 +1,7 @@
 import "./LeftSide.css"
 import UpOptions from "./UpOptions/UpOptions"; 
 import DownOptions from "./DownOptions/DownOptions";
-
+// this component is the left side of the page, it contains the up and down options
 function LeftSide(){
     return (
       <div className="leftbar">

@@ -1,8 +1,16 @@
 import "./NaviBar.css" 
 import { useNavigate } from "react-router-dom";
+/*
+this component is the navigation bar of the page, it contains the search bar, the icons and the user avatar
+this component also contains the log out button in the dropdown menu of the settings icon
+this component also contains the dark mode button in the dropdown menu of the settings icon
+this component gets the userLoggedIn, setUserLoggedIn, toggleDarkMode and darkMode as props
+and when click on the log out button it will call the setUserLoggedIn function to log out the user,
+and when click on the dark mode button it will call the toggleDarkMode function to change the mode of the page
+*/
 function NaviBar({userLoggedIn, setUserLoggedIn,toggleDarkMode,darkMode}){
     const navigate = useNavigate();
-    
+    // this function is used to log out the user
     const goBack = () => {
     setUserLoggedIn(false);
     navigate("/");
@@ -57,7 +65,6 @@ function NaviBar({userLoggedIn, setUserLoggedIn,toggleDarkMode,darkMode}){
                     </li>
                     </div>
                 </div>
-
             </nav> 
     );
 }
