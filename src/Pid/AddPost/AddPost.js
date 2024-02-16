@@ -60,7 +60,7 @@ function AddPost({setPosts, posts,userLoggedIn}){
           <div className="user-profile">
             {photoUrl && <img src={photoUrl} className="avatar__img"></img>}
             <div>
-              <p>{userLoggedIn.displayName}</p>
+              <p className="p">{userLoggedIn.displayName}</p>
             </div>
           </div>
           <div className="input-preview">

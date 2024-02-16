@@ -1,6 +1,9 @@
 .postadd1{
     margin-left:16px;
 }
+.dark-mode .container-post {
+    background-color: #333;
+}
 .container-post {
     width:610px;
     background:#fff; 
@@ -8,7 +11,12 @@
     padding:20px;
     color:#626262;
 }
-
+.dark-mode .form-control-post{
+    color: #BEBEBE;
+}
+.dark-mode .form-control-post::placeholder {
+    color: #BEBEBE;
+}
 .button-group-post {
     display: flex;
     margin-top: 10px;
@@ -24,6 +32,12 @@
 } 
 .button-group-post .btn:hover{
     background-color: darkgray;
+}
+.dark-mode .button-group-post .btn{
+    color: #BEBEBE;
+}
+.dark-mode .p{
+    color: #BEBEBE;
 }
 .button-post{
     align-items: center;

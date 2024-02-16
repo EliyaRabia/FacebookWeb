@@ -5,3 +5,10 @@
 .postManagement button{
     margin: 0.5rem;
 }
+.dark-mode .button-group-post .btn{
+    color: #BEBEBE;
+}
+.dark-mode .form-control{
+    background-color: #333;
+    color: #BEBEBE;
+}
