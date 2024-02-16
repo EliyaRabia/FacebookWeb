@@ -14,6 +14,7 @@ export default function Main() {
 
   const [postList,setPostList] = useState(Posts);
   const [userExists, setUserExists] = useState(false);
+  const [id,setId]=useState(11);
   const [userList,setuserList] = useState([
   ]);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
@@ -41,6 +42,8 @@ export default function Main() {
             userLoggedIn={userLoggedIn}
             postList={postList}
             setPostList={setPostList}
+            id={id}
+            setId={setId}
           ></Pid> : <Navigate to="/"></Navigate>} // if userExists is false, then navigate to the login page
         ></Route>
 
