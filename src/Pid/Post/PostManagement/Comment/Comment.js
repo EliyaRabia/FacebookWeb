@@ -38,9 +38,9 @@ function Comment({id, fullname, icon, text, onDelete, setCommentsCount }) {
         <span>{fullname}:</span>{" "}
       </div>
       {editMode ? (
-        <textarea value={commentText} onChange={handleInputChange} />
+        <textarea className="textarea" value={commentText} onChange={handleInputChange} />
       ) : (
-        <span>{commentText}</span>
+        <span className="span">{commentText}</span>
       )}
       <div>
         {editMode ? (

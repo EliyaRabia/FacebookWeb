@@ -70,7 +70,7 @@ function Post({
             <div className="user-profile">
               {icon && <img src={iconUrl} className="avatar__img" alt="User avatar" />}
               <div className="text-profile">
-                <p>{fullname}</p>
+                <p className="p">{fullname}</p>
                 <span>{time}</span>
               </div>
             </div>
