@@ -27,6 +27,7 @@ Users can interact with posts by liking them and adding comments by clicking on 
 also every user can edit the posts, u can change the text, delete photo, add new photo. by clicking in the 3 dots
 near the information of the user that created the post.
 u can do the same in comments, delete and edit them!
+You can also see the share options by click on the share icon. 
 
 ### Dark Mode
 The application supports a dark mode theme. Users can toggle between light and dark mode using the switch in options setting in  the navigation bar
