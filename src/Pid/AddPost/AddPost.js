@@ -2,9 +2,9 @@ import "./AddPost.css"
 import React, { useState , useRef } from "react";
 /*
 this component is used to add a post
-it gets the setPosts, posts and userLoggedIn as props
+it gets the setPosts, posts, userLoggedIn,id and setId as props
 */
-function AddPost({setPosts, posts,userLoggedIn}){
+function AddPost({setPosts, posts,userLoggedIn,id,setId}){
     // all the refs that we get from the form
     const postText= useRef("");
     const [photo, setPhoto] = useState(null);
@@ -35,7 +35,7 @@ function AddPost({setPosts, posts,userLoggedIn}){
         }
         // this is used to add the post to the posts array
         const newPost = {
-            id: posts.length + 1,
+            id: id,
             fullname: userLoggedIn.displayName,
             initialText: postText.current.value,
             icon: userLoggedIn.photo,
@@ -46,7 +46,8 @@ function AddPost({setPosts, posts,userLoggedIn}){
             comments: []
         }
         // this is used to add the new post to the state
-        setPosts([...posts,newPost]);
+        setPosts([newPost,...posts]);
+        setId(id+1);
         // this is used to reset the form
         postText.current.value = "";
         setPhoto(null);
