@@ -9,9 +9,9 @@ import React, { useState , useRef } from "react";
 this component is the main component of the pid page
 it will render the navbar, the left side, the right side and the posts and the add post component
 it will also handle the delete of the post and the delete of the picture
-it gets the userLoggedIn, setUserLoggedIn, postList, setPostList, id and setId as props
+it gets the userLoggedIn, setUserLoggedIn, postList, setPostList, id,setId, idComment and setIdComment as props
 */
-function Pid({ setUserLoggedIn, userLoggedIn,postList,setPostList,id,setId}) { 
+function Pid({ setUserLoggedIn, userLoggedIn,postList,setPostList,id,setId,idComment,setIdComment}) { 
   // this function is used to delete a post
   const handleDeletePost = (postId) => {
     const updatedPosts = postList.filter((post) => post.id !== postId);
@@ -87,6 +87,8 @@ function Pid({ setUserLoggedIn, userLoggedIn,postList,setPostList,id,setId}) {
                   deletePicture={handleDeletePicture}
                   userLoggedIn={userLoggedIn}
                   addPicture={handleAddPicture}
+                  idComment={idComment}
+                  setIdComment={setIdComment}
                 ></Post>
               ))}
             </div>

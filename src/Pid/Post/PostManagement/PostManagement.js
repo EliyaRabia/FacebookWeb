@@ -3,13 +3,15 @@ import { useState } from "react";
 import Comment from "./Comment/Comment";
 /*
 this component is the post management, it contains the likes, comments and the share button
-this component gets the likes, commentsNumber, initialComments and userLoggedIn as props
+this component gets the likes, commentsNumber, initialComments,userLoggedIn,idComment,setIdComment as props
 */
 function PostManagement({
   likes,
   commentsNumber,
   initialComments,
   userLoggedIn,
+  idComment,
+  setIdComment
 }) {
   // Set the initial state of the likes, comments and the new comment text and the show comments
   const [likesCount, setLikesCount] = useState(likes);
@@ -53,12 +55,13 @@ function PostManagement({
   const handleSendComment = () => {
     if (newCommentText.trim() !== "") {
       const newComment = {
-        id: comments.length + 1,
+        id: idComment,
         fullname: userLoggedIn.displayName,
         text: newCommentText,
         icon: userLoggedIn.photo
       };
       setComments([...comments, newComment]);
+      setIdComment(idComment + 1);
       setCommentsCount((prevCommentCount) => prevCommentCount + 1);
       setNewCommentText("");
     }

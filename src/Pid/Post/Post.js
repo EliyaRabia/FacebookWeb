@@ -19,6 +19,8 @@ function Post({
   deletePicture,
   addPicture,
   userLoggedIn,
+  idComment,
+  setIdComment
 }) {
   // Set the initial state of the text, the edit mode and the edited text
   const [text, setText] = useState(initialText);
@@ -157,6 +159,8 @@ function Post({
             commentsNumber={commentsNumber}
             initialComments={comments}
             userLoggedIn={userLoggedIn}
+            idComment={idComment}
+            setIdComment={setIdComment}
           ></PostManagement>
         </div>
       </div>
