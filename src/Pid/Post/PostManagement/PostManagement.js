@@ -60,6 +60,7 @@ function PostManagement({
         text: newCommentText,
         icon: userLoggedIn.photo
       };
+      // Add the new comment to the comments state
       setComments([...comments, newComment]);
       setIdComment(idComment + 1);
       setCommentsCount((prevCommentCount) => prevCommentCount + 1);
