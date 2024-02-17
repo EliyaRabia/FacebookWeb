@@ -53,7 +53,16 @@
     top:unset;
     bottom:0;
 }
-.down_options p{
+.dark-mode .chat{
     color:grey;
 }
- 
+.hide{
+    font-size: 12px;
+    color: blue;
+}
+.hide:hover{
+    cursor: pointer;
+}
+.dark-mode .hide{
+    color:teal;
+}
