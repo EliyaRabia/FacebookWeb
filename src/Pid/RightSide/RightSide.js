@@ -7,7 +7,7 @@ function RightSide(){
         <div className="rightbar">
             <div className="rightbar_title">
                 <h4>Events</h4> 
-                <p>See All</p>
+                <p className="see">See All</p>
             </div> 
             <div className="events"> 
                 <div className="left_events">
@@ -33,7 +33,7 @@ function RightSide(){
             </div>
             <div className="rightbar_title">
                 <h4>Advertisments</h4> 
-                <p>Close</p>
+                <p className="see">Close</p>
             </div> 
             <img src="https://www.monetizemore.com/wp-content/uploads/2020/10/What-are-HTML5-ads_.jpg" className="adpic"></img>
         </div>
