@@ -1,7 +1,7 @@
 //Function that talks with the server.
 const registerServer = async (data) => {
     try {
-    console.log("hey");
+    
     const response = await fetch("http://localhost:8080/api/users", {
         method: "POST",
         headers: {

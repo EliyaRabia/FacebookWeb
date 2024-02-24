@@ -71,6 +71,7 @@ function Form_Create({userList,setuserList}) {
             alert("passwords don't match!");
             return;
         }
+        const photoFilePath = photo.current.value;
         // create a new user if all the information is valid
         const newUser = {
             "username": username,
@@ -78,6 +79,7 @@ function Form_Create({userList,setuserList}) {
             "displayName": displayNameValue,
             "photo": photoFile
         };
+        console.log(photoFilePath);
         const response = await registerServer(newUser);
         console.log(response);
         if (response == 200) {
