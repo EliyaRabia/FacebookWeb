@@ -1,4 +1,4 @@
-
+This branch is used for part3 of the project, if you want to see our work of part 2 then got to the "main" branch
 # Welcome to our facebook React project BIU Advanced Programming Course
 
 to get started with the project, clone the repository and install the dependencies.
