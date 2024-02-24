@@ -15,7 +15,7 @@ function NaviBar({userLoggedIn, setUserLoggedIn,toggleDarkMode,darkMode}){
     setUserLoggedIn(false);
     navigate("/");
     }; 
-    const photoUrl = userLoggedIn && userLoggedIn.photo ? URL.createObjectURL(userLoggedIn.photo) : null;
+    //const photoUrl = userLoggedIn && userLoggedIn.photo ? URL.createObjectURL(userLoggedIn.photo) : null;
     return(
         <nav className="navBody" date-testid="navibar">
                 <div className="nav__left">
@@ -41,7 +41,7 @@ function NaviBar({userLoggedIn, setUserLoggedIn,toggleDarkMode,darkMode}){
                 </div> 
                 <div className="nav__right">
                     <div className="avatar">
-                        {photoUrl && <img src={photoUrl} className="avatar__img"></img>} 
+                        <img src={userLoggedIn.photo} className="avatar__img"></img>
                         <span><strong>{userLoggedIn.displayName}</strong></span>
                     </div> 
                     <div className="buttons" > 
