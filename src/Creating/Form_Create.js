@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState , useRef } from "react";
 import "./Form_Create.css"
 import {validatePassword,isUsernameExists} from "./Authentication";
+import { registerServer } from '../ServerCalls/register';
 // this function get the userList and setuserList as props.
 function Form_Create({userList,setuserList}) {
     /*
@@ -41,7 +42,7 @@ function Form_Create({userList,setuserList}) {
         navigate("/");
         };
     // this function is used to create a new user and add it to the userList
-    const createUser = () =>{
+    const createUser = async () =>{
         // first we check if the username already exists
         const usernameExists = isUsernameExists(usernameBox.current.value, userList);
         // get the value of the input fields
@@ -56,10 +57,10 @@ function Form_Create({userList,setuserList}) {
             return;
         }
         // check if the username already exists
-        if (usernameExists) {
-            alert("username already exists");
-            return;
-        }
+        // if (usernameExists) {
+        //     alert("username already exists");
+        //     return;
+        // }
         // check if the password is valid
         if (!validatePassword(password)) {
             alert("write valid password");
@@ -72,16 +73,23 @@ function Form_Create({userList,setuserList}) {
         }
         // create a new user if all the information is valid
         const newUser = {
-            username: username,
-            password: password,
-            displayName: displayNameValue,
-            photo: photoFile
+            "username": username,
+            "password": password,
+            "displayName": displayNameValue,
+            "photo": photoFile
         };
-        // add the new user to the userList and uodate the userList state and navigate to the login page
-        const updatedUserList = [...userList, newUser];
-        setuserList(updatedUserList);
-        alert("user created!"); 
-        navigate("/");
+        const response = await registerServer(newUser);
+        console.log(response);
+        if (response == 200) {
+            // add the new user to the userList and uodate the userList state and navigate to the login page
+            const updatedUserList = [...userList, newUser];
+            setuserList(updatedUserList);
+            alert("user created!"); 
+            navigate("/");
+        }
+        if (response == 404){
+            alert("username already exists");
+        }
     };
     return(
         <div>
