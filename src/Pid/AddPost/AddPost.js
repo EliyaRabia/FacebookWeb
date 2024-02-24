@@ -54,12 +54,12 @@ function AddPost({setPosts, posts,userLoggedIn,id,setId}){
         alert("Post added successfully");
     }
     // this is used to get the photo of the user if the user has uploaded a photo
-    const photoUrl = userLoggedIn && userLoggedIn.photo ? URL.createObjectURL(userLoggedIn.photo) : null;
+    //const photoUrl = userLoggedIn && userLoggedIn.photo ? URL.createObjectURL(userLoggedIn.photo) : null;
     return (
       <div className="postadd1">
         <div className="container-post">
           <div className="user-profile">
-            {photoUrl && <img src={photoUrl} className="avatar__img"></img>}
+            <img src={userLoggedIn.photo} className="avatar__img" alt="User avatar" />
             <div>
               <p className="p">{userLoggedIn.displayName}</p>
             </div>
