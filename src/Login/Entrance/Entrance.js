@@ -12,7 +12,7 @@ function Entrance({ setUserExists , userList , setUserLoggedIn}) {
     const usernameBox = useRef(null);
     const passwordBox = useRef(null);
     const navigate = useNavigate();
-    // this state is used to show the password
+    // this state is used to show the password 
     const [showPassword, setShowPassword] = useState(false);
     // this function is used to show the password when the user is on the eye icon
     const handlePasswordClick = () => {
