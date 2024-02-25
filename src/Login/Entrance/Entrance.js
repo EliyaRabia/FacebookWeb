@@ -4,6 +4,8 @@ import SignInButton from "../SignInButton/SignInButton";
 import SignUpButton from "../SignUpButton/SignUpButton";
 import "./Entrance.css";
 import { useNavigate } from "react-router-dom";
+import {loginServer} from "../../ServerCalls/login";
+
 // this component will render the entrance page
 function Entrance({ setUserExists , userList , setUserLoggedIn}) {
     // this state is used to show a message when the user is on the password input field
@@ -25,27 +27,43 @@ function Entrance({ setUserExists , userList , setUserLoggedIn}) {
       setPasswordMessage("");
     };
     // this function is used to check if the user is in the userList
-    const handleSignIn = () => {
-      const isAuthenticated = userList.find(
-        (user) => user.username === usernameBox.current.value &&
-        user.password === passwordBox.current.value
-      );
-      // if the user is in the userList, then set the userExists to true and set the userLoggedIn to the user
-      if (isAuthenticated) {
+    const handleSignIn = async() => {
+      // const isAuthenticated = userList.find(
+      //   (user) => user.username === usernameBox.current.value &&
+      //   user.password === passwordBox.current.value
+      // );
+      // // if the user is in the userList, then set the userExists to true and set the userLoggedIn to the user
+      // if (isAuthenticated) {
+      //   setUserExists(true);
+      //   // set the userLoggedIn to the user
+      //   const user = {
+      //     username: isAuthenticated.username,
+      //     displayName: isAuthenticated.displayName,
+      //     photo: isAuthenticated.photo
+      //   };
+      //   setUserLoggedIn(user);
+      //   navigate("/pid");
+      //   // if the user is not in the userList, then show a message
+      // } else {
+      //   alert("Invalid username or password");
+      // }
+
+      const username = usernameBox.current.value;
+      const password = passwordBox.current.value;
+      const data = { username, password };
+      const [statusNum, token, user] = await loginServer(data);
+      console.log(statusNum);
+      console.log(token);
+      console.log(user);
+
+      if(statusNum === 200){
         setUserExists(true);
-        // set the userLoggedIn to the user
-        const user = {
-          username: isAuthenticated.username,
-          displayName: isAuthenticated.displayName,
-          photo: isAuthenticated.photo
-        };
         setUserLoggedIn(user);
         navigate("/pid");
-        // if the user is not in the userList, then show a message
-      } else {
-        alert("Invalid username or password");
-      }
-    };
+    } else {
+      alert("Invalid username or password");
+    }
+  };
     // this function is used to go to the creating page to create a new user
     const handleSignUp = () => {
       // Pass userList and setuserList to the Creating component
