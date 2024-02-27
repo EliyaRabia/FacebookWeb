@@ -4,7 +4,7 @@ import SignInButton from "../SignInButton/SignInButton";
 import SignUpButton from "../SignUpButton/SignUpButton";
 import "./Entrance.css";
 import { useNavigate } from "react-router-dom";
-import {loginServer} from "../../ServerCalls/login";
+import {loginServer , getUserData} from "../../ServerCalls/login";
 
 // this component will render the entrance page
 function Entrance({ setUserExists , userList , setUserLoggedIn}) {
@@ -28,37 +28,24 @@ function Entrance({ setUserExists , userList , setUserLoggedIn}) {
     };
     // this function is used to check if the user is in the userList
     const handleSignIn = async() => {
-      // const isAuthenticated = userList.find(
-      //   (user) => user.username === usernameBox.current.value &&
-      //   user.password === passwordBox.current.value
-      // );
-      // // if the user is in the userList, then set the userExists to true and set the userLoggedIn to the user
-      // if (isAuthenticated) {
-      //   setUserExists(true);
-      //   // set the userLoggedIn to the user
-      //   const user = {
-      //     username: isAuthenticated.username,
-      //     displayName: isAuthenticated.displayName,
-      //     photo: isAuthenticated.photo
-      //   };
-      //   setUserLoggedIn(user);
-      //   navigate("/pid");
-      //   // if the user is not in the userList, then show a message
-      // } else {
-      //   alert("Invalid username or password");
-      // }
 
       const username = usernameBox.current.value;
       const password = passwordBox.current.value;
+      if (username === "" || password === "") {
+        alert("Please enter a username and password");
+        return;
+      }
       const data = { username, password };
-      const [statusNum, token, user] = await loginServer(data);
-      console.log(statusNum);
-      console.log(token);
-      console.log(user);
+      const [statusNum, token, userID] = await loginServer(data);
+      //console.log(statusNum);
+      //console.log(token);
 
       if(statusNum === 200){
+        console.log(userID);
+        const userData = await getUserData(token,userID);
+        console.log(userData);
         setUserExists(true);
-        setUserLoggedIn(user);
+        setUserLoggedIn(userData);
         navigate("/pid");
     } else {
       alert("Invalid username or password");
