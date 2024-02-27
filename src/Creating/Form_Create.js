@@ -4,7 +4,7 @@ import "./Form_Create.css"
 import {validatePassword,isUsernameExists} from "./Authentication";
 import { registerServer } from '../ServerCalls/register';
 // this function get the userList and setuserList as props.
-function Form_Create({userList,setuserList}) {
+function Form_Create() {
   /*
     this component will render the form to create a new user
     */
@@ -54,11 +54,6 @@ function Form_Create({userList,setuserList}) {
 
   // this function is used to create a new user and add it to the userList
   const createUser = async () => {
-    // first we check if the username already exists
-    const usernameExists = isUsernameExists(
-      usernameBox.current.value,
-      userList
-    );
     // get the value of the input fields
     const username = usernameBox.current.value;
     const password = passwordBox.current.value;
@@ -104,14 +99,12 @@ function Form_Create({userList,setuserList}) {
     console.log(photoFilePath);
     const response = await registerServer(newUser);
     console.log(response);
-    if (response == 200) {
+    if (response === 200) {
       // add the new user to the userList and uodate the userList state and navigate to the login page
-      const updatedUserList = [...userList, newUser];
-      setuserList(updatedUserList);
       alert("user created!");
       navigate("/");
     }
-    if (response == 404) {
+    if (response === 404) {
       alert("username already exists");
     }
   };

@@ -11,7 +11,10 @@ it will render the navbar, the left side, the right side and the posts and the a
 it will also handle the delete of the post and the delete of the picture
 it gets the userLoggedIn, setUserLoggedIn, postList, setPostList, id,setId, idComment and setIdComment as props
 */
-function Pid({ setUserLoggedIn, userLoggedIn,postList,setPostList,id,setId,idComment,setIdComment}) { 
+function Pid({ setUserLoggedIn, userLoggedIn,postList,setPostList,id,setId,idComment,setIdComment , token, setToken}) { 
+   // this state is used to set the dark mode
+  const [darkMode, setDarkMode] = useState(false);
+  const [mode, setMode] = useState(0);
   // this function is used to delete a post
   const handleDeletePost = (postId) => {
     const updatedPosts = postList.filter((post) => post.id !== postId);
@@ -47,59 +50,60 @@ function Pid({ setUserLoggedIn, userLoggedIn,postList,setPostList,id,setId,idCom
   // we set the postList with the updated postList
     setPostList(updatedPostList);
   };
-  // this state is used to set the dark mode
-  const [darkMode, setDarkMode] = useState(false); 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
   return (
-  <div className="container-fluid">
-    <div className={darkMode ? 'dark-mode' : 'liweb'} >
-      <div className="navbar-fixed">
-        <NaviBar
-          userLoggedIn={userLoggedIn}
-          setUserLoggedIn={setUserLoggedIn}
-          toggleDarkMode={toggleDarkMode}
-          darkMode={darkMode}
-        ></NaviBar>
-      </div>
-      <div className="row">
-        <div className="col-3 vh-100 leftSideCol">
-          <LeftSide></LeftSide>
+    <div className="container-fluid">
+      <div className={darkMode ? "dark-mode" : "liweb"}>
+        <div className="navbar-fixed">
+          <NaviBar
+            userLoggedIn={userLoggedIn}
+            setUserLoggedIn={setUserLoggedIn}
+            toggleDarkMode={toggleDarkMode}
+            darkMode={darkMode}
+            setMode={setMode}
+          ></NaviBar>
         </div>
-        <div className="col pidCol">
-          <div>
-            <div>
-              <AddPost
-                setPosts={setPostList}
-                posts={postList}
-                userLoggedIn={userLoggedIn}
-                id={id}
-                setId={setId}
-              ></AddPost>
-            </div>
-            <div>
-              {postList.map((post) => (
-                <Post
-                  key={post.id}
-                  {...post}
-                  deletePost={handleDeletePost}
-                  deletePicture={handleDeletePicture}
-                  userLoggedIn={userLoggedIn}
-                  addPicture={handleAddPicture}
-                  idComment={idComment}
-                  setIdComment={setIdComment}
-                ></Post>
-              ))}
-            </div>
+        <div className="row">
+          <div className="col-3 vh-100 leftSideCol">
+            <LeftSide></LeftSide>
           </div>
-        </div>
-        <div className="col-3 vh-100 rightSideCol">
-          <RightSide></RightSide>
+          <div className="col pidCol">
+            {mode === 0 && (
+              <div>
+                <div>
+                  <AddPost
+                    setPosts={setPostList}
+                    posts={postList}
+                    userLoggedIn={userLoggedIn}
+                    id={id}
+                    setId={setId}
+                  ></AddPost>
+                </div>
+                <div>
+                  {postList.map((post) => (
+                    <Post
+                      key={post.id}
+                      {...post}
+                      deletePost={handleDeletePost}
+                      deletePicture={handleDeletePicture}
+                      userLoggedIn={userLoggedIn}
+                      addPicture={handleAddPicture}
+                      idComment={idComment}
+                      setIdComment={setIdComment}
+                    ></Post>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="col-3 vh-100 rightSideCol">
+            <RightSide></RightSide>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   );
 }
 
