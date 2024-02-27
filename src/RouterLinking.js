@@ -16,8 +16,7 @@ export default function Main() {
   const [userExists, setUserExists] = useState(false);
   const [id,setId]=useState(11);
   const [idComment,setIdComment]=useState(16);
-  const [userList,setuserList] = useState([
-  ]);
+  const [token,setToken]=useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   return (
     /*
@@ -30,7 +29,7 @@ export default function Main() {
           element={
             <LoginPage
               userExists={userExists}
-              userList={userList}
+              setToken={setToken}
               setUserExists={setUserExists}
               setUserLoggedIn={setUserLoggedIn}
             ></LoginPage>
@@ -47,6 +46,8 @@ export default function Main() {
             setId={setId}
             idComment={idComment}
             setIdComment={setIdComment}
+            token={token}
+            setToken={setToken}
           ></Pid> : <Navigate to="/"></Navigate>} // if userExists is false, then navigate to the login page
         ></Route>
 
@@ -54,8 +55,6 @@ export default function Main() {
           path="/creating"
           element=
             {<Creating
-                userList={userList}
-                setuserList={setuserList}
                 >
             </Creating>}
         ></Route>

@@ -8,7 +8,7 @@ this component gets the userLoggedIn, setUserLoggedIn, toggleDarkMode and darkMo
 and when click on the log out button it will call the setUserLoggedIn function to log out the user,
 and when click on the dark mode button it will call the toggleDarkMode function to change the mode of the page
 */
-function NaviBar({userLoggedIn, setUserLoggedIn,toggleDarkMode,darkMode}){
+function NaviBar({userLoggedIn, setUserLoggedIn,toggleDarkMode,darkMode,setMode}){
     const navigate = useNavigate();
     // this function is used to log out the user
     const goBack = () => {
@@ -60,6 +60,7 @@ function NaviBar({userLoggedIn, setUserLoggedIn,toggleDarkMode,darkMode}){
                     </a>
                     <ul className="dropdown-menu">
                         <li><a className="dropdown-item" onClick={toggleDarkMode}>{darkMode ? 'Light Mode' : 'Dark Mode'}</a></li>
+                        <li><a className="dropdown-item" onClick={() => setMode(1)}>Edit User</a></li>
                         <li><a className="dropdown-item" onClick={goBack}>Log Out</a></li>
                     </ul>
                     </li>

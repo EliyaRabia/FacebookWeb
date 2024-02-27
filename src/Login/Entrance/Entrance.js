@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import {loginServer , getUserData} from "../../ServerCalls/login";
 
 // this component will render the entrance page
-function Entrance({ setUserExists , userList , setUserLoggedIn}) {
+function Entrance({ setUserExists , setToken , setUserLoggedIn}) {
     // this state is used to show a message when the user is on the password input field
     const [passwordMessage, setPasswordMessage] = useState("");
     // all the useRef are used to get the value of the input fields 
@@ -45,6 +45,7 @@ function Entrance({ setUserExists , userList , setUserLoggedIn}) {
         const userData = await getUserData(token,userID);
         console.log(userData);
         setUserExists(true);
+        setToken(token);
         setUserLoggedIn(userData);
         navigate("/pid");
     } else {
