@@ -4,6 +4,7 @@ import AddPost from "./AddPost/AddPost"
 import NaviBar from './NaviBar/NaviBar';
 import LeftSide from './LeftSide/LeftSide';
 import RightSide from "./RightSide/RightSide";
+import EditUser from "./EditUser/EditUser";
 import React, { useState , useRef } from "react";
 /*
 this component is the main component of the pid page
@@ -95,6 +96,17 @@ function Pid({ setUserLoggedIn, userLoggedIn,postList,setPostList,id,setId,idCom
                     ></Post>
                   ))}
                 </div>
+              </div>
+            )}
+            {mode === 1 && ( 
+              <div>
+                <EditUser
+                  userLoggedIn={userLoggedIn}
+                  setUserLoggedIn={setUserLoggedIn}
+                  token={token}
+                  setToken={setToken}
+                  setMode={setMode}
+                ></EditUser>
               </div>
             )}
           </div>
