@@ -48,4 +48,27 @@ const CreatePost = async (token, post,id) => {
     return 404;
 }
 };
-export { deleteUser, updateUser , CreatePost};
+
+const deletePost = async (token, postId,userId) => {
+    try {
+        const res = await fetch(
+          `http://localhost:8080/api/users/${userId}/posts/${postId}`,
+          {
+            method: "delete",
+            headers: {
+              authorization: token,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+          if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+          }
+    return res.status;
+
+    } catch (error) {
+    console.error("There was a problem with the fetch operation: ", error);
+    return 404;
+}
+}
+export { deleteUser, updateUser , CreatePost, deletePost};
