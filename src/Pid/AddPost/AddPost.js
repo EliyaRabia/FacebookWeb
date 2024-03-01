@@ -1,5 +1,6 @@
 import "./AddPost.css"
 import React, { useState , useRef } from "react";
+import { CreatePost } from "../../ServerCalls/userCalls";
 /*
 this component is used to add a post
 it gets the setPosts, posts, userLoggedIn,id and setId as props
@@ -27,7 +28,7 @@ function AddPost({setPosts, posts,userLoggedIn,id,setId}){
         event.target.value = null;
     }
     // this function is used to add a post
-    function addPost(){
+    const addPost = async () => {
         // this is used to check if the user has entered some text or not
         if(postText.current.value === ""){
             alert("Please enter some text");
@@ -35,15 +36,21 @@ function AddPost({setPosts, posts,userLoggedIn,id,setId}){
         }
         // this is used to add the post to the posts array
         const newPost = {
-            id: id,
+            idUserName: userLoggedIn._id,
             fullname: userLoggedIn.displayName,
-            initialText: postText.current.value,
             icon: userLoggedIn.photo,
+            initialText: postText.current.value,
             pictures: photo,
             time: currentTime.toLocaleString(),
             likes: 0,
             commentsNumber: 0,
             comments: []
+        }
+        const status = await CreatePost(userLoggedIn.token,newPost, userLoggedIn._id);
+        if (status === 200) {
+            alert("Post added successfully");
+        } else {
+            alert("There was a problem with the fetch operation: ", status);
         }
         // this is used to add the new post to the state
         setPosts([newPost,...posts]);
@@ -51,7 +58,7 @@ function AddPost({setPosts, posts,userLoggedIn,id,setId}){
         // this is used to reset the form
         postText.current.value = "";
         setPhoto(null);
-        alert("Post added successfully");
+        //alert("Post added successfully");
     }
     // this is used to get the photo of the user if the user has uploaded a photo
     //const photoUrl = userLoggedIn && userLoggedIn.photo ? URL.createObjectURL(userLoggedIn.photo) : null;
