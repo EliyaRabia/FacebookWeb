@@ -3,6 +3,7 @@ import React, { useState , useRef } from "react";
 import "./Form_Create.css"
 import {validatePassword,isUsernameExists} from "./Authentication";
 import { registerServer } from '../ServerCalls/register';
+import { convertToBase64 } from "../UsableFunctions/ImageFunctions";
 // this function get the userList and setuserList as props.
 function Form_Create() {
   /*
@@ -40,16 +41,6 @@ function Form_Create() {
   // this function is used to go back to the login page
   const goBack = () => {
     navigate("/");
-  };
-
-  // Convert the image to base64 and make it a string
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
   };
 
   // this function is used to create a new user and add it to the userList

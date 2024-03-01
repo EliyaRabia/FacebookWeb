@@ -1,5 +1,7 @@
 import "./AddPost.css"
 import React, { useState , useRef } from "react";
+import { CreatePost } from "../../ServerCalls/userCalls";
+import {convertToBase64} from "../../UsableFunctions/ImageFunctions";
 /*
 this component is used to add a post
 it gets the setPosts, posts, userLoggedIn,id and setId as props
@@ -19,39 +21,46 @@ function AddPost({setPosts, posts,userLoggedIn,id,setId}){
         fileInput.current.click();
     }
     // this function is used to get the photo that the user has uploaded
-    function handleFileChange(event) {
-        // if the user has uploaded a photo then we set the photo state to the photo that the user has uploaded
-        if (event.target.files.length > 0) {
-            setPhoto(URL.createObjectURL(event.target.files[0]));
-        }
-        event.target.value = null;
-    }
+    async function handleFileChange(event) {
+      if (event.target.files.length > 0) {
+          const file = event.target.files[0];
+          const base64 = await convertToBase64(file);
+          setPhoto(base64);
+      }
+      event.target.value = null;
+  }
     // this function is used to add a post
-    function addPost(){
+    const addPost = async () => {
         // this is used to check if the user has entered some text or not
         if(postText.current.value === ""){
             alert("Please enter some text");
             return;
         }
-        // this is used to add the post to the posts array
         const newPost = {
-            id: id,
+            idUserName: userLoggedIn._id,
             fullname: userLoggedIn.displayName,
-            initialText: postText.current.value,
             icon: userLoggedIn.photo,
+            initialText: postText.current.value,
             pictures: photo,
             time: currentTime.toLocaleString(),
             likes: 0,
             commentsNumber: 0,
             comments: []
         }
-        // this is used to add the new post to the state
-        setPosts([newPost,...posts]);
-        setId(id+1);
+        const status = await CreatePost(userLoggedIn.token,newPost, userLoggedIn._id);
+        if (status === 200) {
+            alert("Post added successfully");
+            //setPosts([newPost,...posts]);
+            //setId(id+1);
+        } else {
+            alert("There was a problem with the fetch operation: ", status);
+        }
         // this is used to reset the form
+        console.log("hey from here")
         postText.current.value = "";
+        console.log(postText.current.value);
         setPhoto(null);
-        alert("Post added successfully");
+        //alert("Post added successfully");
     }
     // this is used to get the photo of the user if the user has uploaded a photo
     //const photoUrl = userLoggedIn && userLoggedIn.photo ? URL.createObjectURL(userLoggedIn.photo) : null;
