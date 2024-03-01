@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react";
 import "./Post.css";
 import PostManagement from "./PostManagement/PostManagement";
-import { deletePost } from "../../ServerCalls/userCalls";
+import { deletePost,updatePost } from "../../ServerCalls/userCalls";
+import {convertToBase64} from "../../UsableFunctions/ImageFunctions";
 /*
 this component is the post component, it contains the post and the post management
 this compenet get what is needed to show the post and the post management
@@ -23,6 +24,7 @@ function Post({
   userLoggedIn,
   idComment,
   setIdComment,
+  token,
 }) {
   // Set the initial state of the text, the edit mode and the edited text
   const [text, setText] = useState(initialText);
@@ -38,9 +40,24 @@ function Post({
     setEditedText(text);
   };
   // Handle the save text button click
-  const handleSaveText = () => {
+  const handleSaveText = async() => {
     setIsEditing(false);
-    setText(editedText);
+    if(editedText === ""){
+      alert("The text can't be empty");
+      return;
+    }
+    const post = {
+      _id: _id,
+      initialText: editedText,
+      pictures: pictures,
+    };
+    const status = await updatePost(token,post, userLoggedIn._id);
+    if (status === 200) {
+      setText(editedText);
+      alert("Post text edited successfully");
+    } else {
+      alert("There was a problem with the fetch operation: ", status);
+    }
   };
   // Handle the cancel edit button click
   const handleCancelEdit = () => {
@@ -49,7 +66,7 @@ function Post({
   };
   // Handle the delete post button click
   const handleDeletePost = async () => {
-    const status = await deletePost(userLoggedIn.token, _id, userLoggedIn._id);
+    const status = await deletePost(token, _id, userLoggedIn._id);
     if (status === 200) {
       deletePostState(_id);
       alert("Post deleted successfully");
@@ -58,18 +75,42 @@ function Post({
     }
   };
   // Handle the delete picture button click
-  const handleDeletePicture = () => {
-    deletePicture(_id);
+  const handleDeletePicture = async() => {
+    const post = {
+      _id: _id,
+      initialText: initialText,
+      pictures: null,
+    };
+    const status = await updatePost(token,post, userLoggedIn._id);
+    if (status === 200) {
+      deletePicture(_id);
+      alert("Post picture deleted successfully");
+    } else {
+      alert("There was a problem with the fetch operation: ", status);
+    }
   };
   // Handle the add picture button click
   function handleButtonClick() {
     fileInput.current.click();
   }
   // Handle the file change
-  function handleFileChange(event) {
+  async function handleFileChange(event) {
     if (event.target.files.length > 0) {
       const selectedFile = event.target.files[0];
-      addPicture(_id, selectedFile);
+      const base64 = await convertToBase64(selectedFile);
+      const post = {
+        _id: _id,
+        initialText: initialText,
+        pictures: base64,
+      };
+    const status = await updatePost(token,post, userLoggedIn._id);
+    if (status === 200) {
+      addPicture(_id, base64);
+      alert("Post picture added successfully");
+    } else {
+      alert("There was a problem with the fetch operation: ", status);
+    }
+
     }
   }
   return (
