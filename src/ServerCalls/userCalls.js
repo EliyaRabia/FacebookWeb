@@ -32,7 +32,6 @@ const updateUser = async (token, user) => {
 }
 };
 const CreatePost = async (token, post,id) => {
-    console.log(id);
     try {
         const res = await fetch(`http://localhost:8080/api/users/${id}/posts`, {
         method: "post",
@@ -42,10 +41,12 @@ const CreatePost = async (token, post,id) => {
         },
         body: JSON.stringify(post),
     });
-    return res.status;
+    let statusNum = res.status;
+    let newPost = await res.json();
+    return [statusNum, newPost];
     } catch (error) {
     console.error("There was a problem with the fetch operation: ", error);
-    return 404;
+    return [404, null];
 }
 };
 
