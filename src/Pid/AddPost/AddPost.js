@@ -49,9 +49,10 @@ function AddPost({setPosts, posts,userLoggedIn,id,setId}){
         }
         const status = await CreatePost(userLoggedIn.token,newPost, userLoggedIn._id);
         if (status === 200) {
+          // addPostState(newPost);
             alert("Post added successfully");
-            //setPosts([newPost,...posts]);
-            //setId(id+1);
+            // setPosts([newPost,...posts]);
+            // setId(id+1);
         } else {
             alert("There was a problem with the fetch operation: ", status);
         }

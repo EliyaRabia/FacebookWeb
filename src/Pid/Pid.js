@@ -18,14 +18,14 @@ function Pid({ setUserLoggedIn, userLoggedIn,postList,setPostList,id,setId,idCom
   const [mode, setMode] = useState(0);
   // this function is used to delete a post
   const handleDeletePost = (postId) => {
-    const updatedPosts = postList.filter((post) => post.id !== postId);
+    const updatedPosts = postList.filter((post) => post._id !== postId);
     setPostList(updatedPosts);
   };
   // this function is used to delete a picture
   const handleDeletePicture = (postId) => {
     // this find the post that has the picture and delete it
     const updatedPostList = postList.map((post) => {
-      if (post.id === postId) {
+      if (post._id === postId) {
         return { ...post, pictures: null };
       } else {
         // if the post does not have the picture we just return the post
@@ -40,7 +40,7 @@ function Pid({ setUserLoggedIn, userLoggedIn,postList,setPostList,id,setId,idCom
   const handleAddPicture = (postId,photo) => {
     // this find the need to update the post with the new picture
     const updatedPostList = postList.map((post) => {  
-      if (post.id === postId) {
+      if (post._id === postId) {
         // we return the post with the new picture
         return { ...post, pictures: photo };
       // if the post does not have the picture we just return the post
@@ -51,6 +51,11 @@ function Pid({ setUserLoggedIn, userLoggedIn,postList,setPostList,id,setId,idCom
   // we set the postList with the updated postList
     setPostList(updatedPostList);
   };
+
+  // const addPost = (newPost) => {
+  //   setPostList([newPost, ...postList]);
+  // }
+
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
@@ -80,14 +85,15 @@ function Pid({ setUserLoggedIn, userLoggedIn,postList,setPostList,id,setId,idCom
                     userLoggedIn={userLoggedIn}
                     id={id}
                     setId={setId}
+                    // addPostState={addPost}
                   ></AddPost>
                 </div>
                 <div>
                   {postList.map((post) => (
                     <Post
-                      key={post.id}
+                      key={post._id}
                       {...post}
-                      deletePost={handleDeletePost}
+                      deletePostState={handleDeletePost}
                       deletePicture={handleDeletePicture}
                       userLoggedIn={userLoggedIn}
                       addPicture={handleAddPicture}

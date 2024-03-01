@@ -1,12 +1,14 @@
 import React, { useState, useRef } from "react";
 import "./Post.css";
 import PostManagement from "./PostManagement/PostManagement";
+import { deletePost } from "../../ServerCalls/userCalls";
 /*
 this component is the post component, it contains the post and the post management
 this compenet get what is needed to show the post and the post management
 */
 function Post({
-  id,
+  _id,
+  idUserName,
   fullname,
   icon,
   initialText,
@@ -15,12 +17,12 @@ function Post({
   likes,
   commentsNumber,
   comments,
-  deletePost,
+  deletePostState,
   deletePicture,
   addPicture,
   userLoggedIn,
   idComment,
-  setIdComment
+  setIdComment,
 }) {
   // Set the initial state of the text, the edit mode and the edited text
   const [text, setText] = useState(initialText);
@@ -46,12 +48,18 @@ function Post({
     setEditedText(text);
   };
   // Handle the delete post button click
-  const handleDeletePost = () => {
-    deletePost(id);
+  const handleDeletePost = async () => {
+    const status = await deletePost(userLoggedIn.token, _id, userLoggedIn._id);
+    if (status === 200) {
+      deletePostState(_id);
+      alert("Post deleted successfully");
+    } else {
+      alert("There was a problem with the fetch operation: ", status);
+    }
   };
   // Handle the delete picture button click
   const handleDeletePicture = () => {
-    deletePicture(id);
+    deletePicture(_id);
   };
   // Handle the add picture button click
   function handleButtonClick() {
@@ -61,7 +69,7 @@ function Post({
   function handleFileChange(event) {
     if (event.target.files.length > 0) {
       const selectedFile = event.target.files[0];
-      addPicture(id, selectedFile);
+      addPicture(_id, selectedFile);
     }
   }
   return (
@@ -70,69 +78,77 @@ function Post({
         <div className="card1">
           <div className="topPost">
             <div className="user-profile">
-              {icon && <img src={iconUrl} className="avatar__img" alt="User avatar" />}
+              {icon && (
+                <img src={iconUrl} className="avatar__img" alt="User avatar" />
+              )}
               <div className="text-profile">
                 <p className="p">{fullname}</p>
                 <span>{time}</span>
               </div>
             </div>
-            <div
-              className="btn-group"
-              role="group"
-              aria-label="Button group with nested dropdown"
-            >
-              <div className="btn-group" role="group">
-                <button
-                  type="button"
-                  className="btn edit"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <i className="bi bi-three-dots-vertical"></i>
-                </button>
-                <ul className="dropdown-menu">
-                  {pictures ? (
+            {userLoggedIn._id === idUserName && (
+              <div
+                className="btn-group"
+                role="group"
+                aria-label="Button group with nested dropdown"
+              >
+                <div className="btn-group" role="group">
+                  <button
+                    type="button"
+                    className="btn edit"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i className="bi bi-three-dots-vertical"></i>
+                  </button>
+                  <ul className="dropdown-menu">
+                    {pictures ? (
+                      <li>
+                        <a
+                          className="dropdown-item"
+                          onClick={handleDeletePicture}
+                        >
+                          <i className="bi bi-trash3-fill"></i> Delete picture
+                        </a>
+                      </li>
+                    ) : (
+                      <li>
+                        <a
+                          className="dropdown-item"
+                          onClick={handleButtonClick}
+                        >
+                          <i className="bi bi-folder-plus"></i> Add picture
+                          <input
+                            type="file"
+                            id="fileInput"
+                            accept="image/*"
+                            style={{ display: "none" }}
+                            ref={fileInput}
+                            onChange={handleFileChange}
+                          ></input>
+                        </a>
+                      </li>
+                    )}
                     <li>
-                      <a
-                        className="dropdown-item"
-                        onClick={handleDeletePicture}
-                      >
-                        <i className="bi bi-trash3-fill"></i> Delete picture
+                      <a className="dropdown-item" onClick={handleEditText}>
+                        <i className="bi bi-textarea-t"></i> Edit text
                       </a>
                     </li>
-                  ) : (
                     <li>
-                      <a className="dropdown-item" onClick={handleButtonClick}>
-                        <i className="bi bi-folder-plus"></i> Add picture
-                        <input
-                          type="file"
-                          id="fileInput"
-                          accept="image/*"
-                          style={{ display: "none" }}
-                          ref={fileInput}
-                          onChange={handleFileChange}
-                        ></input>
+                      <a className="dropdown-item" onClick={handleDeletePost}>
+                        <i className="bi bi-x-lg"></i> Delete post
                       </a>
                     </li>
-                  )}
-                  <li>
-                    <a className="dropdown-item" onClick={handleEditText}>
-                      <i className="bi bi-textarea-t"></i> Edit text
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" onClick={handleDeletePost}>
-                      <i className="bi bi-x-lg"></i> Delete post
-                    </a>
-                  </li>
-                </ul>
+                  </ul>
+                </div>
               </div>
-            </div>
+            )}
           </div>
           <div className="card-body">
             {isEditing ? (
               <div>
-                <textarea className="card-text-editTextArea"
+                <textarea
+                  className="card-text-editTextArea"
                   value={editedText}
                   onChange={(e) => setEditedText(e.target.value)}
                 ></textarea>
