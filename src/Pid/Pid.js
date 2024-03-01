@@ -52,9 +52,9 @@ function Pid({ setUserLoggedIn, userLoggedIn,postList,setPostList,id,setId,idCom
     setPostList(updatedPostList);
   };
 
-  // const addPost = (newPost) => {
-  //   setPostList([newPost, ...postList]);
-  // }
+  const addPost = (newPost) => {
+    setPostList([newPost, ...postList]);
+  }
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -80,12 +80,9 @@ function Pid({ setUserLoggedIn, userLoggedIn,postList,setPostList,id,setId,idCom
               <div>
                 <div>
                   <AddPost
-                    setPosts={setPostList}
-                    posts={postList}
+                    addPostState={addPost}
                     userLoggedIn={userLoggedIn}
-                    id={id}
-                    setId={setId}
-                    // addPostState={addPost}
+                    token={token}
                   ></AddPost>
                 </div>
                 <div>
@@ -99,6 +96,7 @@ function Pid({ setUserLoggedIn, userLoggedIn,postList,setPostList,id,setId,idCom
                       addPicture={handleAddPicture}
                       idComment={idComment}
                       setIdComment={setIdComment}
+                      token={token}
                     ></Post>
                   ))}
                 </div>

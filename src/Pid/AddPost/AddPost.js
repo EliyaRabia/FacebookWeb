@@ -6,7 +6,7 @@ import {convertToBase64} from "../../UsableFunctions/ImageFunctions";
 this component is used to add a post
 it gets the setPosts, posts, userLoggedIn,id and setId as props
 */
-function AddPost({setPosts, posts,userLoggedIn,id,setId}){
+function AddPost({addPostState,userLoggedIn,token}){
     // all the refs that we get from the form
     const postText= useRef("");
     const [photo, setPhoto] = useState(null);
@@ -47,19 +47,21 @@ function AddPost({setPosts, posts,userLoggedIn,id,setId}){
             commentsNumber: 0,
             comments: []
         }
-        const status = await CreatePost(userLoggedIn.token,newPost, userLoggedIn._id);
+        const [status,post] = await CreatePost(token,newPost, userLoggedIn._id);
         if (status === 200) {
           // addPostState(newPost);
             alert("Post added successfully");
-            // setPosts([newPost,...posts]);
+            //setPosts([post, ...posts]);
+            addPostState(post);
+            //console.log(status)
             // setId(id+1);
         } else {
-            alert("There was a problem with the fetch operation: ", status);
+            alert("Failed to Add Post", status);
         }
         // this is used to reset the form
-        console.log("hey from here")
+        //console.log("hey from here")
         postText.current.value = "";
-        console.log(postText.current.value);
+        //console.log(postText.current.value);
         setPhoto(null);
         //alert("Post added successfully");
     }
