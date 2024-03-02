@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./Post.css";
 import PostManagement from "./PostManagement/PostManagement";
-import { deletePost,updatePost } from "../../ServerCalls/userCalls";
+import { deletePost,updatePost,sendFriendRequestToServer , acceptFriendRequestServer , deleteFriendRequestServer} from "../../ServerCalls/userCalls";
 import {convertToBase64} from "../../UsableFunctions/ImageFunctions";
 /*
 this component is the post component, it contains the post and the post management
@@ -25,12 +25,15 @@ function Post({
   idComment,
   setIdComment,
   token,
+  refresh,
+  handleProfilePage
 }) {
   // Set the initial state of the text, the edit mode and the edited text
   const [text, setText] = useState(initialText);
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(text);
   const fileInput = useRef(null);
+  const [render, setRender] = useState(false);
   const iconUrl = icon instanceof File ? URL.createObjectURL(icon) : icon;
   const picturesUrl =
     pictures instanceof File ? URL.createObjectURL(pictures) : pictures;
@@ -64,6 +67,41 @@ function Post({
     setIsEditing(false);
     setEditedText(text);
   };
+  const sendFriendRequest = async () => {
+    //const [res,user] = await sendFriendRequestToServer(token, userLoggedIn._id, idUserName);
+    const res = await sendFriendRequestToServer(token, userLoggedIn._id, idUserName);
+    if (res === 200) {
+      alert("Friend request sent successfully");
+      setRender(!render)
+      refresh();
+    } else {
+      alert("There was a problem with the fetch operation: ", res);
+    }
+  };
+  
+  const acceptFriendRequest = async () => {
+    //const [res,user] = await acceptFriendRequestServer(token, userLoggedIn._id, idUserName);
+    const res = await acceptFriendRequestServer(token, userLoggedIn._id, idUserName);
+    if (res === 200) {
+      alert("Friend request accepted successfully");
+      setRender(!render)
+      refresh();
+    } else {
+      alert("There was a problem with the fetch operation: ", res);
+    }
+  }
+
+  const deleteFriendRequest = async () => {
+    const res = await deleteFriendRequestServer(token, userLoggedIn._id, idUserName);
+    if (res === 200) {
+      alert("Friend deleted successfully");
+      setRender(!render)
+      refresh();
+    } else {
+      alert("There was a problem with the fetch operation: ", res);
+    }
+  }
+
   // Handle the delete post button click
   const handleDeletePost = async () => {
     const status = await deletePost(token, _id, userLoggedIn._id);
@@ -110,7 +148,6 @@ function Post({
     } else {
       alert("There was a problem with the fetch operation: ", status);
     }
-
     }
   }
   return (
@@ -120,10 +157,10 @@ function Post({
           <div className="topPost">
             <div className="user-profile">
               {icon && (
-                <img src={iconUrl} className="avatar__img" alt="User avatar" />
+                <img src={iconUrl} className="avatar__img" alt="User avatar" onClick={() => handleProfilePage(idUserName) }/>
               )}
               <div className="text-profile">
-                <p className="p">{fullname}</p>
+                <p className="p" onClick={() => handleProfilePage(idUserName) }>{fullname}</p>
                 <span>{time}</span>
               </div>
             </div>
@@ -184,6 +221,17 @@ function Post({
                 </div>
               </div>
             )}
+            {userLoggedIn._id !== idUserName && (
+              userLoggedIn.friendsList.includes(idUserName) ? (
+                <button onClick={deleteFriendRequest}> Delete Friend </button>
+              ) : userLoggedIn.friendRequestsSent.includes(idUserName) ? (
+                <div> Friend request sent </div>
+              ) : userLoggedIn.friendRequests.includes(idUserName) ? (
+                <button onClick={acceptFriendRequest}>Aproove</button>
+              ) : (
+                <button onClick={sendFriendRequest}>Add friend</button>
+              )
+              )}
           </div>
           <div className="card-body">
             {isEditing ? (

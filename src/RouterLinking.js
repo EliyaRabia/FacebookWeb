@@ -12,18 +12,17 @@ export default function Main() {
   and set userlist to an empty arr, and userExists to false
   and also set userLoggedIn to false
   */
-  const [postList, setPostList] = useState([]);
+  //const [postList, setPostList] = useState([]);
   const [userExists, setUserExists] = useState(false);
-  const [id,setId]=useState(11);
   const [idComment,setIdComment]=useState(16);
   const [token,setToken]=useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
 
-  useEffect(() => {
-    if (token) {
-      getAllPosts(token).then((result) => setPostList(result.data));
-    }
-  }, [token]);
+  // useEffect(() => {
+  //   if (token) {
+  //     getAllPosts(token).then((result) => setPostList(result.data));
+  //   }
+  // }, [token]);
   
   return (
     /*
@@ -47,10 +46,6 @@ export default function Main() {
           element={userExists ? <Pid
             setUserLoggedIn={setUserLoggedIn}
             userLoggedIn={userLoggedIn}
-            postList={postList}
-            setPostList={setPostList}
-            id={id}
-            setId={setId}
             idComment={idComment}
             setIdComment={setIdComment}
             token={token}

@@ -37,13 +37,8 @@ function Entrance({ setUserExists , setToken , setUserLoggedIn}) {
       }
       const data = { username, password };
       const [statusNum, token, userID] = await loginServer(data);
-      //console.log(statusNum);
-      //console.log(token);
-
       if(statusNum === 200){
-        console.log(userID);
         const userData = await getUserData(token,userID);
-        console.log(userData);
         setUserExists(true);
         setToken(token);
         setUserLoggedIn(userData);
