@@ -11,8 +11,8 @@ function RightSide(){
             </div> 
             <div className="events"> 
                 <div className="left_events">
-                    <h3>11</h3>
-                    <span>February</span>  
+                    <h3>3</h3>
+                    <span>March</span>  
                 </div>
                 <div className="right_events">
                     <h6>Advanced Programming Lesson</h6>
@@ -22,8 +22,8 @@ function RightSide(){
             </div>
             <div className="events"> 
             <div className="left_events">
-                    <h3>18</h3>
-                    <span>February</span>  
+                    <h3>10</h3>
+                    <span>March</span>  
                 </div>
                 <div className="right_events">
                     <h6>Advanced Programming Lesson</h6>
