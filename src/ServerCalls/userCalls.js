@@ -98,4 +98,114 @@ const updatePost = async (token, post,userId) => {
 }
 }
 
-export { deleteUser, updateUser , CreatePost, deletePost, updatePost};
+const sendFriendRequestToServer = async (token, userId, friendId) => {
+  try {
+    const res = await fetch(
+      `http://localhost:8080/api/users/${userId}/friends`,
+      {
+        method: "post",
+        headers: {
+          authorization: token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ friendId }),
+      }
+    );
+    // let statusNum = res.status;
+    // let user = await res.json();
+    // return [statusNum, user];
+    return res.status;
+  } catch (error) {
+    console.error("There was a problem with the fetch operation: ", error);
+    return 404;
+  }
+};
+
+const acceptFriendRequestServer = async (token, userId, friendId) => {
+  try {
+    const res = await fetch(
+      `http://localhost:8080/api/users/${userId}/friends/${friendId}`,
+      {
+        method: "put",
+        headers: {
+          authorization: token,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    // let statusNum = res.status;
+    // let user = await res.json();
+    // return [statusNum, user];
+    return res.status;
+  } catch (error) {
+    console.error("There was a problem with the fetch operation: ", error);
+    return 404;
+  }
+};
+
+const deleteFriendRequestServer = async (token, userId, friendId) => {
+  try {
+    const res = await fetch(
+      `http://localhost:8080/api/users/${userId}/friends/${friendId}`,
+      {
+        method: "delete",
+        headers: {
+          authorization: token,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return res.status;
+  } catch (error) {
+    console.error("There was a problem with the fetch operation: ", error);
+    return 404;
+  }
+};
+
+const getAllFriends = async (token, profileId) => {
+  try{
+    const res = await fetch(
+      `http://localhost:8080/api/users/${profileId}/friends`,
+      {
+        method: "get",
+        headers: {
+          authorization: token,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    let friends = await res.json();
+    return friends;
+  } catch (error) {
+    console.error("There was a problem with the fetch operation: ", error);
+    return 404;
+}
+}
+
+const getPostsByUser = async (token, userId) => {
+  try{
+    const res = await fetch(
+      `http://localhost:8080/api/users/${userId}/posts`,
+      {
+        method: "get",
+        headers: {
+          authorization: token,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    let posts = await res.json();
+    return posts;
+  } catch (error) {
+    console.error("There was a problem with the fetch operation: ", error);
+    return 404;
+}
+}
+
+export { deleteUser, updateUser , CreatePost, deletePost, updatePost , sendFriendRequestToServer, acceptFriendRequestServer , deleteFriendRequestServer , getAllFriends, getPostsByUser};

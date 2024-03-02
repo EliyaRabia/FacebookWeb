@@ -3,7 +3,8 @@ import React, { useState , useRef } from "react";
 import { validatePassword } from "../../Creating/Authentication";
 import { deleteUser , updateUser} from "../../ServerCalls/userCalls";
 import { useNavigate } from "react-router-dom";
-function EditUser({userLoggedIn, setUserLoggedIn, token, setToken , setMode}){
+import { convertToBase64 } from "../../UsableFunctions/ImageFunctions";
+function EditUser({userLoggedIn, setUserLoggedIn, token, setToken , setMode,refresh}) {
     const usernameBox = useRef(userLoggedIn.username);
     const passwordBox = useRef("");
     const passwordCheckBox = useRef("");
@@ -29,11 +30,7 @@ function EditUser({userLoggedIn, setUserLoggedIn, token, setToken , setMode}){
         const display = displayName.current.value;
         let photoUrl = userLoggedIn.photo;
         if (photo.current.files[0]) { // if a new file is selected
-            photoUrl = await new Promise((resolve) => {
-                const reader = new FileReader();
-                reader.onloadend = () => resolve(reader.result);
-                reader.readAsDataURL(photo.current.files[0]);
-            });
+            photoUrl = await convertToBase64(photo.current.files[0]);
         }
         if(password !== "" || confirmPassword !== ""){
             if (password !== confirmPassword) {
@@ -66,6 +63,7 @@ function EditUser({userLoggedIn, setUserLoggedIn, token, setToken , setMode}){
         if (status === 200) {
             setUserLoggedIn(user);
             setMode(0);
+            refresh();
             alert("User updated");
         }
         else {

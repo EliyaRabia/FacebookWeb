@@ -5,8 +5,11 @@ import NaviBar from './NaviBar/NaviBar';
 import LeftSide from './LeftSide/LeftSide';
 import RightSide from "./RightSide/RightSide";
 import EditUser from "./EditUser/EditUser";
+import ProfilePage from "./ProfilePage/ProfilePage";
 import React, { useState , useRef, useEffect } from "react";
 import { getAllPosts } from "../ServerCalls/postsCalls";
+import { getUserData } from "../ServerCalls/login";
+
 /*
 this component is the main component of the pid page
 it will render the navbar, the left side, the right side and the posts and the add post component
@@ -18,15 +21,35 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
   const [darkMode, setDarkMode] = useState(false);
   const [mode, setMode] = useState(0);
   const [postList, setPostList] = useState([]);
+  const [render, setRender] = useState(false);
+  const [profileId, setProfileId] = useState(null);
+
   useEffect(() => {
     if (token) {
       getAllPosts(token).then((result) => setPostList(result.data));
     }
-  }, [token]);
+  }, [token,render]);
+
+  useEffect(() => {
+    if (token) {
+      getUserData(token, userLoggedIn._id).then((result) => setUserLoggedIn(result));
+    }
+  }, [render,token]);
+      
   // this function is used to delete a post
   const handleDeletePost = (postId) => {
     const updatedPosts = postList.filter((post) => post._id !== postId);
     setPostList(updatedPosts);
+  };
+
+  const refresh = () => {
+    console.log("refresh");
+    setRender(!render);
+  };
+
+  const handleProfilePage = (Id) => {
+    setMode(2);
+    setProfileId(Id);
   };
   // this function is used to delete a picture
   const handleDeletePicture = (postId) => {
@@ -76,11 +99,17 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
             toggleDarkMode={toggleDarkMode}
             darkMode={darkMode}
             setMode={setMode}
+            token={token}
+            setToken={setToken}
+            refresh={refresh}
           ></NaviBar>
         </div>
         <div className="row">
           <div className="col-3 vh-100 leftSideCol">
-            <LeftSide></LeftSide>
+            <LeftSide
+              userLoggedIn={userLoggedIn}
+              token={token}
+            ></LeftSide>
           </div>
           <div className="col pidCol">
             {mode === 0 && (
@@ -104,6 +133,8 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
                       idComment={idComment}
                       setIdComment={setIdComment}
                       token={token}
+                      refresh={refresh}
+                      handleProfilePage={handleProfilePage}
                     ></Post>
                   ))}
                 </div>
@@ -117,7 +148,18 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
                   token={token}
                   setToken={setToken}
                   setMode={setMode}
+                  refresh={refresh}
                 ></EditUser>
+              </div>
+            )}
+            {mode === 2 && (
+              <div>
+                <ProfilePage
+                  userLoggedIn={userLoggedIn}
+                  profileId={profileId}
+                  setMode={setMode}
+                  token={token}
+                ></ProfilePage>
               </div>
             )}
           </div>
