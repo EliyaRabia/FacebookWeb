@@ -2,7 +2,9 @@ import "./ProfilePage.css"
 import React, { useState , useRef , useEffect } from "react";
 import { getUserData } from "../../ServerCalls/login";
 import { getAllFriends , getPostsByUser } from "../../ServerCalls/userCalls";
-function ProfilePage({userLoggedIn , profileId , setMode , token}){
+import Post from "../Post/Post";
+import FriendsView from "./FriendsView/FriendsView";
+function ProfilePage({userLoggedIn , profileId , setMode , token,handleDeletePost,handleDeletePicture,addPicture,idComment,setIdComment,refresh,handleProfilePage,render}){
     const [profileData, setProfileData] = useState({});
     const [posts, setPosts] = useState([]);
     const [friends, setFriends] = useState([]);
@@ -10,19 +12,20 @@ function ProfilePage({userLoggedIn , profileId , setMode , token}){
         if (token) {
             getUserData(token, profileId).then((result) => setProfileData(result));
         }
-    }, [profileId,token]);
+    }, [profileId,token,render]);
     useEffect(() => {
         if (token) {
             getAllFriends(token, profileId).then((result) => setFriends(result));
         }
-    }, [profileId,token]);
+    }, [profileId,token,render]);
     console.log(friends);
     useEffect(() => {
         if (token) {
             getPostsByUser(token, profileId).then((result) => setPosts(result));
         }
-    }, [profileId,token]);
+    }, [profileId,token,render]);
     console.log(posts);
+    console.log(render);
     return(
         
         <div className="profile-container">
@@ -40,6 +43,27 @@ function ProfilePage({userLoggedIn , profileId , setMode , token}){
                 </div>
             </div>
             <div className="bottom-section">
+                <FriendsView
+                    userLoggedIn={userLoggedIn}
+                    friends={friends}>
+                </FriendsView>
+            </div>
+            <div className="bottom-section">
+            {posts.map((post) => (
+                    <Post
+                      key={post._id}
+                      {...post}
+                      deletePostState={handleDeletePost}
+                      deletePicture={handleDeletePicture}
+                      userLoggedIn={userLoggedIn}
+                      addPicture={addPicture}
+                      idComment={idComment}
+                      setIdComment={setIdComment}
+                      token={token}
+                      refresh={refresh}
+                      handleProfilePage={handleProfilePage}
+                    ></Post>
+                  ))}
             </div>
             
         </div>

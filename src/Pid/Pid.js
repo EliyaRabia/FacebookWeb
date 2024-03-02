@@ -159,8 +159,17 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
                   profileId={profileId}
                   setMode={setMode}
                   token={token}
+                  handleDeletePost={handleDeletePost}
+                  handleDeletePicture={handleDeletePicture}
+                  addPicture={handleAddPicture}
+                  idComment={idComment}
+                  setIdComment={setIdComment}
+                  refresh={refresh}
+                  handleProfilePage={handleProfilePage}
+                  render={render}
                 ></ProfilePage>
               </div>
+              
             )}
           </div>
           <div className="col-3 vh-100 rightSideCol">

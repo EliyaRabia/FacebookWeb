@@ -1,16 +1,32 @@
 .profile-container{
     
     display:flex; 
-    justify-content: center;
-    text-align: center;
+    flex-direction: column; 
+    align-items: center;
+    
 }
 .top-section{
     background-color: white;
     padding-right:250px; 
     padding-bottom:20px;
     border-radius: 4px;
-    display: flex;
-    align-items:flex-start;
+    margin-bottom: 20px;
+}
+.dark-mode .top-section{
+    background-color: #333;
+    color:#bebebe;
+}
+.bottom-section {
+   
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+     /* Set width to 100% to take full width of the container */
+}
+
+.dark-mode .bottom-section {
+    background-color: #333;
+    color: #bebebe;
 }
 .pd-row{
     
@@ -34,4 +50,7 @@
 .op p{
     font-size: 13px;
     color:blue;
+}
+.dark-mode .op p{
+    color:teal;
 }

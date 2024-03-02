@@ -9,8 +9,8 @@ function UpOptions(){
             <span className="m-2">Your Profile</span>
           </li>
           <li className="list-group-item d-flex align-items-center">
-            <i className="material-icons">people</i>
-            <span className="m-2">Friends</span>
+            <i className="material-icons">local_mall</i>
+            <span className="m-2">Marketplace</span>
           </li>
           <li className="list-group-item d-flex align-items-center">
             <i className="material-icons">history</i>

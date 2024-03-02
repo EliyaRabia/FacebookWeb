@@ -123,3 +123,14 @@ nav{
 .dark-mode .dropdown-item:hover{
     background-color: grey;
 }
+.button_friend{
+    border: none;
+    background-color: white;
+    padding: 5px;
+}
+.dark-mode .button_friend{
+    background: #333;
+}
+.dark-mode .button_friend:hover{
+    background: #d8d9dd;
+}
