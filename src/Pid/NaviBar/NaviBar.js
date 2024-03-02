@@ -57,7 +57,7 @@ function NaviBar({userLoggedIn, setUserLoggedIn,toggleDarkMode,darkMode,setMode,
             </div>
             <div className="nav__mid"> 
                 <a className="iconz">
-                    <i className="material-icons">home</i>
+                    <i className="material-icons" onClick={() => setMode(0)}>home</i>
                 </a>
                 <a className="iconz">
                     <i className="material-icons">slideshow</i>

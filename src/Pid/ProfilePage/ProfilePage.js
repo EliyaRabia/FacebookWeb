@@ -29,6 +29,7 @@ function ProfilePage({userLoggedIn , profileId , setMode , token,handleDeletePos
     return(
         
         <div className="profile-container">
+            <div className="warper">
             <div className="top-section">
                 <div className="pd-left">
                     <div className="pd-row">
@@ -40,6 +41,8 @@ function ProfilePage({userLoggedIn , profileId , setMode , token,handleDeletePos
                     </div>
                 </div>
                 <div className="pd-right">
+                    <button type="button">add friend</button>
+                </div>
                 </div>
             </div>
             <div className="bottom-section">
@@ -49,21 +52,23 @@ function ProfilePage({userLoggedIn , profileId , setMode , token,handleDeletePos
                 </FriendsView>
             </div>
             <div className="bottom-section">
-            {posts.map((post) => (
+                {Array.isArray(posts) && posts.length > 0 && posts.map((post) => (
                     <Post
-                      key={post._id}
-                      {...post}
-                      deletePostState={handleDeletePost}
-                      deletePicture={handleDeletePicture}
-                      userLoggedIn={userLoggedIn}
-                      addPicture={addPicture}
-                      idComment={idComment}
-                      setIdComment={setIdComment}
-                      token={token}
-                      refresh={refresh}
-                      handleProfilePage={handleProfilePage}
+                        key={post._id}
+                        {...post}
+                        deletePostState={handleDeletePost}
+                        deletePicture={handleDeletePicture}
+                        userLoggedIn={userLoggedIn}
+                        addPicture={addPicture}
+                        idComment={idComment}
+                        setIdComment={setIdComment}
+                        token={token}
+                        refresh={refresh}
+                        handleProfilePage={handleProfilePage}
                     ></Post>
-                  ))}
+                ))}
+                {!Array.isArray(posts) && <p>You need to be his friend to show his posts</p>}
+                {Array.isArray(posts) && posts.length === 0 && <p>No posts available</p>}
             </div>
             
         </div>

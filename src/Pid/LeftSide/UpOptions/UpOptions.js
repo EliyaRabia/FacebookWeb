@@ -1,10 +1,15 @@
 import "./UpOptions.css" 
+import React, { useState , useRef, useEffect } from "react";
 // this is the component that is used to show the options that are present on the top of the left side
-function UpOptions(){
+function UpOptions({setMode,setProfileId,userLoggedIn}){
+  const moveToProfile = () => {
+    setProfileId(userLoggedIn._id)
+    setMode(2)
+  };
     return (
       <div className="up_options">
         <ul className="list-group">
-          <li className="list-group-item d-flex align-items-center">
+          <li className="list-group-item d-flex align-items-center" onClick={moveToProfile}>
             <i className="material-icons">person</i>
             <span className="m-2">Your Profile</span>
           </li>

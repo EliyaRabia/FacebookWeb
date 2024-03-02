@@ -5,12 +5,19 @@
     align-items: center;
     
 }
+.warper{
+    display:flex; 
+    flex-direction: row; 
+    align-items: center; 
+}
 .top-section{
     background-color: white;
     padding-right:250px; 
-    padding-bottom:20px;
+    padding-bottom:10px;
     border-radius: 4px;
     margin-bottom: 20px;
+    
+    
 }
 .dark-mode .top-section{
     background-color: #333;
@@ -29,13 +36,13 @@
     color: #bebebe;
 }
 .pd-row{
-    
+    display:flex;
     align-items: flex-start;
 
 } 
 .pd-image{
-    width:200px; 
-    margin-right: 80px; 
+    width:250px; 
+    margin-right: 10px; 
     border-radius: 6px;
 } 
 .op {
@@ -53,4 +60,11 @@
 }
 .dark-mode .op p{
     color:teal;
+} 
+.pd-right{
+    margin-right: -250px;
+    padding-top: -90px;
+    display:flex; 
+    flex-direction:row-reverse; 
+    align-items: center; 
 }
