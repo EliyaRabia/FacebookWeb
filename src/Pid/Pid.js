@@ -40,6 +40,7 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
   const handleDeletePost = (postId) => {
     const updatedPosts = postList.filter((post) => post._id !== postId);
     setPostList(updatedPosts);
+    refresh();
   };
 
   const refresh = () => {
@@ -54,10 +55,14 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
   // this function is used to delete a picture
   const handleDeletePicture = (postId) => {
     // this find the post that has the picture and delete it
+    refresh();
     const updatedPostList = postList.map((post) => {
+
       if (post._id === postId) {
+      
         return { ...post, pictures: null };
       } else {
+        
         // if the post does not have the picture we just return the post
         return post;
       }
@@ -69,6 +74,7 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
   // this function is used to add a picture to a post
   const handleAddPicture = (postId,photo) => {
     // this find the need to update the post with the new picture
+    refresh();
     const updatedPostList = postList.map((post) => {  
       if (post._id === postId) {
         // we return the post with the new picture
@@ -109,6 +115,8 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
             <LeftSide
               userLoggedIn={userLoggedIn}
               token={token}
+              setMode={setMode}
+              setProfileId={setProfileId}
             ></LeftSide>
           </div>
           <div className="col pidCol">
@@ -159,8 +167,18 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
                   profileId={profileId}
                   setMode={setMode}
                   token={token}
+                  handleDeletePost={handleDeletePost}
+                  handleDeletePicture={handleDeletePicture}
+                  addPicture={handleAddPicture}
+                  idComment={idComment}
+                  setIdComment={setIdComment}
+                  refresh={refresh}
+                  handleProfilePage={handleProfilePage}
+                  render={render}
+                  setRender={setRender}
                 ></ProfilePage>
               </div>
+              
             )}
           </div>
           <div className="col-3 vh-100 rightSideCol">

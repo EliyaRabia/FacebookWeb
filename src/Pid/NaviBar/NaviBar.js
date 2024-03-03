@@ -57,7 +57,7 @@ function NaviBar({userLoggedIn, setUserLoggedIn,toggleDarkMode,darkMode,setMode,
             </div>
             <div className="nav__mid"> 
                 <a className="iconz">
-                    <i className="material-icons">home</i>
+                    <i className="material-icons" onClick={() => setMode(0)}>home</i>
                 </a>
                 <a className="iconz">
                     <i className="material-icons">slideshow</i>
@@ -87,8 +87,8 @@ function NaviBar({userLoggedIn, setUserLoggedIn,toggleDarkMode,darkMode,setMode,
                                 <li key={friend._id} className="dropdown-item">
                                     <img src={friend.photo} alt={friend.displayName} style={{width: '30px', height: '30px', marginRight: '10px'}} />
                                     <span>{friend.displayName}</span>
-                                    <button onClick={() => acceptFriendRequest(friend._id)}>Accept</button>
-                                    <button onClick={() => deleteFriendRequest(friend._id)}>Reject</button>
+                                    <button className="button_friend" onClick={() => acceptFriendRequest(friend._id)}><i class="bi bi-person-plus-fill"></i></button>
+                                    <button className="button_friend"onClick={() => deleteFriendRequest(friend._id)}><i class="bi bi-person-x"></i> </button>
                                 </li>
                             ))}
                         </ul>

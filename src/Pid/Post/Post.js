@@ -223,13 +223,13 @@ function Post({
             )}
             {userLoggedIn._id !== idUserName && (
               userLoggedIn.friendsList.includes(idUserName) ? (
-                <button onClick={deleteFriendRequest}> Delete Friend </button>
+                <button className="friend_button" onClick={deleteFriendRequest}><i className="bi bi-person-x"></i> Delete Friend </button>
               ) : userLoggedIn.friendRequestsSent.includes(idUserName) ? (
-                <div> Friend request sent </div>
+                <div> <i class="bi bi-hourglass-split"></i> Friend request sent </div>
               ) : userLoggedIn.friendRequests.includes(idUserName) ? (
-                <button onClick={acceptFriendRequest}>Aproove</button>
+                <button className="friend_button" onClick={acceptFriendRequest}><i className="bi bi-person-plus-fill"></i> Aproove</button>
               ) : (
-                <button onClick={sendFriendRequest}>Add friend</button>
+                <button className="friend_button" onClick={sendFriendRequest}><i className="material-icons">person_add</i> Add friend</button>
               )
               )}
           </div>

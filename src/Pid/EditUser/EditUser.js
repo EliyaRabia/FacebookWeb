@@ -96,13 +96,13 @@ function EditUser({userLoggedIn, setUserLoggedIn, token, setToken , setMode,refr
                     <input type="file" className="form-control" id = "image" accept="image/*" ref={photo} />
                 </div>
                 <div>
-                    <button type="button" className="btn btn-primary" onClick ={editUser} >Submit</button>
+                    <button type="button" className="btn btn-primary editb" onClick ={editUser} >Submit</button>
                 </div>
                 <div>
-                    <button type="button" className="btn btn-primary" onClick={deleteUserAndLogOut} >Delete User</button>
+                    <button type="button" className="btn btn-primary editb" onClick={deleteUserAndLogOut} >Delete User</button>
                 </div>
                 <div>
-                    <button type="button" className="btn btn-primary" onClick={() => setMode(0)}>Cancel</button>
+                    <button type="button" className="btn btn-primary editb" onClick={() => setMode(0)}>Cancel</button>
                 </div>
             </div>
         </div>

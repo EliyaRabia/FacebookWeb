@@ -83,3 +83,25 @@
 .dark-mode .card-text{
     color: #bebebe;
 }
+.friend_button{
+    border:none;
+    background-color: white;
+}
+.friend_button:hover{
+    background: grey;
+} 
+.dark-mode .friend_button{
+    background: #333;
+    color: #bebebe;
+} 
+.dark-mode .friend_button:hover{
+    background: #d8d9dd;
+    color:black;
+} 
+
+.p:hover{
+    cursor: pointer;
+}
+.avatar__img:hover{
+    cursor: pointer;
+}

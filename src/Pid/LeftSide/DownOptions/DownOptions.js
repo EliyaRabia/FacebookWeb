@@ -12,7 +12,7 @@ function DownOptions({userLoggedIn , token}){
     return (
       <div className="down_options">
           <div className="leftbar_title">
-              <h4>FriendsList</h4>
+              <h4>Friends List</h4>
           </div>
           {friends.map((friend) => (
               <div className="online-list" key={friend._id}>

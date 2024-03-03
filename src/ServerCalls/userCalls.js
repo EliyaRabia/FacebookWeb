@@ -203,7 +203,7 @@ const getPostsByUser = async (token, userId) => {
     let posts = await res.json();
     return posts;
   } catch (error) {
-    console.error("There was a problem with the fetch operation: ", error);
+    console.error("this user is not your friend ", error);
     return 404;
 }
 }
