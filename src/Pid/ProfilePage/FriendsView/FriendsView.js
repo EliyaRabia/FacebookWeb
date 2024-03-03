@@ -1,7 +1,6 @@
 import "./FriendsView.css"
 import React, { useState , useRef , useEffect } from "react";
 function FriendsView({userLoggedIn, friends}) {
-    console.log(friends);
     return (
         <div className="friends-section">
             <div className="title-box"><h3>Friends:</h3></div>

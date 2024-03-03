@@ -11,8 +11,10 @@ function LeftSide({userLoggedIn , token,setMode,setProfileId}){
           userLoggedIn={userLoggedIn}>
         </UpOptions>
         <DownOptions
-        userLoggedIn={userLoggedIn}
-        token={token}
+          setMode={setMode}
+          setProfileId={setProfileId}
+          userLoggedIn={userLoggedIn}
+          token={token}
         ></DownOptions>
       </div>
     );

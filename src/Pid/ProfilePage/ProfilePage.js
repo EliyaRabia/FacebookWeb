@@ -4,7 +4,7 @@ import { getUserData } from "../../ServerCalls/login";
 import { getAllFriends , getPostsByUser,sendFriendRequestToServer , acceptFriendRequestServer , deleteFriendRequestServer } from "../../ServerCalls/userCalls";
 import Post from "../Post/Post";
 import FriendsView from "./FriendsView/FriendsView";
-function ProfilePage({userLoggedIn , profileId , setMode , token,handleDeletePost,handleDeletePicture,addPicture,idComment,setIdComment,refresh,handleProfilePage,render,setRender}){
+function ProfilePage({userLoggedIn , profileId , setMode , token,handleDeletePost,handleDeletePicture,addPicture,idComment,setIdComment,refresh,handleProfilePage,render,setRender,editText,handleAddLike,handleRemoveLike}) {
     const [profileData, setProfileData] = useState({});
     const [posts, setPosts] = useState([]);
     const [friends, setFriends] = useState([]);
@@ -18,26 +18,22 @@ function ProfilePage({userLoggedIn , profileId , setMode , token,handleDeletePos
             getAllFriends(token, profileId).then((result) => setFriends(result));
         }
     }, [profileId,token,render]);
-    console.log(friends);
     useEffect(() => {
         if (token) {
             getPostsByUser(token, profileId).then((result) => setPosts(result));
         }
     }, [profileId,token,render]);
-    console.log(posts);
-    console.log(render);
     const sendFriendRequest = async () => {
         //const [res,user] = await sendFriendRequestToServer(token, userLoggedIn._id, idUserName);
         const res = await sendFriendRequestToServer(token, userLoggedIn._id, profileId);
         if (res === 200) {
-          alert("Friend request sent successfully");
-          setRender(!render)
+            alert("Friend request sent successfully");
+            setRender(!render)
           refresh();
         } else {
           alert("There was a problem with the fetch operation: ", res);
         }
       };
-      
       const acceptFriendRequest = async () => {
         //const [res,user] = await acceptFriendRequestServer(token, userLoggedIn._id, idUserName);
         const res = await acceptFriendRequestServer(token, userLoggedIn._id, profileId);
@@ -49,7 +45,44 @@ function ProfilePage({userLoggedIn , profileId , setMode , token,handleDeletePos
           alert("There was a problem with the fetch operation: ", res);
         }
       }
-    
+      const handleDeletePostProfile = (postId) => {
+        const updatedPosts = posts.filter((post) => post._id !== postId);
+        setPosts(updatedPosts);
+        handleDeletePost(postId);
+    };
+    const handleDeletePictureProfile = (postId) => {
+        const updatedPosts = posts.map((post) => {
+            if (post._id === postId) {
+                return { ...post, pictures: null };
+            } else {
+                return post;
+            }
+        });
+        setPosts(updatedPosts);
+        handleDeletePicture(postId);
+    };
+    const handleAddPictureProfile = (postId, picture) => {
+        const updatedPosts = posts.map((post) => {
+            if (post._id === postId) {
+                return { ...post, pictures: picture };
+            } else {
+                return post;
+            }
+        });
+        setPosts(updatedPosts);
+        addPicture(postId, picture);
+    };
+    const handleEditTextProfile = (postId, newText) => {
+        const updatedPosts = posts.map((post) => {
+            if (post._id === postId) {
+                return { ...post, initialText: newText };
+            } else {
+                return post;
+            }
+        });
+        setPosts(updatedPosts);
+        editText(postId, newText);
+    };
       const deleteFriendRequest = async () => {
         const res = await deleteFriendRequestServer(token, userLoggedIn._id, profileId);
         if (res === 200) {
@@ -60,6 +93,28 @@ function ProfilePage({userLoggedIn , profileId , setMode , token,handleDeletePos
           alert("There was a problem with the fetch operation: ", res);
         }
       }
+    const handleAddLikeProfile = (userId, postId) => {
+        const updatedPosts = posts.map((post) => {
+            if (post._id === postId) {
+                return { ...post, likes: [...post.likes, userId] };
+            } else {
+                return post;
+            }
+        });
+        setPosts(updatedPosts);
+        handleAddLike(userId, postId);
+    };
+    const handleRemoveLikeProfile = (userId, postId) => {
+        const updatedPosts = posts.map((post) => {
+            if (post._id === postId) {
+                return { ...post, likes: post.likes.filter((id) => id !== userId) };
+            } else {
+                return post;
+            }
+        });
+        setPosts(updatedPosts);
+        handleRemoveLike(userId, postId);
+    };
     return(
         
         <div className="profile-container">
@@ -100,15 +155,18 @@ function ProfilePage({userLoggedIn , profileId , setMode , token,handleDeletePos
                     <Post
                         key={post._id}
                         {...post}
-                        deletePostState={handleDeletePost}
-                        deletePicture={handleDeletePicture}
+                        deletePostState={handleDeletePostProfile}
+                        deletePicture={handleDeletePictureProfile}
                         userLoggedIn={userLoggedIn}
-                        addPicture={addPicture}
+                        addPicture={handleAddPictureProfile}
                         idComment={idComment}
                         setIdComment={setIdComment}
                         token={token}
                         refresh={refresh}
                         handleProfilePage={handleProfilePage}
+                        editText={handleEditTextProfile}
+                        handleAddLike={handleAddLikeProfile}
+                        handleRemoveLike={handleRemoveLikeProfile}
                     ></Post>
                 ))}
                 {!Array.isArray(posts) && <p>You need to be his friend to see his posts</p>}

@@ -208,4 +208,23 @@ const getPostsByUser = async (token, userId) => {
 }
 }
 
-export { deleteUser, updateUser , CreatePost, deletePost, updatePost , sendFriendRequestToServer, acceptFriendRequestServer , deleteFriendRequestServer , getAllFriends, getPostsByUser};
+const addOrRemoveLike = async (token, userId, postId) => {
+  try {
+    const res = await fetch(
+      `http://localhost:8080/api/users/${userId}/posts/${postId}/likes`,
+      {
+        method: "post",
+        headers: {
+          authorization: token,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return res.status;
+  } catch (error) {
+    console.error("There was a problem with the fetch operation: ", error);
+    return 404;
+  }
+}
+
+export { deleteUser, updateUser , CreatePost, deletePost, updatePost , sendFriendRequestToServer, acceptFriendRequestServer , deleteFriendRequestServer , getAllFriends, getPostsByUser , addOrRemoveLike};
