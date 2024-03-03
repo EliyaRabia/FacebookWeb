@@ -20,7 +20,7 @@
     
 }
 .dark-mode .top-section{
-    background-color: #333;
+    background-color: #2a2424;
     color:#bebebe;
 }
 .bottom-section {
@@ -42,6 +42,7 @@
 } 
 .pd-image{
     width:250px; 
+    height:150px;
     margin-right: 10px; 
     border-radius: 6px;
 } 
@@ -74,7 +75,7 @@
     background: grey;
 } 
 .dark-mode .fb{
-    background: #333;
+    background: #2a2424;
     color: #bebebe;
 } 
 .dark-mode .fb:hover{

@@ -134,7 +134,7 @@ function ProfilePage({userLoggedIn , profileId , setMode , token,handleDeletePos
                             userLoggedIn.friendsList.includes(profileId) ? (
                                 <button className="fb" onClick={deleteFriendRequest}><i className="bi bi-person-x"></i> Delete Friend </button>
                             ) : userLoggedIn.friendRequestsSent.includes(profileId) ? (
-                                <div> <i class="bi bi-hourglass-split"></i> Friend request sent </div>
+                                <div> <i className="bi bi-hourglass-split"></i> Friend request sent </div>
                             ) : userLoggedIn.friendRequests.includes(profileId) ? (
                                 <button className="fb" onClick={acceptFriendRequest}><i className="bi bi-person-plus-fill"></i> Aproove</button>
                             ) : (

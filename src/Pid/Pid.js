@@ -41,7 +41,7 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
   const handleDeletePost = (postId) => {
     const updatedPosts = postList.filter((post) => post._id !== postId);
     setPostList(updatedPosts);
-    //refresh();
+    refresh();
   };
 
   const refreshEdit = () => {
