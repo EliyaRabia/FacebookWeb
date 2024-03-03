@@ -22,29 +22,32 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
   const [mode, setMode] = useState(0);
   const [postList, setPostList] = useState([]);
   const [render, setRender] = useState(false);
+  const [renderEdit, setRenderEdit] = useState(false);
   const [profileId, setProfileId] = useState(null);
 
   useEffect(() => {
     if (token) {
       getAllPosts(token).then((result) => setPostList(result.data));
     }
-  }, [token,render]);
+  }, [token,renderEdit,render]);
 
   useEffect(() => {
     if (token) {
       getUserData(token, userLoggedIn._id).then((result) => setUserLoggedIn(result));
     }
-  }, [render,token]);
+  }, [render,token,renderEdit]);
       
   // this function is used to delete a post
   const handleDeletePost = (postId) => {
     const updatedPosts = postList.filter((post) => post._id !== postId);
     setPostList(updatedPosts);
-    refresh();
+    //refresh();
   };
 
+  const refreshEdit = () => {
+    setRenderEdit(!renderEdit);
+  };
   const refresh = () => {
-    console.log("refresh");
     setRender(!render);
   };
 
@@ -55,7 +58,7 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
   // this function is used to delete a picture
   const handleDeletePicture = (postId) => {
     // this find the post that has the picture and delete it
-    refresh();
+    //refresh();
     const updatedPostList = postList.map((post) => {
 
       if (post._id === postId) {
@@ -74,7 +77,7 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
   // this function is used to add a picture to a post
   const handleAddPicture = (postId,photo) => {
     // this find the need to update the post with the new picture
-    refresh();
+    //refresh();
     const updatedPostList = postList.map((post) => {  
       if (post._id === postId) {
         // we return the post with the new picture
@@ -88,6 +91,17 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
     setPostList(updatedPostList);
   };
 
+  const handleEditText = (postId, newText) => {
+    const updatedPostList = postList.map((post) => {
+      if (post._id === postId) {
+        return { ...post, initialText: newText };
+      } else {
+        return post;
+      }
+    });
+    setPostList(updatedPostList);
+  }
+
   const addPost = (newPost) => {
     setPostList([newPost, ...postList]);
   }
@@ -95,6 +109,29 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
+
+  const handleAddLike = (userId,postId) => {
+    const updatedPostList = postList.map((post) => {
+      if (post._id === postId) {
+        return { ...post, likes: [...post.likes, userId] };
+      } else {
+        return post;
+      }
+    });
+    setPostList(updatedPostList);
+  };
+
+  const handleRemoveLike = (userId,postId) => {
+    const updatedPostList = postList.map((post) => {
+      if (post._id === postId) {
+        return { ...post, likes: post.likes.filter((like) => like !== userId) };
+      } else {
+        return post;
+      }
+    });
+    setPostList(updatedPostList);
+  };
+
   return (
     <div className="container-fluid">
       <div className={darkMode ? "dark-mode" : "liweb"}>
@@ -143,6 +180,9 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
                       token={token}
                       refresh={refresh}
                       handleProfilePage={handleProfilePage}
+                      editText={handleEditText}
+                      handleAddLike={handleAddLike}
+                      handleRemoveLike={handleRemoveLike}
                     ></Post>
                   ))}
                 </div>
@@ -156,7 +196,7 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
                   token={token}
                   setToken={setToken}
                   setMode={setMode}
-                  refresh={refresh}
+                  refresh={refreshEdit}
                 ></EditUser>
               </div>
             )}
@@ -176,6 +216,9 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
                   handleProfilePage={handleProfilePage}
                   render={render}
                   setRender={setRender}
+                  editText={handleEditText}
+                  handleAddLike={handleAddLike}
+                  handleRemoveLike={handleRemoveLike}
                 ></ProfilePage>
               </div>
               

@@ -43,7 +43,7 @@ function AddPost({addPostState,userLoggedIn,token}){
             initialText: postText.current.value,
             pictures: photo,
             time: currentTime.toLocaleString(),
-            likes: 0,
+            likes: [],
             commentsNumber: 0,
             comments: []
         }

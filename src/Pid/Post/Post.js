@@ -26,7 +26,10 @@ function Post({
   setIdComment,
   token,
   refresh,
-  handleProfilePage
+  handleProfilePage,
+  editText,
+  handleAddLike,
+  handleRemoveLike,
 }) {
   // Set the initial state of the text, the edit mode and the edited text
   const [text, setText] = useState(initialText);
@@ -57,6 +60,7 @@ function Post({
     const status = await updatePost(token,post, userLoggedIn._id);
     if (status === 200) {
       setText(editedText);
+      editText(_id, editedText);
       alert("Post text edited successfully");
     } else {
       alert("There was a problem with the fetch operation: ", status);
@@ -67,40 +71,40 @@ function Post({
     setIsEditing(false);
     setEditedText(text);
   };
-  const sendFriendRequest = async () => {
-    //const [res,user] = await sendFriendRequestToServer(token, userLoggedIn._id, idUserName);
-    const res = await sendFriendRequestToServer(token, userLoggedIn._id, idUserName);
-    if (res === 200) {
-      alert("Friend request sent successfully");
-      setRender(!render)
-      refresh();
-    } else {
-      alert("There was a problem with the fetch operation: ", res);
-    }
-  };
+  // const sendFriendRequest = async () => {
+  //   //const [res,user] = await sendFriendRequestToServer(token, userLoggedIn._id, idUserName);
+  //   const res = await sendFriendRequestToServer(token, userLoggedIn._id, idUserName);
+  //   if (res === 200) {
+  //     alert("Friend request sent successfully");
+  //     setRender(!render)
+  //     refresh();
+  //   } else {
+  //     alert("There was a problem with the fetch operation: ", res);
+  //   }
+  // };
   
-  const acceptFriendRequest = async () => {
-    //const [res,user] = await acceptFriendRequestServer(token, userLoggedIn._id, idUserName);
-    const res = await acceptFriendRequestServer(token, userLoggedIn._id, idUserName);
-    if (res === 200) {
-      alert("Friend request accepted successfully");
-      setRender(!render)
-      refresh();
-    } else {
-      alert("There was a problem with the fetch operation: ", res);
-    }
-  }
+  // const acceptFriendRequest = async () => {
+  //   //const [res,user] = await acceptFriendRequestServer(token, userLoggedIn._id, idUserName);
+  //   const res = await acceptFriendRequestServer(token, userLoggedIn._id, idUserName);
+  //   if (res === 200) {
+  //     alert("Friend request accepted successfully");
+  //     setRender(!render)
+  //     refresh();
+  //   } else {
+  //     alert("There was a problem with the fetch operation: ", res);
+  //   }
+  // }
 
-  const deleteFriendRequest = async () => {
-    const res = await deleteFriendRequestServer(token, userLoggedIn._id, idUserName);
-    if (res === 200) {
-      alert("Friend deleted successfully");
-      setRender(!render)
-      refresh();
-    } else {
-      alert("There was a problem with the fetch operation: ", res);
-    }
-  }
+  // const deleteFriendRequest = async () => {
+  //   const res = await deleteFriendRequestServer(token, userLoggedIn._id, idUserName);
+  //   if (res === 200) {
+  //     alert("Friend deleted successfully");
+  //     setRender(!render)
+  //     refresh();
+  //   } else {
+  //     alert("There was a problem with the fetch operation: ", res);
+  //   }
+  // }
 
   // Handle the delete post button click
   const handleDeletePost = async () => {
@@ -221,17 +225,17 @@ function Post({
                 </div>
               </div>
             )}
-            {userLoggedIn._id !== idUserName && (
+            {/* {userLoggedIn._id !== idUserName && (
               userLoggedIn.friendsList.includes(idUserName) ? (
                 <button className="friend_button" onClick={deleteFriendRequest}><i className="bi bi-person-x"></i> Delete Friend </button>
               ) : userLoggedIn.friendRequestsSent.includes(idUserName) ? (
-                <div> <i class="bi bi-hourglass-split"></i> Friend request sent </div>
+                <div> <i className="bi bi-hourglass-split"></i> Friend request sent </div>
               ) : userLoggedIn.friendRequests.includes(idUserName) ? (
                 <button className="friend_button" onClick={acceptFriendRequest}><i className="bi bi-person-plus-fill"></i> Aproove</button>
               ) : (
                 <button className="friend_button" onClick={sendFriendRequest}><i className="material-icons">person_add</i> Add friend</button>
               )
-              )}
+              )} */}
           </div>
           <div className="card-body">
             {isEditing ? (
@@ -260,12 +264,15 @@ function Post({
             />
           )}
           <PostManagement
+            postId={_id}
             likes={likes}
             commentsNumber={commentsNumber}
             initialComments={comments}
             userLoggedIn={userLoggedIn}
             idComment={idComment}
             setIdComment={setIdComment}
+            handleAddLike={handleAddLike}
+            handleRemoveLike={handleRemoveLike}
           ></PostManagement>
         </div>
       </div>

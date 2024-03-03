@@ -1,21 +1,25 @@
 import "./PostManagement.css";
 import { useState } from "react";
 import Comment from "./Comment/Comment";
+import {addOrRemoveLike} from "../../../ServerCalls/userCalls";
 /*
 this component is the post management, it contains the likes, comments and the share button
 this component gets the likes, commentsNumber, initialComments,userLoggedIn,idComment,setIdComment as props
 */
 function PostManagement({
+  postId,
   likes,
   commentsNumber,
   initialComments,
   userLoggedIn,
   idComment,
-  setIdComment
+  setIdComment,
+  handleAddLike,
+  handleRemoveLike
 }) {
   // Set the initial state of the likes, comments and the new comment text and the show comments
-  const [likesCount, setLikesCount] = useState(likes);
-  const [liked, setLiked] = useState(false);
+  const [likesCount, setLikesCount] = useState(likes.length);
+  const [liked, setLiked] = useState(likes.includes(userLoggedIn._id));
   const [comments, setComments] = useState(initialComments);
   const [commentsCount, setCommentsCount] = useState(commentsNumber);
   const [newCommentText, setNewCommentText] = useState("");
@@ -24,13 +28,18 @@ function PostManagement({
   if the user liked the post it will decrease the likes count
   and if the user didn't like the post it will increase the likes count.
   */
-  const handleLikeClick = () => {
-    if (liked) {
-      setLikesCount((prevLikesCount) => prevLikesCount - 1);
-    } else {
-      setLikesCount((prevLikesCount) => prevLikesCount + 1);
+  const handleLikeClick = async () => {
+    const status = await addOrRemoveLike(userLoggedIn.token, userLoggedIn._id, postId);
+    if (status === 200) {
+      if (liked) {
+        setLikesCount((prevLikesCount) => prevLikesCount - 1);
+        handleRemoveLike(userLoggedIn._id, postId);
+      } else {
+        setLikesCount((prevLikesCount) => prevLikesCount + 1);
+        handleAddLike(userLoggedIn._id, postId);
+      }
+      setLiked(!liked);
     }
-    setLiked(!liked);
   };
   // Handle the show comments button click
   const handleShowComments = () => {

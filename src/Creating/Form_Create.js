@@ -87,9 +87,7 @@ function Form_Create() {
       displayName: displayNameValue,
       photo: photoFilePath,
     };
-    console.log(photoFilePath);
     const response = await registerServer(newUser);
-    console.log(response);
     if (response === 200) {
       // add the new user to the userList and uodate the userList state and navigate to the login page
       alert("user created!");
