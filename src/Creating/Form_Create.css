@@ -1,6 +1,6 @@
 .button-container {
     display: inline-block;
-    background-color: #42b72a; /* Facebook blue color */
+    background-color: #42b72a; 
     color: #fff;
     padding: 10px 20px;
     border-radius: 5px;
@@ -13,11 +13,11 @@
     border: none;
 }
 .button-container:hover {
-    background-color: #36a420; /* Slightly darker green on hover */
+    background-color: #36a420; 
 }
 
 .toggle-button-container {
-    margin-left: 10px; /* Adjust the margin as needed */
+    margin-left: 10px; 
     align-self: flex-end;
 }
 

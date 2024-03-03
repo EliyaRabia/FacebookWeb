@@ -67,8 +67,7 @@ function EditUser({userLoggedIn, setUserLoggedIn, token, setToken , setMode,refr
             friendRequestsSent : userLoggedIn.friendRequestsSent,
         };
         const status = await updateUser(token, user);
-        console.log(status);
-        console.log(user._id);
+        
         if (status === 200) {
             setUserLoggedIn(user);
             setMode(0);

@@ -37,7 +37,7 @@
   }
 }
 
-/* Light mode styles */
+
 .light-mode {
   background-color: #f0f2f5;
   color: #333333;
@@ -51,7 +51,7 @@
   color: #ffffff;
 }
 
-/* Dark mode styles */
+
 .dark-mode {
   background-color: #333333;
   color: #ffffff;

@@ -4,7 +4,7 @@ import { getUserData } from "../../ServerCalls/login";
 import { getAllFriends , getPostsByUser,sendFriendRequestToServer , acceptFriendRequestServer , deleteFriendRequestServer } from "../../ServerCalls/userCalls";
 import Post from "../Post/Post";
 import FriendsView from "./FriendsView/FriendsView";
-function ProfilePage({userLoggedIn , profileId , setMode , token,handleDeletePost,handleDeletePicture,addPicture,idComment,setIdComment,refresh,handleProfilePage,render,setRender,editText,handleAddLike,handleRemoveLike}) {
+function ProfilePage({userLoggedIn , profileId , setMode , token,handleDeletePost,handleDeletePicture,addPicture,idComment,setIdComment,refresh,handleProfilePage,render,setRender,editText,handleAddLike,handleRemoveLike,setProfileId}) {
     const [profileData, setProfileData] = useState({});
     const [posts, setPosts] = useState([]);
     const [friends, setFriends] = useState([]);
@@ -147,6 +147,7 @@ function ProfilePage({userLoggedIn , profileId , setMode , token,handleDeletePos
             <div className="bottom-section">
                 <FriendsView
                     userLoggedIn={userLoggedIn}
+                    setProfileId={setProfileId}
                     friends={friends}>
                 </FriendsView>
             </div>

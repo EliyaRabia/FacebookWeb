@@ -219,6 +219,7 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
                   editText={handleEditText}
                   handleAddLike={handleAddLike}
                   handleRemoveLike={handleRemoveLike}
+                  setProfileId={setProfileId}
                 ></ProfilePage>
               </div>
               

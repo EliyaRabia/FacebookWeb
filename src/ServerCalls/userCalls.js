@@ -15,7 +15,6 @@ const deleteUser = async (token, id) => {
 };
 const updateUser = async (token, user) => {
     const id = user._id;
-    console.log("hey");
     try {
         const res = await fetch(`http://localhost:8080/api/users/${id}`, {
         method: "put",
