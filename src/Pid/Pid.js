@@ -175,6 +175,7 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
                   refresh={refresh}
                   handleProfilePage={handleProfilePage}
                   render={render}
+                  setRender={setRender}
                 ></ProfilePage>
               </div>
               

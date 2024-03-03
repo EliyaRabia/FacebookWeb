@@ -9,6 +9,13 @@
     align-items: center;
     justify-content: center;
 }
+.dark-mode .friends-section{
+    background: #333;
+    color: #bebebe;
+} 
+.dark-mode .friends-section p{
+    color: #bebebe;
+} 
 .title-box{
     display: flex;
     align-items: center;
