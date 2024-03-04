@@ -170,8 +170,8 @@ function ProfilePage({userLoggedIn , profileId , setMode , token,handleDeletePos
                         handleRemoveLike={handleRemoveLikeProfile}
                     ></Post>
                 ))}
-                {!Array.isArray(posts) && <p>You need to be his friend to see his posts</p>}
-                {Array.isArray(posts) && posts.length === 0 && <p>No posts available</p>}
+                {!Array.isArray(posts) && <p className="ermes">You need to be his friend to see his posts</p>}
+                {Array.isArray(posts) && posts.length === 0 && <p className="ermes">No posts available</p>}
             </div>
             
         </div>
