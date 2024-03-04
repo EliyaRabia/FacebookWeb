@@ -2,7 +2,7 @@
     margin-left:16px;
 }
 .dark-mode .container-post {
-    background-color: #333;
+    background-color: #2a2424;
 }
 .container-post {
     width:610px;
@@ -32,10 +32,14 @@
 } 
 .button-group-post .btn:hover{
     background-color: darkgray;
+    
 }
 .dark-mode .button-group-post .btn{
-    color: #BEBEBE;
-}
+    color: #BEBEBE;    
+} 
+.dark-mode .button-group-post .btn:hover{
+    color: black;    
+} 
 .dark-mode .p{
     color: #BEBEBE;
 }
@@ -60,7 +64,7 @@
 .input-preview {
     padding-left:55px;
     padding-top:30px;
-    overflow: hidden; /* Hide any part of the image that exceeds the size of the div */
+    overflow: hidden; 
 }
 .input-preview textarea{
     width:100%; 

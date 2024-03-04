@@ -7,6 +7,10 @@
     background-color: #333;
     color: white;
 }
+.dark-mode .card1{
+    background-color: #2a2424;
+    
+}
 .post {
     width:610px;
     background:#fff; 
@@ -43,7 +47,7 @@
     padding: 0;
 }
 .dark-mode .edit{
-    background-color: #333;
+    background-color: #2a2424;
     color: #bebebe;
 }
 .topPost{

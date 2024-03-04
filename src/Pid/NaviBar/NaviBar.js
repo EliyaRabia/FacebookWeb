@@ -78,9 +78,12 @@ function NaviBar({userLoggedIn, setUserLoggedIn,toggleDarkMode,darkMode,setMode,
                     <a className="button">
                         <i className="material-icons">apps</i>
                     </a>
-                    <li className="nav_item_dropdown">
+                    <li className={friendsRequests.length > 0 ? "nav_item_dropdown_no" : "nav_item_dropdown"}>
                         <a className="button" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i className="material-icons">notifications</i>
+                            {friendsRequests.length > 0 &&
+                                <span className="notification-badge">{friendsRequests.length}</span>
+                            }
                         </a>
                         <ul className="dropdown-menu">
                             {friendsRequests.map(friend => (

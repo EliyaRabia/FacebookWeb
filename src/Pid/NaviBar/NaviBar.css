@@ -16,7 +16,7 @@ a{
     background-color: #333;
 }
 nav{
-    /*background-color: white;*/
+    
     width: 100%; 
     display: flex; 
     justify-content: space-between;
@@ -134,3 +134,24 @@ nav{
 .dark-mode .button_friend:hover{
     background: #d8d9dd;
 }
+.notification-badge {
+    background-color: red;
+    color: white;
+    border-radius: 50%; 
+    padding: 5px 8px; 
+    font-size: 12px; 
+    position: relative; 
+    top: 5px; 
+    right: 15px; 
+}
+
+.nav_item_dropdown_no{
+    list-style-type: none;
+    padding-right: -8px;
+    margin-right: -20px;
+}
+
+
+
+
+

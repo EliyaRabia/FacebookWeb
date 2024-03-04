@@ -154,6 +154,17 @@ function Post({
     }
     }
   }
+  function formatTime(timeString) {
+    const date = new Date(timeString);
+    const options = {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    };
+    return date.toLocaleString('en-US', options);
+  }
   return (
     <div className="post1">
       <div className="post">
@@ -165,7 +176,7 @@ function Post({
               )}
               <div className="text-profile">
                 <p className="p" onClick={() => handleProfilePage(idUserName) }>{fullname}</p>
-                <span>{time}</span>
+                <span>{formatTime(time)}</span>
               </div>
             </div>
             {userLoggedIn._id === idUserName && (

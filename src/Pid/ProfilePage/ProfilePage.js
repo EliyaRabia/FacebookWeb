@@ -4,7 +4,7 @@ import { getUserData } from "../../ServerCalls/login";
 import { getAllFriends , getPostsByUser,sendFriendRequestToServer , acceptFriendRequestServer , deleteFriendRequestServer } from "../../ServerCalls/userCalls";
 import Post from "../Post/Post";
 import FriendsView from "./FriendsView/FriendsView";
-function ProfilePage({userLoggedIn , profileId , setMode , token,handleDeletePost,handleDeletePicture,addPicture,idComment,setIdComment,refresh,handleProfilePage,render,setRender,editText,handleAddLike,handleRemoveLike}) {
+function ProfilePage({userLoggedIn , profileId , setMode , token,handleDeletePost,handleDeletePicture,addPicture,idComment,setIdComment,refresh,handleProfilePage,render,setRender,editText,handleAddLike,handleRemoveLike,setProfileId}) {
     const [profileData, setProfileData] = useState({});
     const [posts, setPosts] = useState([]);
     const [friends, setFriends] = useState([]);
@@ -134,7 +134,7 @@ function ProfilePage({userLoggedIn , profileId , setMode , token,handleDeletePos
                             userLoggedIn.friendsList.includes(profileId) ? (
                                 <button className="fb" onClick={deleteFriendRequest}><i className="bi bi-person-x"></i> Delete Friend </button>
                             ) : userLoggedIn.friendRequestsSent.includes(profileId) ? (
-                                <div> <i class="bi bi-hourglass-split"></i> Friend request sent </div>
+                                <div> <i className="bi bi-hourglass-split"></i> Friend request sent </div>
                             ) : userLoggedIn.friendRequests.includes(profileId) ? (
                                 <button className="fb" onClick={acceptFriendRequest}><i className="bi bi-person-plus-fill"></i> Aproove</button>
                             ) : (
@@ -147,6 +147,7 @@ function ProfilePage({userLoggedIn , profileId , setMode , token,handleDeletePos
             <div className="bottom-section">
                 <FriendsView
                     userLoggedIn={userLoggedIn}
+                    setProfileId={setProfileId}
                     friends={friends}>
                 </FriendsView>
             </div>

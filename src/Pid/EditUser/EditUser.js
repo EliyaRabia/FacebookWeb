@@ -11,6 +11,15 @@ function EditUser({userLoggedIn, setUserLoggedIn, token, setToken , setMode,refr
     const displayName = useRef(userLoggedIn.displayName);
     const photo = useRef(userLoggedIn.photo);
     const navigate = useNavigate();
+    const [showPassword, setShowPassword] = useState(false);
+    const [showPasswordCheck, setShowPasswordCheck] = useState(false);
+    const handleTogglePassword = () => {
+        setShowPassword((prevShowPassword) => !prevShowPassword);
+      };
+      // this function is used to show the password when the user is on the eye icon
+      const handleTogglePasswordCheck = () => {
+        setShowPasswordCheck((prevShowPassword) => !prevShowPassword);
+      };
     const deleteUserAndLogOut = async () => {
         const status = await deleteUser(token, userLoggedIn._id);
         if (status === 200) {
@@ -38,7 +47,7 @@ function EditUser({userLoggedIn, setUserLoggedIn, token, setToken , setMode,refr
                 return;
             }
             if (!validatePassword(password)) {
-                alert("Password is not valid");
+                alert("Password is not valid, you need at least 8 digits long, a combination of characters and letters and capital letters");
                 return;
             }
         }
@@ -58,8 +67,7 @@ function EditUser({userLoggedIn, setUserLoggedIn, token, setToken , setMode,refr
             friendRequestsSent : userLoggedIn.friendRequestsSent,
         };
         const status = await updateUser(token, user);
-        console.log(status);
-        console.log(user._id);
+        
         if (status === 200) {
             setUserLoggedIn(user);
             setMode(0);
@@ -70,6 +78,8 @@ function EditUser({userLoggedIn, setUserLoggedIn, token, setToken , setMode,refr
             alert("There was a problem updating the user / username already exists");
         }
     }
+    
+   
     return(
         <div>
             <h1>Edit User</h1>
@@ -78,13 +88,48 @@ function EditUser({userLoggedIn, setUserLoggedIn, token, setToken , setMode,refr
                     <label>Username</label>
                     <input type="text" className="form-control" ref={usernameBox} placeholder="Enter username" defaultValue={userLoggedIn.username} />
                 </div>
+                
                 <div className="form-group">
-                    <label>New Password</label>
-                    <input type="password" className="form-control" ref={passwordBox} placeholder="Enter password (if not remain old one)" />
+                    <label>New Password</label> 
+                    <div className="input-group flex-nowrap p-2">
+                        <button type="button" className="btn btn-light">
+                            <i
+                                className="bi bi-eye-slash"
+                                onMouseOver={handleTogglePassword}
+                                onMouseLeave={handleTogglePassword}
+                                data-testid="eye-slash-icon"
+                            ></i>
+                        </button>
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            className="form-control"
+                            placeholder="password"
+                            aria-label="Password"
+                            aria-describedby="addon-wrapping"
+                            ref={passwordBox}
+                        />
+                    </div>
                 </div>
                 <div className="form-group">
                     <label>Confirm Password</label>
-                    <input type="password" className="form-control" ref={passwordCheckBox} placeholder="confirm password" />
+                    <div className="input-group flex-nowrap p-2">
+                        <button type="button" className="btn btn-light">
+                            <i
+                                className="bi bi-eye-slash"
+                                onMouseOver={handleTogglePasswordCheck}
+                                onMouseLeave={handleTogglePasswordCheck}
+                                data-testid="eye-slash-icon"
+                            ></i>
+                        </button>
+                        <input
+                            type={showPasswordCheck ? "text" : "password"}
+                            className="form-control"
+                            placeholder="check password"
+                            aria-label="Password"
+                            aria-describedby="addon-wrapping"
+                            ref={passwordCheckBox}
+                        />
+                    </div>
                 </div>
                 <div className="form-group">
                     <label>Display Name</label>
