@@ -36,6 +36,7 @@ function RightSide(){
                 <p className="see">Close</p>
             </div> 
             <img src="https://www.monetizemore.com/wp-content/uploads/2020/10/What-are-HTML5-ads_.jpg" className="adpic"></img>
+            <img src="https://0701.static.prezi.com/preview/v2/dwhvt5nucrwtqpwpzs5svisvjl6jc3sachvcdoaizecfr3dnitcq_1_0.png" className="adpic"></img>
         </div>
     );
 }
