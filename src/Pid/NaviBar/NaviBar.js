@@ -3,7 +3,7 @@ import "./NaviBar.css"
 import { useNavigate } from "react-router-dom";
 import { getUserData } from "../../ServerCalls/login";
 import { acceptFriendRequestServer , deleteFriendRequestServer } from "../../ServerCalls/userCalls";
-function NaviBar({userLoggedIn, setUserLoggedIn,toggleDarkMode,darkMode,setMode,token,setToken,refresh}){
+function NaviBar({userLoggedIn, setUserLoggedIn,toggleDarkMode,darkMode,setMode,token,setToken,refresh,setProfileId}){
     const [friendsRequests, setFriendsRequests] = useState([]);
     const [render, setRender] = useState(false);
     
@@ -23,6 +23,11 @@ function NaviBar({userLoggedIn, setUserLoggedIn,toggleDarkMode,darkMode,setMode,
         setToken(false);
         navigate("/");
     }; 
+
+    const enterProfile = () => {
+        setMode(2);
+        setProfileId(userLoggedIn._id);
+    };
 
     const acceptFriendRequest = async (friendId) => {
         const res = await acceptFriendRequestServer(token, userLoggedIn._id, friendId);
@@ -49,15 +54,15 @@ function NaviBar({userLoggedIn, setUserLoggedIn,toggleDarkMode,darkMode,setMode,
     return(
         <nav className="navBody" date-testid="navibar">
             <div className="nav__left">
-                <img src="https://brandlogos.net/wp-content/uploads/2021/04/facebook-icon-512x512.png" className="nav_left_img"></img> 
+                <img src="https://brandlogos.net/wp-content/uploads/2021/04/facebook-icon-512x512.png" onClick={() => setMode(0)} className="nav_left_img"></img> 
                 <div className="nav__search">
                     <i className="material-icons">search</i>
                     <input type="text" placeholder="Search Facebook"></input>
                 </div>
             </div>
             <div className="nav__mid"> 
-                <a className="iconz">
-                    <i className="material-icons" onClick={() => setMode(0)}>home</i>
+                <a className="iconz" onClick={() => setMode(0)}>
+                    <i className="material-icons">home</i>
                 </a>
                 <a className="iconz">
                     <i className="material-icons">slideshow</i>
@@ -70,7 +75,7 @@ function NaviBar({userLoggedIn, setUserLoggedIn,toggleDarkMode,darkMode,setMode,
                 </a>
             </div> 
             <div className="nav__right">
-                <div className="avatar">
+                <div className="avatar" onClick={enterProfile} >
                     <img src={userLoggedIn.photo} className="avatar__img"></img>
                     <span><strong>{userLoggedIn.displayName}</strong></span>
                 </div> 

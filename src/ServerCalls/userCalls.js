@@ -90,7 +90,6 @@ const updatePost = async (token, post,userId) => {
             throw new Error(`HTTP error! status: ${res.status}`);
           }
     return res.status;
-
     } catch (error) {
     console.error("There was a problem with the fetch operation: ", error);
     return 404;
@@ -226,4 +225,57 @@ const addOrRemoveLike = async (token, userId, postId) => {
   }
 }
 
-export { deleteUser, updateUser , CreatePost, deletePost, updatePost , sendFriendRequestToServer, acceptFriendRequestServer , deleteFriendRequestServer , getAllFriends, getPostsByUser , addOrRemoveLike};
+
+const addComment = async (token, comment) => {
+  try {
+      const res = await fetch(`http://localhost:8080/api/users/${comment.idUserName}/posts/${comment.idPost}/comments`, {
+          method: "post",
+          headers: {
+              authorization: token,
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(comment),
+      });
+      let statusNum = res.status;
+      let newComment = await res.json();
+      return [statusNum, newComment];
+      } catch (error) {
+      console.error("There was a problem with the fetch operation: ", error);
+      return [404, null];
+  }
+};
+
+const editComment = async (token, comment) => {
+  try {
+      const res = await fetch(`http://localhost:8080/api/users/${comment.idUserName}/posts/${comment.idPost}/comments/${comment._id}`, {
+          method: "put",
+          headers: {
+              authorization: token,
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(comment),
+      });
+      return res.status;
+      } catch (error) {
+      console.error("There was a problem with the fetch operation: ", error);
+      return 404
+  }
+}
+
+const deleteComment = async (token, comment) => {
+  try {
+      const res = await fetch(`http://localhost:8080/api/users/${comment.idUserName}/posts/${comment.idPost}/comments/${comment._id}`, {
+          method: "delete",
+          headers: {
+              authorization: token,
+              "Content-Type": "application/json",
+          },
+      });
+      return res.status;
+      } catch (error) {
+      console.error("There was a problem with the fetch operation: ", error);
+      return 404
+  }
+}
+
+export { deleteUser, updateUser , CreatePost, deletePost, updatePost , sendFriendRequestToServer, acceptFriendRequestServer , deleteFriendRequestServer , getAllFriends, getPostsByUser , addOrRemoveLike , addComment , editComment , deleteComment};

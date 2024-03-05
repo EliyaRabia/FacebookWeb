@@ -154,6 +154,9 @@ nav{
     color:black;
 }
 
+.nav_left_img:hover{
+    cursor: pointer;
+}
 
 
 
