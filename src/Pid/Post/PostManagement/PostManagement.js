@@ -1,7 +1,8 @@
 import "./PostManagement.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Comment from "./Comment/Comment";
-import {addOrRemoveLike} from "../../../ServerCalls/userCalls";
+import {addOrRemoveLike , addComment} from "../../../ServerCalls/userCalls";
+import {getComments} from "../../../ServerCalls/commentsCalls";
 /*
 this component is the post management, it contains the likes, comments and the share button
 this component gets the likes, commentsNumber, initialComments,userLoggedIn,idComment,setIdComment as props
@@ -9,21 +10,25 @@ this component gets the likes, commentsNumber, initialComments,userLoggedIn,idCo
 function PostManagement({
   postId,
   likes,
-  commentsNumber,
-  initialComments,
   userLoggedIn,
   idComment,
   setIdComment,
   handleAddLike,
-  handleRemoveLike
+  handleRemoveLike,
+  token,
+  isPostMine
 }) {
   // Set the initial state of the likes, comments and the new comment text and the show comments
   const [likesCount, setLikesCount] = useState(likes.length);
   const [liked, setLiked] = useState(likes.includes(userLoggedIn._id));
-  const [comments, setComments] = useState(initialComments);
-  const [commentsCount, setCommentsCount] = useState(commentsNumber);
+  const [comments, setComments] = useState([]);
   const [newCommentText, setNewCommentText] = useState("");
   const [showComments, setShowComments] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+  
+  useEffect(() => {
+    getComments(postId, token).then((result) => setComments(result.data));
+  }, [token, postId,refresh]);
   /*Handle the like button click
   if the user liked the post it will decrease the likes count
   and if the user didn't like the post it will increase the likes count.
@@ -50,32 +55,37 @@ function PostManagement({
   const handleDeleteComment = (commentId) => {
     // Filter out the comment with the specified commentId
     const updatedComments = comments.filter(
-      (comment) => comment.id !== commentId
+      (comment) => comment._id !== commentId
     );
     // Update the comments state with the filtered comments
     setComments(updatedComments);
   };
 
-  // Handle the delete comment count
-  const handleDeleteCommentCount = () => {
-    setCommentsCount((prevCommentCount) => prevCommentCount - 1);
-  };
   // this function is used to create a new comment
-  const handleSendComment = () => {
+  const handleSendComment = async () => {
     if (newCommentText.trim() !== "") {
       const newComment = {
-        id: idComment,
+        idUserName: userLoggedIn._id,
         fullname: userLoggedIn.displayName,
-        text: newCommentText,
-        icon: userLoggedIn.photo
+        icon: userLoggedIn.photo,
+        idPost: postId,
+        text: newCommentText
       };
-      // Add the new comment to the comments state
-      setComments([...comments, newComment]);
-      setIdComment(idComment + 1);
-      setCommentsCount((prevCommentCount) => prevCommentCount + 1);
-      setNewCommentText("");
+      const [status,comment] = await addComment(token, newComment);
+      if (status === 200) {
+        setComments([...comments, comment]);
+        setNewCommentText("");
+      }
+      else{
+        alert("There was a problem with the fetch operation");
+      }
+    }
+    else{
+      alert("Please enter a comment");
     }
   };
+
+
 
   return (
     <div className="postManagement">
@@ -100,7 +110,7 @@ function PostManagement({
       >
         <i className="bi bi-chat-text"></i>{" "}
         <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-          {commentsCount}{" "}
+          {comments.length}{" "}
           <span className="visually-hidden">unread messages</span>
         </span>
       </button>
@@ -169,10 +179,14 @@ function PostManagement({
           <div className="comment">
             {comments.map((comment) => (
               <Comment
-                key={comment.id}
+                key={comment._id}
                 {...comment}
+                setRefresh={setRefresh}
+                refresh={refresh}
                 onDelete={handleDeleteComment}
-                setCommentsCount={handleDeleteCommentCount}
+                token={token}
+                userLoggedIn={userLoggedIn}
+                isPostMine={isPostMine}
               ></Comment>
             ))}
           </div>

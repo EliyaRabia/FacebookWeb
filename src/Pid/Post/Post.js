@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./Post.css";
 import PostManagement from "./PostManagement/PostManagement";
-import { deletePost,updatePost,sendFriendRequestToServer , acceptFriendRequestServer , deleteFriendRequestServer} from "../../ServerCalls/userCalls";
+import { deletePost,updatePost} from "../../ServerCalls/userCalls";
 import {convertToBase64} from "../../UsableFunctions/ImageFunctions";
 /*
 this component is the post component, it contains the post and the post management
@@ -16,8 +16,6 @@ function Post({
   pictures,
   time,
   likes,
-  commentsNumber,
-  comments,
   deletePostState,
   deletePicture,
   addPicture,
@@ -37,6 +35,7 @@ function Post({
   const [editedText, setEditedText] = useState(text);
   const fileInput = useRef(null);
   const [render, setRender] = useState(false);
+  const isPostMine = userLoggedIn._id === idUserName;
   const iconUrl = icon instanceof File ? URL.createObjectURL(icon) : icon;
   const picturesUrl =
     pictures instanceof File ? URL.createObjectURL(pictures) : pictures;
@@ -277,13 +276,13 @@ function Post({
           <PostManagement
             postId={_id}
             likes={likes}
-            commentsNumber={commentsNumber}
-            initialComments={comments}
             userLoggedIn={userLoggedIn}
             idComment={idComment}
             setIdComment={setIdComment}
             handleAddLike={handleAddLike}
             handleRemoveLike={handleRemoveLike}
+            token={token}
+            isPostMine={isPostMine}
           ></PostManagement>
         </div>
       </div>
