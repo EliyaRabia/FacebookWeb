@@ -145,6 +145,7 @@ function Pid({ setUserLoggedIn, userLoggedIn,idComment,setIdComment , token, set
             token={token}
             setToken={setToken}
             refresh={refresh}
+            setProfileId={setProfileId}
           ></NaviBar>
         </div>
         <div className="row">
