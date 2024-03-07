@@ -90,7 +90,7 @@ function EditUser({userLoggedIn, setUserLoggedIn, token, setToken , setMode,refr
                 </div>
                 
                 <div className="form-group">
-                    <label>New Password</label> 
+                    <label>New Password (if not remain old one)</label> 
                     <div className="input-group flex-nowrap p-2">
                         <button type="button" className="btn btn-light">
                             <i

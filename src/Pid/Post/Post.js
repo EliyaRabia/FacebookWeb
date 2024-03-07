@@ -162,7 +162,7 @@ function Post({
       hour: 'numeric',
       minute: 'numeric',
     };
-    return date.toLocaleString('en-US', options);
+    return date.toLocaleString('he-IL', options);
   }
   return (
     <div className="post1">
@@ -283,6 +283,7 @@ function Post({
             handleRemoveLike={handleRemoveLike}
             token={token}
             isPostMine={isPostMine}
+            handleProfilePage={handleProfilePage}
           ></PostManagement>
         </div>
       </div>
