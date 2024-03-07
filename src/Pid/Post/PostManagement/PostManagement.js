@@ -16,7 +16,8 @@ function PostManagement({
   handleAddLike,
   handleRemoveLike,
   token,
-  isPostMine
+  isPostMine,
+  handleProfilePage,
 }) {
   // Set the initial state of the likes, comments and the new comment text and the show comments
   const [likesCount, setLikesCount] = useState(likes.length);
@@ -187,6 +188,7 @@ function PostManagement({
                 token={token}
                 userLoggedIn={userLoggedIn}
                 isPostMine={isPostMine}
+                handleProfilePage={handleProfilePage}
               ></Comment>
             ))}
           </div>

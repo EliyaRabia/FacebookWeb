@@ -17,6 +17,7 @@ function Comment({
   token,
   userLoggedIn,
   isPostMine,
+  handleProfilePage,
 }) {
   // Set the initial state of the text, the edit mode and the edited text
   const [commentText, setCommentText] = useState(text);
@@ -68,7 +69,7 @@ function Comment({
   };
   return (
     <div className="commentDiv">
-      <div className="avatar">
+      <div className="avatar" onClick={() => handleProfilePage(idUserName) }>
         {icon && <img src={iconUrl} className="avatar__img" alt="User" />}
         <span>{fullname}:</span>{" "}
       </div>
