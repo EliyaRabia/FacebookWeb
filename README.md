@@ -1,10 +1,10 @@
-
+this is part 2 of the project, for part 3 change the branch to part3ConnectServer or click here: https://github.com/orshmuel9/facebook/tree/Part3ConnectServer
 # Welcome to our facebook React project BIU Advanced Programming Course
 
 to get started with the project, clone the repository and install the dependencies.
 
 git clone https://github.com/orshmuel9/facebook
-cd <repository-name>
+cd < repository-name >
 npm install
 
 and now you are ready to start!
