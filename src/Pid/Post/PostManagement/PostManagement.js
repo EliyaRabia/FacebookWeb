@@ -35,7 +35,7 @@ function PostManagement({
   and if the user didn't like the post it will increase the likes count.
   */
   const handleLikeClick = async () => {
-    const status = await addOrRemoveLike(userLoggedIn.token, userLoggedIn._id, postId);
+    const status = await addOrRemoveLike(token, userLoggedIn._id, postId);
     if (status === 200) {
       if (liked) {
         setLikesCount((prevLikesCount) => prevLikesCount - 1);
