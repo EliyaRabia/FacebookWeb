@@ -30,7 +30,7 @@ https://www.youtube.com/watch?v=7xheojkxw5M
 
 ## first of all you need to register a user
 
-New users can create an account by navigating to the Sign Up page by clicking "Sign Up". They will need to provide a username, password (your password must contains at least 8 characters capital letter and a sign ), display name (the name that you and your friends will see in posts, comments and your profile page) , and a profile picture. You must fill all the inputs to create a user. if you want to see what is the password that you have written put your mouse on the eye icon. After you are ready press Sign-Up.
+New users can create an account by navigating to the Sign Up page by clicking "Sign Up". They will need to provide a username, password (your password must contains at least 8 characters capital letter and a sign ), display name (the name that you and your friends will see in posts, comments and your profile page) , and a profile picture. When you are chosing a picture from the computer files make sure you pick a photo in PNG or JPEG format and in size up to 2mb. You must fill all the inputs to create a user. if you want to see what is the password that you have written put your mouse on the eye icon. After you are ready press Sign-Up.
 
 ## now you can login to your account!
 
@@ -68,7 +68,7 @@ When you log in into the website you will see in the center the Feed page, the f
 
 ### Add a Post 
 
-Here you can add a post to the server posts list, first of all you can see your name and your pfoile pic in the left circle. also in the text box you can see that your name is in it and it will asks you to write what do you think. you can write there the text of the post you want to upload, also you can add a picture by clicking on the "Photo/Video" button. you will have the option to upload a file from your computer, (please upload png and jpeg file formats). After you choose your pic you will see a preview of it and a button for option to delete this pic if you regret. Now when your post is ready you can click on the "post" button you will see your post in the posts list under this section!, now the text box will initialized and you can add another post if you want.
+Here you can add a post to the server posts list, first of all you can see your name and your pfoile pic in the left circle. also in the text box you can see that your name is in it and it will asks you to write what do you think. you can write there the text of the post you want to upload, also you can add a picture by clicking on the "Photo/Video" button. you will have the option to upload a file from your computer, When you are chosing a picture from the computer files make sure you pick a photo in PNG or JPEG format and in size up to 2mb. After you choose your pic you will see a preview of it and a button for option to delete this pic if you regret. Now when your post is ready you can click on the "post" button you will see your post in the posts list under this section!, now the text box will initialized and you can add another post if you want.
 
 ### Post List 
 
@@ -115,7 +115,8 @@ in the bottom section there are several options that can be shown:
 
 ## What can you do in the Edit User page? 
 
-If you are looking to change your user details this is the right place! Here you can change your username/password/display-name/picture if you want. 
+If you are looking to change your user details this is the right place! Here you can change your username/password/display-name/picture if you want.
+When you are chosing a picture from the computer files make sure you pick a photo in PNG or JPEG format and in size up to 2mb.
 When your details are ready you can click on submit and you will go back to the feed page and you will see the changes that you just did! 
 If you changed your mind and don't want to edit the user details, press on the cancel button and you will back to the feed page without any change.
 You can also delete your user by clicking the "delete user" button, if you pressed it you will be navigated back to the login page and your user will be deleted from the server.
@@ -124,11 +125,17 @@ You can also delete your user by clicking the "delete user" button, if you press
 
 Written by:
 
-Or Shmuel 
-
 Eliya Rabia 
 
 Ofek Yemini
+
+Or Shmuel
+
+
+ 
+ 
+
+
 
 
 
