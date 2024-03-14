@@ -8,13 +8,13 @@ This is the link to our server: https://github.com/orshmuel9/FacebookServer
 
 After you have done it, you can start with cloning this repository.
 
-git clone https://github.com/orshmuel9/facebook/tree/Part3ConnectServer 
+git clone -b Part3ConnectServer https://github.com/orshmuel9/facebook.git
 
 (on vs code)
 
 Now, open the cloned folder in vs-code with the command:
 
-cd < repository - name >
+cd repository-name 
 
 Now, you need to run this command;
 
