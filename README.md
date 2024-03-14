@@ -125,11 +125,17 @@ You can also delete your user by clicking the "delete user" button, if you press
 
 Written by:
 
-Or Shmuel 
-
 Eliya Rabia 
 
 Ofek Yemini
+
+Or Shmuel
+
+
+ 
+ 
+
+
 
 
 
