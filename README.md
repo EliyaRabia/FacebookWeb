@@ -8,11 +8,13 @@ This is the link to our server: https://github.com/orshmuel9/FacebookServer
 
 After you have done it, you can start with cloning this repository.
 
-git clone https://github.com/orshmuel9/facebook on vs code
+git clone -b Part3ConnectServer https://github.com/orshmuel9/facebook.git
+
+(on vs code)
 
 Now, open the cloned folder in vs-code with the command:
 
-cd <repository-name>
+cd repository-name 
 
 Now, you need to run this command;
 
@@ -52,15 +54,19 @@ You can notice that if you have some notifications you will see a red circle wit
 
 ## The Left side of the website 
 
-In the left side of the website you can see two sections: 
-    1. The top section contains some buttons that are simillar to the real facebook website, you can click on the button "your profile" to navigates into your profile.
-    2. the bottom section contains your user "friends list" if your user have some friend, you can see the list of them, each one of them will include his name and profile pic. By clicking on their profile picture, you can navigate into their profile page.
+In the left side of the website you can see two sections
+    
+  1. The top section contains some buttons that are simillar to the real facebook website, you can click on the button "your profile" to navigates into your profile.
+    
+  2. the bottom section contains your user "friends list" if your user have some friend, you can see the list of them, each one of them will include his name and profile pic. By clicking on their profile picture, you can navigate into their profile page.
 
 ## The Right side of the website 
 
 In the right side of the website you can also see two sections: 
-    1. The top section contains some current events. currently, you can see that there are programming advanced lessons sceduled.
-    2. The bottom section contains 2 nice ads like the real facebook website. 
+    
+  1. The top section contains some current events. currently, you can see that there are programming advanced lessons sceduled.
+    
+  2. The bottom section contains 2 nice ads like the real facebook website. 
 
 ## What can you do in the Feed page?
 
