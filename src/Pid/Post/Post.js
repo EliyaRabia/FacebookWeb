@@ -61,6 +61,8 @@ function Post({
       setText(editedText);
       editText(_id, editedText);
       alert("Post text edited successfully");
+    } else if(status === 300){
+      alert("The url is not in the BloomFilter");
     } else {
       alert("There was a problem with the fetch operation: ", status);
     }
