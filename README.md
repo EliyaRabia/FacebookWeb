@@ -4,11 +4,15 @@ This branch is used for part3 of the project, if you want to see our work of par
 The webstie app was developed in vs code software and it is connected to a Node Js server that we link here down below so make sure you already clone the server,
 follow its instructions and run it before you open this app because it won't work without it! if you already done it continue...
 
-This is the link to our server: https://github.com/orshmuel9/FacebookServer
+This is the link to our server: https://github.com/orshmuel9/FacebookServer/tree/part4
+
+you also need to run the tcp server that is running the bloom filter of the valid urls, you can see its instructions here: 
+
+https://github.com/ofekyem87biu/ex1/tree/part4
 
 After you have done it, you can start with cloning this repository.
 
-git clone -b Part3ConnectServer https://github.com/orshmuel9/facebook.git
+git clone -b part4 https://github.com/orshmuel9/facebook.git
 
 (on vs code)
 
@@ -74,7 +78,9 @@ When you log in into the website you will see in the center the Feed page, the f
 
 ### Add a Post 
 
-Here you can add a post to the server posts list, first of all you can see your name and your pfoile pic in the left circle. also in the text box you can see that your name is in it and it will asks you to write what do you think. you can write there the text of the post you want to upload, also you can add a picture by clicking on the "Photo/Video" button. you will have the option to upload a file from your computer, When you are chosing a picture from the computer files make sure you pick a photo in PNG or JPEG format and in size up to 2mb. After you choose your pic you will see a preview of it and a button for option to delete this pic if you regret. Now when your post is ready you can click on the "post" button you will see your post in the posts list under this section!, now the text box will initialized and you can add another post if you want.
+Here you can add a post to the server posts list, first of all you can see your name and your pfoile pic in the left circle. also in the text box you can see that your name is in it and it will asks you to write what do you think. you can write there the text of the post you want to upload, also you can add a picture by clicking on the "Photo/Video" button. you will have the option to upload a file from your computer, When you are chosing a picture from the computer files make sure you pick a photo in PNG or JPEG format and in size up to 2mb. After you choose your pic you will see a preview of it and a button for option to delete this pic if you regret. Now when your post is ready you can click on the "post" button you will see your post in the posts list under this section!, now the text box will initialized and you can add another post if you want. 
+
+*for part 4* - notice that if you want to post some url in your text the url must be valid, meaning that it must be inside the bloom filter. the valid links are in the env file of the node js server repo you can look there and see which url is valid. if you will try to upload a post with invalid urls your post will not be uploaded!
 
 ### Post List 
 
@@ -83,7 +89,9 @@ Here you can see the list of posts that contains the posts that are right now in
 if the post is written by your user you will also see a Three-Dots icon that can let you delete the post from the server, edit the text of the post or delete/add pic:
 * If you choose to edit your post text, a text box that looks exactly like the add post section will open, you will se your old text is written and you can change it. By clicking the approve icon your text of the post will be edited and you will see your edited text in the post, if you changed your mind about editing click on the garbage icon and text will remain the same. 
 * If you already had a picture in your post you will have the option of "delete picture" that will deletes your picture from your post.
-* If you don't have a picture in your post you will have the option of "add picture" where you can add a picture for your post from your computer files. After you chose your photo, the updated post will be shown with the new picture. 
+* If you don't have a picture in your post you will have the option of "add picture" where you can add a picture for your post from your computer files. After you chose your photo, the updated post will be shown with the new picture.
+
+*for part 4* - notice that if you want to edit a post and add some urls in your text the url must be valid, meaning that it must be inside the bloom filter. the valid links are in the env file of the node js server repo you can look there and see which url is valid. if you will try to edit a post and put in it invalid urls your post will not be edited!
 
 You can also notice that the post contains in the bottom of it a like counter that indicates how many likes the post have and a comments counter that indicates how many comments there are. 
 You can also click on the like icon button to do/undo like for the post, you can see it will add/decrease from the counter.
