@@ -10,6 +10,8 @@ you also need to run the tcp server that is running the bloom filter of the vali
 
 https://github.com/ofekyem87biu/ex1/tree/part4
 
+if you want to read more about the bloom filter tcp server or the node js server please enter their repos and read their ReadMe files!
+
 After you have done it, you can start with cloning this repository.
 
 git clone -b part4 https://github.com/orshmuel9/facebook.git
