@@ -1,4 +1,4 @@
-This branch is used for part3 of the project, if you want to see our work of part 2 then go to the "main" branch
+This branch is used for step 4 of the project, if you want to see our work of part 2 then go to the "main" branch and for part3 go to the Part3ConnectToServer branch.
 # Welcome to our facebook React website project as part of the BIU Advanced Programming Course!
 
 The webstie app was developed in vs code software and it is connected to a Node Js server that we link here down below so make sure you already clone the server,
