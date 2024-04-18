@@ -30,24 +30,28 @@ const updateUser = async (token, user) => {
     return 404;
 }
 };
-const CreatePost = async (token, post,id) => {
-    try {
-        const res = await fetch(`http://localhost:8080/api/users/${id}/posts`, {
-        method: "post",
-        headers: {
-            authorization: token,
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(post),
+const CreatePost = async (token, post, id) => {
+  try {
+    const res = await fetch(`http://localhost:8080/api/users/${id}/posts`, {
+      method: "post",
+      headers: {
+        authorization: token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(post),
     });
     let statusNum = res.status;
+    if (statusNum === 300) {
+      return [300, null];
+    }
     let newPost = await res.json();
     return [statusNum, newPost];
-    } catch (error) {
+  } catch (error) {
     console.error("There was a problem with the fetch operation: ", error);
     return [404, null];
-}
+  }
 };
+
 
 const deletePost = async (token, postId,userId) => {
     try {
@@ -86,8 +90,11 @@ const updatePost = async (token, post,userId) => {
             body: JSON.stringify(post),
           }
         );
-          if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
+          // if (!res.ok) {
+          //   throw new Error(`HTTP error! status: ${res.status}`);
+          // }
+          if (res.status === 300) {
+            return 300;
           }
     return res.status;
     } catch (error) {

@@ -53,17 +53,13 @@ function AddPost({addPostState,userLoggedIn,token}){
             alert("Post added successfully");
             //setPosts([post, ...posts]);
             addPostState(post);
-            //console.log(status)
-            // setId(id+1);
-        } else {
+        } else if(status === 300){
+          alert("The url is not in the BloomFilter");
+        }else {
             alert("Failed to Add Post", status);
         }
-        // this is used to reset the form
-        //console.log("hey from here")
         postText.current.value = "";
-        //console.log(postText.current.value);
         setPhoto(null);
-        //alert("Post added successfully");
     }
     // this is used to get the photo of the user if the user has uploaded a photo
     //const photoUrl = userLoggedIn && userLoggedIn.photo ? URL.createObjectURL(userLoggedIn.photo) : null;
