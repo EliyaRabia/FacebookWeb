@@ -54,7 +54,7 @@ function AddPost({addPostState,userLoggedIn,token}){
             //setPosts([post, ...posts]);
             addPostState(post);
         } else if(status === 300){
-          alert("The url is not in the BloomFilter");
+          alert("The url is in the BloomFilter");
         }else {
             alert("Failed to Add Post", status);
         }
