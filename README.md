@@ -1,5 +1,4 @@
-this is part 2 of the project, for part 3 change the branch to part3ConnectServer or click here: [https://github.com/orshmuel9/facebook/tree/Part3ConnectServer](https://github.com/EliyaRabia/FacebookWeb/tree/Part3ConnectServer)
-# Welcome to our facebook React project BIU Advanced Programming Course
+this is part 2 of the project, for part 3 change the branch to part3ConnectServer or click here: [(https://github.com/EliyaRabia/FacebookWeb/tree/Part3ConnectServer)] Welcome to our facebook React project BIU Advanced Programming Course
 
 to get started with the project, clone the repository and install the dependencies.
 
