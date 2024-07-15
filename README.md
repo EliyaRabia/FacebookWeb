@@ -4,7 +4,7 @@ Welcome to our facebook React project BIU Advanced Programming Course
 
 to get started with the project, clone the repository and install the dependencies.
 
-git clone https://github.com/orshmuel9/facebook
+git clone https://github.com/EliyaRabia/FacebookWeb
 cd < repository-name >
 npm install
 
