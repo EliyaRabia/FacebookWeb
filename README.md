@@ -4,11 +4,11 @@ This branch is used for part3 of the project, if you want to see our work of par
 The webstie app was developed in vs code software and it is connected to a Node Js server that we link here down below so make sure you already clone the server,
 follow its instructions and run it before you open this app because it won't work without it! if you already done it continue...
 
-This is the link to our server: https://github.com/orshmuel9/FacebookServer
+This is the link to our server:https://github.com/EliyaRabia/FacebookServer
 
 After you have done it, you can start with cloning this repository.
 
-git clone -b Part3ConnectServer https://github.com/orshmuel9/facebook.git
+git clone -b Part3ConnectServer https://github.com/EliyaRabia/FacebookWeb
 
 (on vs code)
 
