@@ -14,7 +14,7 @@ if you want to read more about the bloom filter tcp server or the node js server
 
 After you have done it, you can start with cloning this repository.
 
-git clone -b part4 https://github.com/orshmuel9/facebook.git
+git clone -b part4 https://github.com/EliyaRabia/FacebookWeb
 
 (on vs code)
 
