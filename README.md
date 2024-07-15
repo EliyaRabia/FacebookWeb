@@ -8,7 +8,7 @@ This is the link to our server: https://github.com/EliyaRabia/FacebookWeb/tree/p
 
 you also need to run the tcp server that is running the bloom filter of the valid urls, you can see its instructions here: 
 
-https://github.com/ofekyem87biu/ex1/tree/part4
+https://github.com/EliyaRabia/BlommFilter-and-TCP-Server/tree/part4
 
 if you want to read more about the bloom filter tcp server or the node js server please enter their repos and read their ReadMe files!
 
