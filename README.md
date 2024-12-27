@@ -1,5 +1,12 @@
 This branch is used for Part 3 of the project, if you want to see our work for part 2 then go to the "main" branch
 # Welcome to our Facebook React website project as part of the BIU Advanced Programming Course!
+<br>
+
+![Screenshot 2024-12-27 120730](https://github.com/user-attachments/assets/50b49dda-18f8-4f49-ac4c-eda15c1b6acd)
+![Screenshot 2024-12-27 120219](https://github.com/user-attachments/assets/47cb7b6c-9fdb-405e-9dab-b126009680f6)
+
+
+<br>
 
 The Webstie app was developed in VS code software and it is connected to a Node Js server that we link here down below so make sure you already clone the server,
 follow its instructions, and run it before you open this app because it won't work without it! if you did it continue...
