@@ -6,6 +6,7 @@ This branch is used for Part 3 of the project, if you want to see our work for p
 <img src="https://github.com/user-attachments/assets/47cb7b6c-9fdb-405e-9dab-b126009680f6" alt="Blog page" width="400">
 
 <br>
+<hr>
 
 The Webstie app was developed in VS code software and it is connected to a Node Js server that we link here down below so make sure you already clone the server,
 follow its instructions, and run it before you open this app because it won't work without it! if you did it continue...
