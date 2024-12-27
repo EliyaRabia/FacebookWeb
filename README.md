@@ -2,9 +2,8 @@ This branch is used for Part 3 of the project, if you want to see our work for p
 # Welcome to our Facebook React website project as part of the BIU Advanced Programming Course!
 <br>
 
-![Screenshot 2024-12-27 120730](https://github.com/user-attachments/assets/50b49dda-18f8-4f49-ac4c-eda15c1b6acd)
-![Screenshot 2024-12-27 120219](https://github.com/user-attachments/assets/47cb7b6c-9fdb-405e-9dab-b126009680f6)
-
+<img src="https://github.com/user-attachments/assets/50b49dda-18f8-4f49-ac4c-eda15c1b6acd" alt="Open page" width="400">
+<img src="https://github.com/user-attachments/assets/47cb7b6c-9fdb-405e-9dab-b126009680f6" alt="Blog page" width="400">
 
 <br>
 
